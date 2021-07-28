@@ -1,0 +1,183 @@
+1>------ 已启动生成: 项目: ess_agc_ctrl1, 配置: Release Win32 ------
+1>正在编译...
+1>cl: 命令行 warning D9035 :“Wp64”选项已否决，并将在将来的版本中移除
+1>main.cpp
+1>d:\res6000\cpp\include\../com/rdb/rdb_include/rdb_access_base.h(137) : warning C4251: “RDB_ACCESS_BASE::app_request_buf”: class“APPBUF_REQUEST”需要有 dll 接口由 class“RDB_ACCESS_BASE”的客户端使用 
+1>        d:\res6000\cpp\com\rdb\rdb_include\../rdb_include/rdb_memio_base.h(199) : 参见“APPBUF_REQUEST”的声明
+1>d:\res6000\cpp\com\hds\include\HDSGlobalDefine.h(226) : warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\string.h(74) : 参见“strcpy”的声明
+1>d:\res6000\cpp\com\hds\include\HDSGlobalDefine.h(229) : warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\string.h(74) : 参见“strcpy”的声明
+1>d:\res6000\cpp\com\hds\include\HDSGlobalDefine.h(232) : warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\string.h(74) : 参见“strcpy”的声明
+1>d:\res6000\cpp\com\hds\include\HDSGlobalDefine.h(235) : warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\string.h(74) : 参见“strcpy”的声明
+1>d:\res6000\cpp\com\hds\include\HDSGlobalDefine.h(238) : warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\string.h(74) : 参见“strcpy”的声明
+1>d:\res6000\cpp\com\hds\include\HDSGlobalDefine.h(241) : warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\string.h(74) : 参见“strcpy”的声明
+1>d:\res6000\cpp\com\hds\include\HDSGlobalDefine.h(244) : warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\string.h(74) : 参见“strcpy”的声明
+1>d:\res6000\cpp\com\hds\include\HDSGlobalDefine.h(247) : warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\string.h(74) : 参见“strcpy”的声明
+1>d:\res6000\cpp\com\hds\include\HDSGlobalDefine.h(250) : warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\string.h(74) : 参见“strcpy”的声明
+1>d:\res6000\cpp\com\hds\include\HDSGlobalDefine.h(253) : warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\string.h(74) : 参见“strcpy”的声明
+1>d:\res6000\cpp\com\hds\include\HDSGlobalDefine.h(256) : warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\string.h(74) : 参见“strcpy”的声明
+1>d:\res6000\cpp\com\hds\include\HDSGlobalDefine.h(259) : warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\string.h(74) : 参见“strcpy”的声明
+1>d:\res6000\cpp\com\hds\include\HDSGlobalDefine.h(263) : warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\string.h(74) : 参见“strcpy”的声明
+1>d:\res6000\cpp\com\hds\include\HDSGlobalDefine.h(266) : warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\string.h(74) : 参见“strcpy”的声明
+1>d:\res6000\cpp\com\hds\include\HDSGlobalDefine.h(269) : warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\string.h(74) : 参见“strcpy”的声明
+1>d:\res6000\cpp\com\hds\include\HDSGlobalDefine.h(272) : warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\string.h(74) : 参见“strcpy”的声明
+1>d:\res6000\cpp\com\hds\include\HDSGlobalDefine.h(276) : warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\string.h(74) : 参见“strcpy”的声明
+1>d:\res6000\cpp\com\hds\include\HDSGlobalDefine.h(279) : warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\string.h(74) : 参见“strcpy”的声明
+1>d:\res6000\cpp\com\hds\include\HDSGlobalDefine.h(282) : warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\string.h(74) : 参见“strcpy”的声明
+1>d:\res6000\cpp\com\hds\include\HDSGlobalDefine.h(285) : warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\string.h(74) : 参见“strcpy”的声明
+1>d:\res6000\cpp\com\hds\include\HDSGlobalDefine.h(288) : warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\string.h(74) : 参见“strcpy”的声明
+1>d:\res6000\cpp\com\hds\include\HDSGlobalDefine.h(292) : warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\string.h(74) : 参见“strcpy”的声明
+1>d:\res6000\cpp\com\hds\include\HDSGlobalDefine.h(295) : warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\string.h(74) : 参见“strcpy”的声明
+1>d:\res6000\cpp\com\hds\include\HDSGlobalDefine.h(298) : warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\string.h(74) : 参见“strcpy”的声明
+1>d:\res6000\cpp\com\hds\include\HDSGlobalDefine.h(301) : warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\string.h(74) : 参见“strcpy”的声明
+1>d:\res6000\cpp\com\hds\include\HDSGlobalDefine.h(304) : warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\string.h(74) : 参见“strcpy”的声明
+1>d:\res6000\cpp\com\hds\include\HDSGlobalDefine.h(307) : warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\string.h(74) : 参见“strcpy”的声明
+1>d:\res6000\cpp\com\hds\include\HDSGlobalDefine.h(310) : warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\string.h(74) : 参见“strcpy”的声明
+1>d:\res6000\cpp\com\hds\include\HDSGlobalDefine.h(313) : warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\string.h(74) : 参见“strcpy”的声明
+1>d:\res6000\cpp\com\hds\include\HDSGlobalDefine.h(316) : warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\string.h(74) : 参见“strcpy”的声明
+1>d:\res6000\cpp\com\hds\include\HDSGlobalDefine.h(320) : warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\string.h(74) : 参见“strcpy”的声明
+1>d:\res6000\cpp\com\hds\include\HDSGlobalDefine.h(323) : warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\string.h(74) : 参见“strcpy”的声明
+1>d:\res6000\cpp\com\hds\include\HDSGlobalDefine.h(326) : warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\string.h(74) : 参见“strcpy”的声明
+1>d:\res6000\cpp\com\hds\include\HDSGlobalDefine.h(330) : warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\string.h(74) : 参见“strcpy”的声明
+1>d:\res6000\cpp\com\hds\include\HDSGlobalDefine.h(333) : warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\string.h(74) : 参见“strcpy”的声明
+1>d:\res6000\cpp\com\hds\include\HDSGlobalDefine.h(336) : warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\string.h(74) : 参见“strcpy”的声明
+1>d:\res6000\cpp\com\hds\include\HDSGlobalDefine.h(340) : warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\string.h(74) : 参见“strcpy”的声明
+1>d:\res6000\cpp\com\hds\include\HDSGlobalDefine.h(343) : warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\string.h(74) : 参见“strcpy”的声明
+1>d:\res6000\cpp\com\hds\include\HDSGlobalDefine.h(346) : warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\string.h(74) : 参见“strcpy”的声明
+1>d:\res6000\cpp\com\hds\include\HDSGlobalDefine.h(349) : warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\string.h(74) : 参见“strcpy”的声明
+1>d:\res6000\cpp\com\hds\include\HDSGlobalDefine.h(353) : warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\string.h(74) : 参见“strcpy”的声明
+1>d:\res6000\cpp\com\hds\include\HDSGlobalDefine.h(356) : warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\string.h(74) : 参见“strcpy”的声明
+1>d:\res6000\cpp\com\hds\include\HDSGlobalDefine.h(359) : warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\string.h(74) : 参见“strcpy”的声明
+1>d:\res6000\cpp\com\hds\include\HDSGlobalDefine.h(362) : warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\string.h(74) : 参见“strcpy”的声明
+1>d:\res6000\cpp\com\hds\include\HDSGlobalDefine.h(366) : warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\string.h(74) : 参见“strcpy”的声明
+1>d:\res6000\cpp\com\hds\include\HDSGlobalDefine.h(369) : warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\string.h(74) : 参见“strcpy”的声明
+1>d:\res6000\cpp\com\hds\include\HDSGlobalDefine.h(372) : warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\string.h(74) : 参见“strcpy”的声明
+1>d:\res6000\cpp\com\hds\include\HDSGlobalDefine.h(376) : warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\string.h(74) : 参见“strcpy”的声明
+1>d:\res6000\cpp\com\hds\include\HDSGlobalDefine.h(379) : warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\string.h(74) : 参见“strcpy”的声明
+1>d:\res6000\cpp\com\hds\include\HDSGlobalDefine.h(383) : warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\string.h(74) : 参见“strcpy”的声明
+1>d:\res6000\cpp\com\hds\include\HDSGlobalDefine.h(386) : warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\string.h(74) : 参见“strcpy”的声明
+1>d:\res6000\cpp\com\hds\include\HDSGlobalDefine.h(389) : warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\string.h(74) : 参见“strcpy”的声明
+1>d:\res6000\cpp\com\hds\include\HDSGlobalDefine.h(393) : warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\string.h(74) : 参见“strcpy”的声明
+1>d:\res6000\cpp\com\hds\include\HDSGlobalDefine.h(396) : warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\string.h(74) : 参见“strcpy”的声明
+1>d:\res6000\cpp\com\hds\include\HDSGlobalDefine.h(400) : warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\string.h(74) : 参见“strcpy”的声明
+1>d:\res6000\cpp\com\hds\include\HDSGlobalDefine.h(403) : warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\string.h(74) : 参见“strcpy”的声明
+1>d:\res6000\cpp\com\hds\include\HDSGlobalDefine.h(406) : warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\string.h(74) : 参见“strcpy”的声明
+1>d:\res6000\cpp\com\hds\include\HDSGlobalDefine.h(409) : warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\string.h(74) : 参见“strcpy”的声明
+1>d:\res6000\cpp\com\hds\include\HDSGlobalDefine.h(412) : warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\string.h(74) : 参见“strcpy”的声明
+1>d:\res6000\cpp\com\hds\include\HDSGlobalDefine.h(415) : warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\string.h(74) : 参见“strcpy”的声明
+1>d:\res6000\cpp\com\hds\include\HDSGlobalDefine.h(418) : warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\string.h(74) : 参见“strcpy”的声明
+1>d:\res6000\cpp\com\hds\include\HDSGlobalDefine.h(421) : warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\string.h(74) : 参见“strcpy”的声明
+1>d:\res6000\cpp\com\hds\include\HDSGlobalDefine.h(426) : warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\string.h(74) : 参见“strcpy”的声明
+1>d:\res6000\cpp\com\hds\include\HDSGlobalDefine.h(429) : warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\string.h(74) : 参见“strcpy”的声明
+1>d:\res6000\cpp\com\hds\include\HDSGlobalDefine.h(434) : warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\string.h(74) : 参见“strcpy”的声明
+1>d:\res6000\cpp\com\hds\include\HDSGlobalDefine.h(439) : warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\string.h(74) : 参见“strcpy”的声明
+1>d:\res6000\cpp\com\hds\include\HDSGlobalDefine.h(442) : warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\string.h(74) : 参见“strcpy”的声明
+1>d:\res6000\cpp\com\hds\include\HDSGlobalDefine.h(445) : warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\string.h(74) : 参见“strcpy”的声明
+1>d:\res6000\cpp\com\hds\include\HDSGlobalDefine.h(448) : warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\string.h(74) : 参见“strcpy”的声明
+1>d:\res6000\cpp\com\hds\include\HDSGlobalDefine.h(451) : warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\string.h(74) : 参见“strcpy”的声明
+1>d:\res6000\cpp\com\hds\include\HDSGlobalDefine.h(454) : warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\string.h(74) : 参见“strcpy”的声明
+1>d:\res6000\cpp\com\hds\include\HDSGlobalDefine.h(457) : warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\string.h(74) : 参见“strcpy”的声明
+1>d:\res6000\cpp\com\hds\include\HDSGlobalDefine.h(460) : warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\string.h(74) : 参见“strcpy”的声明
+1>d:\res6000\cpp\com\hds\include\HDSGlobalDefine.h(463) : warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\string.h(74) : 参见“strcpy”的声明
+1>d:\res6000\cpp\com\hds\include\HDSGlobalDefine.h(466) : warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\string.h(74) : 参见“strcpy”的声明
+1>d:\res6000\cpp\com\hds\include\HDSGlobalDefine.h(469) : warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\string.h(74) : 参见“strcpy”的声明
+1>d:\res6000\cpp\com\hds\include\HDSGlobalDefine.h(472) : warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\string.h(74) : 参见“strcpy”的声明
+1>d:\res6000\cpp\com\hds\include\HDSGlobalDefine.h(475) : warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\string.h(74) : 参见“strcpy”的声明
+1>d:\res6000\cpp\com\hds\include\HDSGlobalDefine.h(478) : warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\string.h(74) : 参见“strcpy”的声明
+1>d:\res6000\cpp\com\hds\include\HDSGlobalDefine.h(481) : warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\string.h(74) : 参见“strcpy”的声明
+1>d:\res6000\cpp\com\hds\include\HDSGlobalDefine.h(484) : warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\string.h(74) : 参见“strcpy”的声明
+1>d:\res6000\cpp\com\hds\include\HDSGlobalDefine.h(487) : warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\string.h(74) : 参见“strcpy”的声明
+1>d:\res6000\cpp\com\hds\include\HDSGlobalDefine.h(490) : warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+1>        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\stdio.h(366) : 参见“sprintf”的声明
+1>d:\res6000\cpp\com\hds\include\HFile.h(45) : warning C4267: “return”: 从“size_t”转换到“int”，可能丢失数据
+1>正在生成代码...
+1>正在跳过...(未检测到相关更改)
+1>agvc_ctrl_main.cpp
+1>device.cpp
+1>正在链接...
+1>LINK : warning LNK4075: 忽略“/INCREMENTAL”(由于“/OPT:ICF”规范)
+1>正在嵌入清单...
+1>生成日志保存在“file://d:\res6000\cpp\fore\ess_agc_ctrl - new\Release\BuildLog.htm”
+1>ess_agc_ctrl1 - 0 个错误，86 个警告
+========== 生成: 成功 1 个，失败 0 个，最新 0 个，跳过 0 个 ==========

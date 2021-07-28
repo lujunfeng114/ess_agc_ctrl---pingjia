@@ -1,0 +1,186 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Cagvc_ctrl_mgr" Collapsed="true">
+    <Position X="11" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>6l5vnv/P/9+P4/9mbeP+dzc//sqtOBbUEftvW/t7nu8=</HashCode>
+      <FileName>agvc_ctrl_main.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cdata_access" Collapsed="true">
+    <Position X="16.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAgAAAAAAAAgAAIAAAQgAAABAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>data_access.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cmicro_ctrl_info" Collapsed="true">
+    <Position X="16.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAoAAAAhAAAAGwAAIgRAVAgoAAUBAAAiACEgAAAEAA=</HashCode>
+      <FileName>device.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cbms_info" Collapsed="true">
+    <Position X="14.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAMAAAUFAAAAAxEAACSARAAgAAEAQAAgACAkAAAEAA=</HashCode>
+      <FileName>device.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cpcs_info" Collapsed="true">
+    <Position X="11" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>vFVY9gLCxqr4XW7ccn6QX9x9mGsklcfUjWvOz/QpqAM=</HashCode>
+      <FileName>device.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cstation_info" Collapsed="true">
+    <Position X="14.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAcYBYgAgigRJIwAAgEQQQCCiNBEAQggwAAglhIAAAI=</HashCode>
+      <FileName>device.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cpoint_info" Collapsed="true">
+    <Position X="12.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAEIIAADQAAAAAwAAAQQAQAAgACUAAgAgGAAgAAABxA=</HashCode>
+      <FileName>device.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cagvc_info" Collapsed="true">
+    <Position X="12.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ARAIYAhJgEAlkg1AiAAbGUAEhAVEQiAAgAERwskppQg=</HashCode>
+      <FileName>device.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cgatepower_info" Collapsed="true">
+    <Position X="12.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>g04eOVrrL87rSPx/9IGR+09mldV2AUK3kgsp1kDabHY=</HashCode>
+      <FileName>device.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cfac_info" Collapsed="true">
+    <Position X="11" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAAAFAAQwAACAQAQAAgAAEAAAEiCAAgAAABBA=</HashCode>
+      <FileName>device.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cmeas_info" Collapsed="true">
+    <Position X="14.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQIAAAQEAQAAAwAAAARAQAAgAAEAAAAgAAAgIAAAAA=</HashCode>
+      <FileName>device.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="scada_report_manager" Collapsed="true">
+    <Position X="16.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>wEAAACaAEQSAkEkwAAwEBQCAAAAABAAOAACIBAACQIA=</HashCode>
+      <FileName>d:\res6000\cpp\scada\scada_normal\scada_report_manager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="__unnamed_0002_1" Collapsed="true">
+    <Position X="8.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAAAAAgAAAAgAAAIAAAAAAAAAACAAAgAAACAA=</HashCode>
+      <FileName>const_def.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="__unnamed_0002_2" Collapsed="true">
+    <Position X="4.5" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAYAAAAAAAAAAAgAAAAAAAAACCCAACAAAAAAACAA=</HashCode>
+      <FileName>const_def.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="__unnamed_0002_3" Collapsed="true">
+    <Position X="4.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAQCAAAAAAAYEAAAAgCCQQABAAAAACAAIAAEAAAA=</HashCode>
+      <FileName>const_def.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="__unnamed_0002_4" Collapsed="true">
+    <Position X="0.5" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAABAAgAAgAEAAAAAAAEwAAAAgAAACAAAAgAAAAA=</HashCode>
+      <FileName>const_def.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="__unnamed_0002_5" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAgAAAQAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>const_def.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="warn_report_stru" Collapsed="true">
+    <Position X="16.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABCAAAAAAAAAAAAAAAAAAAACAAAgAQBAAABAACA=</HashCode>
+      <FileName>d:\res6000\cpp\scada\scada_normal\scada_report_manager.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="modify_rdb_report" Collapsed="true">
+    <Position X="12.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAAAAAAAEAAAAAKAAAAAAAAAABAAAAAAAAAA=</HashCode>
+      <FileName>d:\res6000\cpp\scada\scada_normal\scada_report_manager.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="warn_report" Collapsed="true">
+    <Position X="14.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAAEAAAACAAAAAAAEAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>d:\res6000\cpp\scada\scada_normal\scada_report_manager.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="machine_info" Collapsed="true">
+    <Position X="11" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAACAAAAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>d:\res6000\cpp\scada\scada_normal\scada_report_manager.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Typedef Name="yk_send_struct" Collapsed="true">
+    <Position X="8.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>const_def.h</FileName>
+    </TypeIdentifier>
+  </Typedef>
+  <Typedef Name="yt_send_struct" Collapsed="true">
+    <Position X="4.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>const_def.h</FileName>
+    </TypeIdentifier>
+  </Typedef>
+  <Typedef Name="ctrl_cmd_struct" Collapsed="true">
+    <Position X="4.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>const_def.h</FileName>
+    </TypeIdentifier>
+  </Typedef>
+  <Typedef Name="yk_define_struct" Collapsed="true">
+    <Position X="0.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>const_def.h</FileName>
+    </TypeIdentifier>
+  </Typedef>
+  <Typedef Name="sw_info_struct" Collapsed="true">
+    <Position X="0.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>const_def.h</FileName>
+    </TypeIdentifier>
+  </Typedef>
+  <Font Name="Microsoft YaHei UI" Size="9" />
+</ClassDiagram>
