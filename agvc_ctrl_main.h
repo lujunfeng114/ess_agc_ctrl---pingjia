@@ -58,9 +58,8 @@ public:
 	Cagvc_info* find_agvc_from_list(int display_id);
 	Cmicro_ctrl_info* find_micro_ctrl_from_list(int display_id);
 	Cgatepower_info* find_gatepower_from_list(int display_id);   //查找某一条关口表电量记录
-
-	Cgatepower_info* find_station_monthpower_from_list(int display_id);   //查找某一条关口表电量记录
-
+	Cgatepower_info* find_station_monthpower_from_list(int display_id);   //查找某一条整站月电量记录
+	Cgatepower_info* find_station_daypower_from_list(int display_id);   //查找某一条整站日电量电量记录
 
 
 public:
