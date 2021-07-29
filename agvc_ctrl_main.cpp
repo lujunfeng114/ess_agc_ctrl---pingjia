@@ -1924,7 +1924,6 @@ int Cagvc_ctrl_mgr::red_station_monthpower_info_table()
 		offset += fields_info[26].field_len;
 		memcpy((char *)&agvc->month6_downpower, buffer+record_pos+offset, fields_info[27].field_len);
 		offset += fields_info[27].field_len;
-		memcpy((char *)&agvc->month8_downpower, buffer+record_pos+offset, fields_info[28].field_len);
 		memcpy((char *)&agvc->month7_downpower, buffer+record_pos+offset, fields_info[28].field_len);
 		offset += fields_info[28].field_len;
 		memcpy((char *)&agvc->month8_downpower, buffer+record_pos+offset, fields_info[29].field_len);
@@ -1996,6 +1995,7 @@ int Cagvc_ctrl_mgr::red_station_monthpower_info_table()
 	FREE((char *&)fields_info);
 	return 1;
 }
+
 
 
 
@@ -2358,7 +2358,6 @@ int Cagvc_ctrl_mgr::red_station_daypower_info_table()
 	FREE((char *&)fields_info);
 	return 1;
 }
-
 
 
 

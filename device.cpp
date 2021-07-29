@@ -1684,7 +1684,7 @@ Cstation_monthpower_info::Cstation_monthpower_info(Cdata_access *_data_obj)
 
 }
 
-Cstation_monthpower_info::~Cstati()
+Cstation_monthpower_info::~Cstation_monthpower_info()
 {
 
 }
