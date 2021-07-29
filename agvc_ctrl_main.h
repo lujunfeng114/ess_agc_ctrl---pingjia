@@ -29,8 +29,8 @@ public:
 
 
 	vector<Cgatepower_info * > gatepower_list;//关口电量表
-	vector<Cstation_monthpower_info * > gatepower_list;//整站月电量分析表
-	vector<Cstation_daypower_info * > gatepower_list;//整站日电量分析表
+	vector<Cstation_monthpower_info * > station_monthpower_list;//整站月电量分析表
+	vector<Cstation_daypower_info * > station_daypower_list;//整站日电量分析表
 
 	int read_fac_info_table();
 	int read_meas_info_table();

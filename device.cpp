@@ -1673,3 +1673,48 @@ int Cgatepower_info::read_gatepower_rdb()
 
 	return 0;
 }
+
+
+//20210729 卢俊峰  整站月电量表操作
+Cstation_monthpower_info::Cstation_monthpower_info(Cdata_access *_data_obj)
+{
+	this->data_obj = _data_obj;
+	this->rdb_obj = data_obj->rdb_obj;
+	this->dnet_obj = data_obj->dnet_obj;
+
+}
+
+Cstation_monthpower_info::~Cstati()
+{
+
+}
+
+int Cstation_monthpower_info::read_station_monthpower_rdb()
+{
+	
+
+
+	return 0;
+}
+
+//20210729 卢俊峰  整站日电量表操作
+Cstation_daypower_info::Cstation_daypower_info(Cdata_access *_data_obj)
+{
+	this->data_obj = _data_obj;
+	this->rdb_obj = data_obj->rdb_obj;
+	this->dnet_obj = data_obj->dnet_obj;
+
+}
+
+Cstation_daypower_info::~Cstati()
+{
+
+}
+
+int Cstation_daypower_info::read_station_daypower_rdb()
+{
+
+
+
+	return 0;
+}

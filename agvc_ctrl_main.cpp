@@ -1749,7 +1749,7 @@ int Cagvc_ctrl_mgr::red_gatepower_info_table()
 
 
 
-
+//整站电量月分析表
 
 int Cagvc_ctrl_mgr::red_station_monthpower_info_table()
 {
@@ -1900,92 +1900,94 @@ int Cagvc_ctrl_mgr::red_station_monthpower_info_table()
 		offset += fields_info[15].field_len;
 		memcpy((char *)&agvc->month11_uppower, buffer+record_pos+offset, fields_info[16].field_len);
 		offset += fields_info[16].field_len;
-		memcpy((char *)&agvc->month12_uppower, buffer+record_pos+offset, fields_info[16].field_len);
-		offset += fields_info[16].field_len;
-		memcpy((char *)&agvc->season1_uppower, buffer+record_pos+offset, fields_info[17].field_len);
+		memcpy((char *)&agvc->month12_uppower, buffer+record_pos+offset, fields_info[17].field_len);
 		offset += fields_info[17].field_len;
-		memcpy((char *)&agvc->season2_uppower, buffer+record_pos+offset, fields_info[18].field_len);
-		offset += fields_info[18].field_len;       
-		memcpy((char *)&agvc->season3_uppower, buffer+record_pos+offset, fields_info[19].field_len);
-		offset += fields_info[19].field_len;
-		memcpy((char *)&agvc->season4_uppower, buffer+record_pos+offset, fields_info[20].field_len);
-		offset += fields_info[20].field_len;
 
-		memcpy((char *)&agvc->month1_downpower, buffer+record_pos+offset, fields_info[21].field_len);
+		memcpy((char *)&agvc->season1_uppower, buffer+record_pos+offset, fields_info[18].field_len);
+		offset += fields_info[18].field_len;       
+		memcpy((char *)&agvc->season2_uppower, buffer+record_pos+offset, fields_info[19].field_len);
+		offset += fields_info[19].field_len;
+		memcpy((char *)&agvc->season3_uppower, buffer+record_pos+offset, fields_info[20].field_len);
+		offset += fields_info[20].field_len;
+		memcpy((char *)&agvc->season4_uppower, buffer+record_pos+offset, fields_info[21].field_len);
 		offset += fields_info[21].field_len;
-		memcpy((char *)&agvc->month2_downpower, buffer+record_pos+offset, fields_info[22].field_len);
+
+		memcpy((char *)&agvc->month1_downpower, buffer+record_pos+offset, fields_info[22].field_len);
 		offset += fields_info[22].field_len;
-		memcpy((char *)&agvc->month3_downpower, buffer+record_pos+offset, fields_info[23].field_len);
+		memcpy((char *)&agvc->month2_downpower, buffer+record_pos+offset, fields_info[23].field_len);
 		offset += fields_info[23].field_len;
-		memcpy((char *)&agvc->month4_downpower, buffer+record_pos+offset, fields_info[24].field_len);
+		memcpy((char *)&agvc->month3_downpower, buffer+record_pos+offset, fields_info[24].field_len);
 		offset += fields_info[24].field_len;
-		memcpy((char *)&agvc->month5_downpower, buffer+record_pos+offset, fields_info[25].field_len);
+		memcpy((char *)&agvc->month4_downpower, buffer+record_pos+offset, fields_info[25].field_len);
 		offset += fields_info[25].field_len;
-		memcpy((char *)&agvc->month6_downpower, buffer+record_pos+offset, fields_info[26].field_len);
+		memcpy((char *)&agvc->month5_downpower, buffer+record_pos+offset, fields_info[26].field_len);
 		offset += fields_info[26].field_len;
-		memcpy((char *)&agvc->month7_downpower, buffer+record_pos+offset, fields_info[27].field_len);
+		memcpy((char *)&agvc->month6_downpower, buffer+record_pos+offset, fields_info[27].field_len);
 		offset += fields_info[27].field_len;
 		memcpy((char *)&agvc->month8_downpower, buffer+record_pos+offset, fields_info[28].field_len);
+		memcpy((char *)&agvc->month7_downpower, buffer+record_pos+offset, fields_info[28].field_len);
 		offset += fields_info[28].field_len;
-		memcpy((char *)&agvc->month9_downpower, buffer+record_pos+offset, fields_info[29].field_len);
+		memcpy((char *)&agvc->month8_downpower, buffer+record_pos+offset, fields_info[29].field_len);
 		offset += fields_info[29].field_len;
-		memcpy((char *)&agvc->month10_downpower, buffer+record_pos+offset, fields_info[30].field_len);
+		memcpy((char *)&agvc->month9_downpower, buffer+record_pos+offset, fields_info[30].field_len);
 		offset += fields_info[30].field_len;
-		memcpy((char *)&agvc->month11_downpower, buffer+record_pos+offset, fields_info[31].field_len);
+		memcpy((char *)&agvc->month10_downpower, buffer+record_pos+offset, fields_info[31].field_len);
 		offset += fields_info[31].field_len;
-		memcpy((char *)&agvc->month12_downpower, buffer+record_pos+offset, fields_info[32].field_len);
+		memcpy((char *)&agvc->month11_downpower, buffer+record_pos+offset, fields_info[32].field_len);
 		offset += fields_info[32].field_len;
+		memcpy((char *)&agvc->month12_downpower, buffer+record_pos+offset, fields_info[33].field_len);
+		offset += fields_info[33].field_len;	
 
-		memcpy((char *)&agvc->season1_downpower, buffer+record_pos+offset, fields_info[33].field_len);
-		offset += fields_info[33].field_len;		
-		memcpy((char *)&agvc->season2_downpower, buffer+record_pos+offset, fields_info[34].field_len);
+		memcpy((char *)&agvc->season1_downpower, buffer+record_pos+offset, fields_info[34].field_len);
 		offset += fields_info[34].field_len;
-		memcpy((char *)&agvc->season3_downpower, buffer+record_pos+offset, fields_info[35].field_len);
+		memcpy((char *)&agvc->season2_downpower, buffer+record_pos+offset, fields_info[35].field_len);
 		offset += fields_info[35].field_len;
+		memcpy((char *)&agvc->season3_downpower, buffer+record_pos+offset, fields_info[36].field_len);
+		offset += fields_info[36].field_len;
 		memcpy((char *)&agvc->season4_downpower, buffer+record_pos+offset, fields_info[36].field_len);
 		offset += fields_info[36].field_len;
-
 
 		agvc->display_id_col = fields_info[0].rdb_field_no;
 		agvc->name_col = fields_info[2].rdb_field_no;
 		agvc->month_col = fields_info[3].rdb_field_no;
 		agvc->year_uppower_col = fields_info[4].rdb_field_no;
 		agvc->year_downpower_col = fields_info[5].rdb_field_no;
-		agvc->month2_uppower_col = fields_info[6].rdb_field_no;
-		agvc->month3_uppower_col = fields_info[7].rdb_field_no;
-		agvc->month4_uppower_col = fields_info[8].rdb_field_no;
-		agvc->month5_uppower_col = fields_info[9].rdb_field_no;
-		agvc->month6_uppower_col = fields_info[10].rdb_field_no;
-		agvc->month7_uppower_col = fields_info[11].rdb_field_no;
-		agvc->month8_uppower_col = fields_info[12].rdb_field_no;
-		agvc->month9_uppower_col = fields_info[13].rdb_field_no;
-		agvc->month10_uppower_col = fields_info[14].rdb_field_no;
-		agvc->month11_uppower_col = fields_info[15].rdb_field_no;
-		agvc->month12_uppower_col = fields_info[16].rdb_field_no;
+		agvc->month1_uppower_col = fields_info[6].rdb_field_no;
+		agvc->month2_uppower_col = fields_info[7].rdb_field_no;
+		agvc->month3_uppower_col = fields_info[8].rdb_field_no;
+		agvc->month4_uppower_col = fields_info[9].rdb_field_no;
+		agvc->month5_uppower_col = fields_info[10].rdb_field_no;
+		agvc->month6_uppower_col = fields_info[11].rdb_field_no;
+		agvc->month7_uppower_col = fields_info[12].rdb_field_no;
+		agvc->month8_uppower_col = fields_info[13].rdb_field_no;
+		agvc->month9_uppower_col = fields_info[14].rdb_field_no;
+		agvc->month10_uppower_col = fields_info[15].rdb_field_no;
+		agvc->month11_uppower_col = fields_info[16].rdb_field_no;
+		agvc->month12_uppower_col = fields_info[17].rdb_field_no;
 
-		agvc->season1_uppower_col = fields_info[17].rdb_field_no;
-		agvc->season2_uppower_col = fields_info[18].rdb_field_no;
-		agvc->season3_uppower_col = fields_info[19].rdb_field_no;
-		agvc->season4_uppower_col = fields_info[20].rdb_field_no;
+		agvc->season1_uppower_col = fields_info[18].rdb_field_no;
+		agvc->season2_uppower_col = fields_info[19].rdb_field_no;
+		agvc->season3_uppower_col = fields_info[20].rdb_field_no;
+		agvc->season4_uppower_col = fields_info[21].rdb_field_no;
 
-		agvc->month1_downpower_col = fields_info[21].rdb_field_no;
-		agvc->month2_downpower_col = fields_info[22].rdb_field_no;
-		agvc->month3_downpower_col = fields_info[23].rdb_field_no;
-		agvc->month4_downpower_col = fields_info[24].rdb_field_no;
-		agvc->month5_downpower_col = fields_info[25].rdb_field_no;
-		agvc->month6_downpower_col = fields_info[26].rdb_field_no;
-		agvc->month7_downpower_col = fields_info[27].rdb_field_no;
-		agvc->month8_downpower_col = fields_info[28].rdb_field_no;
-		agvc->month9_downpower_col = fields_info[29].rdb_field_no;
-		agvc->month10_downpower_col = fields_info[30].rdb_field_no;
-		agvc->month11_downpower_col = fields_info[31].rdb_field_no;
-		agvc->month12_downpower_col = fields_info[32].rdb_field_no;
 
-		agvc->season1_uppower_col = fields_info[33].rdb_field_no;
-		agvc->season2_uppower_col = fields_info[34].rdb_field_no;
-		agvc->season3_uppower_col = fields_info[35].rdb_field_no;
+		agvc->month1_downpower_col = fields_info[22].rdb_field_no;
+		agvc->month2_downpower_col = fields_info[23].rdb_field_no;
+		agvc->month3_downpower_col = fields_info[24].rdb_field_no;
+		agvc->month4_downpower_col = fields_info[25].rdb_field_no;
+		agvc->month5_downpower_col = fields_info[26].rdb_field_no;
+		agvc->month6_downpower_col = fields_info[27].rdb_field_no;
+		agvc->month7_downpower_col = fields_info[28].rdb_field_no;
+		agvc->month8_downpower_col = fields_info[29].rdb_field_no;
+		agvc->month9_downpower_col = fields_info[30].rdb_field_no;
+		agvc->month10_downpower_col = fields_info[31].rdb_field_no;
+		agvc->month11_downpower_col = fields_info[32].rdb_field_no;
+		agvc->month12_downpower_col = fields_info[33].rdb_field_no;
+
+		agvc->season1_uppower_col = fields_info[34].rdb_field_no;
+		agvc->season2_uppower_col = fields_info[35].rdb_field_no;
+		agvc->season3_uppower_col = fields_info[36].rdb_field_no;
 		agvc->season4_uppower_col = fields_info[36].rdb_field_no;
-
 		agvc_list.push_back(agvc);
 
 	}
@@ -1997,6 +1999,365 @@ int Cagvc_ctrl_mgr::red_station_monthpower_info_table()
 
 
 
+
+//整站电量日分析表
+
+int Cagvc_ctrl_mgr::red_station_daypower_info_table()
+{
+	for(int i=0; i<station_daypower_list.size(); i++)
+	{
+		delete station_daypower_list.at(i);
+	}
+	station_daypower_list.clear();
+
+	int retcode;
+	int record_num;
+	int result_len;
+	char *buffer = NULL;
+
+	int offset = 0;
+	int record_pos = 0;
+	int record_len = 0;
+
+	struct TABLE_HEAD_FIELDS_INFO* fields_info = NULL;
+
+	const int field_num = 37;
+	buffer = (char *)MALLOC(6000);
+
+	fields_info = (struct TABLE_HEAD_FIELDS_INFO *)MALLOC(sizeof(struct TABLE_HEAD_FIELDS_INFO)*field_num);
+	char  English_names[field_num][DB_ENG_TABLE_NAME_LEN] = {
+		"display_idx",
+		"id",
+		"name",
+		"month",
+		"day1_uppower",
+		"day2_uppower",
+		"day3_uppower",
+		"day4_uppower",
+		"day5_uppower",
+		"day6_uppower",
+		"day7_uppower",
+		"day8_uppower",
+		"day9_uppower",
+		"day10_uppower",
+		"day11_uppower",
+		"day12_uppower",
+		"day13_uppower",
+		"day14_uppower",
+		"day15_uppower",
+		"day16_uppower",
+		"day17_uppower",
+		"day18_uppower",
+		"day19_uppower",
+		"day20_uppower",
+		"day21_uppower",
+		"day22_uppower",
+		"day23_uppower",
+		"day24_uppower",
+		"day25_uppower",
+		"day26_uppower",
+		"day27_uppower",
+		"day28_uppower",
+		"day29_uppower",
+		"day30_uppower",
+		"day31_uppower",
+
+		"day1_dowmpower",
+		"day2_dowmpower",
+		"day3_dowmpower",
+		"day4_dowmpower",
+		"day5_dowmpower",
+		"day6_dowmpower",
+		"day7_dowmpower",
+		"day8_dowmpower",
+		"day9_dowmpower",
+		"day10_dowmpower",
+		"day11_dowmpower",
+		"day12_dowmpower",
+		"day13_dowmpower",
+		"day14_dowmpower",
+		"day15_dowmpower",
+		"day16_dowmpower",
+		"day17_dowmpower",
+		"day18_dowmpower",
+		"day19_dowmpower",
+		"day20_dowmpower",
+		"day21_dowmpower",
+		"day22_dowmpower",
+		"day23_dowmpower",
+		"day24_dowmpower",
+		"day25_dowmpower",
+		"day26_dowmpower",
+		"day27_dowmpower",
+		"day28_dowmpower",
+		"day29_dowmpower",
+		"day30_dowmpower",
+		"day31_dowmpower",
+
+	};
+	//根据设备表名称读取设备表ID
+	int table_id;
+	retcode = rdb_obj->get_table_id_by_table_name("pj_gatepower_info", table_id);
+	if(retcode <= 0)
+	{
+		FREE((char *&)buffer);
+		FREE((char *&)fields_info);
+		dnet_obj->write_log_at_once(0, 1000, "读整站日电量表号失败");
+		return -1;
+	}
+
+	retcode = rdb_obj->read_table_data_by_english_names(
+		table_id,
+		DNET_APP_TYPE_SCADA,
+		(char(*)[DB_ENG_TABLE_NAME_LEN])English_names,
+		field_num,
+		fields_info,
+		buffer,
+		record_num,
+		result_len);
+
+	if(retcode <= 0)
+	{
+		FREE((char *&)buffer);
+		FREE((char *&)fields_info);
+		dnet_obj->write_log_at_once(0, 1000, "读整站日电量表数据失败");
+		return -1;
+	}
+
+	if(record_num <= 0)
+	{
+		FREE((char *&)buffer);
+		FREE((char *&)fields_info);
+		dnet_obj->write_log_at_once(0, 1000, "整站日电量表没有记录！");
+
+		return -1;
+	}
+
+	for(int i=0; i<field_num; i++)
+	{
+		record_len += fields_info[i].field_len;
+	}
+
+
+	for(int i=0; i<record_num; i++)
+	{
+		record_pos = i * record_len;
+		offset = 0;
+
+		Cstation_daypower_info *agvc = new Cstation_daypower_info(data_obj);
+		agvc->table_id = table_id;
+
+		memcpy((char *)&agvc->display_id, buffer+record_pos+offset, fields_info[0].field_len);
+		offset += fields_info[0].field_len;
+		memcpy((char *)&agvc->record_id, buffer+record_pos+offset, fields_info[1].field_len);
+		offset += fields_info[1].field_len;
+		memcpy((char *)&agvc->name, buffer+record_pos+offset, fields_info[2].field_len);
+		offset += fields_info[2].field_len;
+		memcpy((char *)&agvc->month, buffer+record_pos+offset, fields_info[3].field_len);
+		offset += fields_info[3].field_len;
+		memcpy((char *)&agvc->day1_uppower, buffer+record_pos+offset, fields_info[4].field_len);
+		offset += fields_info[4].field_len;
+		memcpy((char *)&agvc->day2_uppower, buffer+record_pos+offset, fields_info[5].field_len);
+		offset += fields_info[5].field_len;
+		memcpy((char *)&agvc->day3_uppower, buffer+record_pos+offset, fields_info[6].field_len);
+		offset += fields_info[6].field_len;
+		memcpy((char *)&agvc->day4_uppower, buffer+record_pos+offset, fields_info[7].field_len);
+		offset += fields_info[7].field_len;
+		memcpy((char *)&agvc->day5_uppower, buffer+record_pos+offset, fields_info[8].field_len);
+		offset += fields_info[8].field_len;
+		memcpy((char *)&agvc->day6_uppower, buffer+record_pos+offset, fields_info[9].field_len);
+		offset += fields_info[9].field_len;
+		memcpy((char *)&agvc->day7_uppower, buffer+record_pos+offset, fields_info[10].field_len);
+		offset += fields_info[10].field_len;
+		memcpy((char *)&agvc->day8_uppower, buffer+record_pos+offset, fields_info[11].field_len);
+		offset += fields_info[11].field_len;
+		memcpy((char *)&agvc->day9_uppower, buffer+record_pos+offset, fields_info[12].field_len);
+		offset += fields_info[12].field_len;
+		memcpy((char *)&agvc->day10_uppower, buffer+record_pos+offset, fields_info[13].field_len);
+		offset += fields_info[13].field_len;
+		memcpy((char *)&agvc->day11_uppower, buffer+record_pos+offset, fields_info[14].field_len);
+		offset += fields_info[14].field_len;
+		memcpy((char *)&agvc->day12_uppower, buffer+record_pos+offset, fields_info[15].field_len);
+		offset += fields_info[15].field_len;
+		memcpy((char *)&agvc->day13_uppower, buffer+record_pos+offset, fields_info[16].field_len);
+		offset += fields_info[16].field_len;
+		memcpy((char *)&agvc->day14_uppower, buffer+record_pos+offset, fields_info[17].field_len);
+		offset += fields_info[17].field_len;
+		memcpy((char *)&agvc->day15_uppower, buffer+record_pos+offset, fields_info[18].field_len);
+		offset += fields_info[18].field_len;       
+		memcpy((char *)&agvc->day16_uppower, buffer+record_pos+offset, fields_info[19].field_len);
+		offset += fields_info[19].field_len;
+		memcpy((char *)&agvc->day17_uppower, buffer+record_pos+offset, fields_info[20].field_len);
+		offset += fields_info[20].field_len;
+		memcpy((char *)&agvc->day18_uppower, buffer+record_pos+offset, fields_info[21].field_len);
+		offset += fields_info[21].field_len;
+		memcpy((char *)&agvc->day19_uppower, buffer+record_pos+offset, fields_info[22].field_len);
+		offset += fields_info[22].field_len;
+		memcpy((char *)&agvc->day20_uppower, buffer+record_pos+offset, fields_info[23].field_len);
+		offset += fields_info[23].field_len;
+		memcpy((char *)&agvc->day21_uppower, buffer+record_pos+offset, fields_info[24].field_len);
+		offset += fields_info[24].field_len;
+		memcpy((char *)&agvc->day22_uppower, buffer+record_pos+offset, fields_info[25].field_len);
+		offset += fields_info[25].field_len;
+		memcpy((char *)&agvc->day23_uppower, buffer+record_pos+offset, fields_info[26].field_len);
+		offset += fields_info[26].field_len;
+		memcpy((char *)&agvc->day24_uppower, buffer+record_pos+offset, fields_info[27].field_len);
+		offset += fields_info[27].field_len;
+		memcpy((char *)&agvc->day25_uppower, buffer+record_pos+offset, fields_info[28].field_len);
+		offset += fields_info[28].field_len;
+		memcpy((char *)&agvc->day26_uppower, buffer+record_pos+offset, fields_info[29].field_len);
+		offset += fields_info[29].field_len;
+		memcpy((char *)&agvc->day27_uppower, buffer+record_pos+offset, fields_info[30].field_len);
+		offset += fields_info[30].field_len;
+		memcpy((char *)&agvc->day28_uppower, buffer+record_pos+offset, fields_info[31].field_len);
+		offset += fields_info[31].field_len;
+		memcpy((char *)&agvc->day29_uppower, buffer+record_pos+offset, fields_info[32].field_len);
+		offset += fields_info[32].field_len;
+		memcpy((char *)&agvc->day30_uppower, buffer+record_pos+offset, fields_info[33].field_len);
+		offset += fields_info[33].field_len;		
+		memcpy((char *)&agvc->day31_uppower, buffer+record_pos+offset, fields_info[34].field_len);
+		offset += fields_info[4].field_len;
+
+		memcpy((char *)&agvc->day1_downpower, buffer+record_pos+offset, fields_info[35].field_len);
+		offset += fields_info[35].field_len;
+		memcpy((char *)&agvc->day2_downpower, buffer+record_pos+offset, fields_info[36].field_len);
+		offset += fields_info[36].field_len;
+		memcpy((char *)&agvc->day3_downpower, buffer+record_pos+offset, fields_info[37].field_len);
+		offset += fields_info[37].field_len;
+		memcpy((char *)&agvc->day4_downpower, buffer+record_pos+offset, fields_info[38].field_len);
+		offset += fields_info[38].field_len;
+		memcpy((char *)&agvc->day5_downpower, buffer+record_pos+offset, fields_info[39].field_len);
+		offset += fields_info[39].field_len;
+		memcpy((char *)&agvc->day6_downpower, buffer+record_pos+offset, fields_info[40].field_len);
+		offset += fields_info[40].field_len;
+		memcpy((char *)&agvc->day7_downpower, buffer+record_pos+offset, fields_info[41].field_len);
+		offset += fields_info[41].field_len;
+		memcpy((char *)&agvc->day8_downpower, buffer+record_pos+offset, fields_info[42].field_len);
+		offset += fields_info[42].field_len;
+		memcpy((char *)&agvc->day9_downpower, buffer+record_pos+offset, fields_info[43].field_len);
+		offset += fields_info[43].field_len;
+		memcpy((char *)&agvc->day10_downpower, buffer+record_pos+offset, fields_info[44].field_len);
+		offset += fields_info[44].field_len;
+		memcpy((char *)&agvc->day11_downpower, buffer+record_pos+offset, fields_info[45].field_len);
+		offset += fields_info[45].field_len;
+		memcpy((char *)&agvc->day12_downpower, buffer+record_pos+offset, fields_info[46].field_len);
+		offset += fields_info[46].field_len;
+		memcpy((char *)&agvc->day13_downpower, buffer+record_pos+offset, fields_info[47].field_len);
+		offset += fields_info[47].field_len;
+		memcpy((char *)&agvc->day14_downpower, buffer+record_pos+offset, fields_info[48].field_len);
+		offset += fields_info[48].field_len;
+		memcpy((char *)&agvc->day15_downpower, buffer+record_pos+offset, fields_info[49].field_len);
+		offset += fields_info[49].field_len;
+		memcpy((char *)&agvc->day16_downpower, buffer+record_pos+offset, fields_info[50].field_len);
+		offset += fields_info[50].field_len;
+		memcpy((char *)&agvc->day17_downpower, buffer+record_pos+offset, fields_info[51].field_len);
+		offset += fields_info[51].field_len;
+		memcpy((char *)&agvc->day18_downpower, buffer+record_pos+offset, fields_info[52].field_len);
+		offset += fields_info[52].field_len;
+		memcpy((char *)&agvc->day19_downpower, buffer+record_pos+offset, fields_info[53].field_len);
+		offset += fields_info[53].field_len;
+		memcpy((char *)&agvc->day20_downpower, buffer+record_pos+offset, fields_info[54].field_len);
+		offset += fields_info[54].field_len;
+		memcpy((char *)&agvc->day21_downpower, buffer+record_pos+offset, fields_info[55].field_len);
+		offset += fields_info[55].field_len;
+		memcpy((char *)&agvc->day22_downpower, buffer+record_pos+offset, fields_info[56].field_len);
+		offset += fields_info[56].field_len;
+		memcpy((char *)&agvc->day23_downpower, buffer+record_pos+offset, fields_info[57].field_len);
+		offset += fields_info[57].field_len;
+		memcpy((char *)&agvc->day24_downpower, buffer+record_pos+offset, fields_info[58].field_len);
+		offset += fields_info[58].field_len;
+		memcpy((char *)&agvc->day25_downpower, buffer+record_pos+offset, fields_info[59].field_len);
+		offset += fields_info[59].field_len;
+		memcpy((char *)&agvc->day26_downpower, buffer+record_pos+offset, fields_info[60].field_len);
+		offset += fields_info[60].field_len;
+		memcpy((char *)&agvc->day27_downpower, buffer+record_pos+offset, fields_info[61].field_len);
+		offset += fields_info[61].field_len;
+
+		memcpy((char *)&agvc->day28_downpower, buffer+record_pos+offset, fields_info[62].field_len);
+		offset += fields_info[62].field_len;
+		memcpy((char *)&agvc->day29_downpower, buffer+record_pos+offset, fields_info[63].field_len);
+		offset += fields_info[63].field_len;
+		memcpy((char *)&agvc->day30_downpower, buffer+record_pos+offset, fields_info[64].field_len);
+		offset += fields_info[64].field_len;
+		memcpy((char *)&agvc->day31_downpower, buffer+record_pos+offset, fields_info[65].field_len);
+		offset += fields_info[65].field_len;
+
+
+		agvc->display_id_col = fields_info[0].rdb_field_no;
+		agvc->name_col = fields_info[2].rdb_field_no;
+		agvc->month_col = fields_info[3].rdb_field_no;
+		agvc->day1_uppower_col = fields_info[4].rdb_field_no;
+		agvc->day2_uppower_col = fields_info[5].rdb_field_no;
+		agvc->day3_uppower_col = fields_info[6].rdb_field_no;
+		agvc->day4_uppower_col = fields_info[7].rdb_field_no;
+		agvc->day5_uppower_col = fields_info[8].rdb_field_no;
+		agvc->day6_uppower_col = fields_info[9].rdb_field_no;
+		agvc->day7_uppower_col = fields_info[10].rdb_field_no;
+		agvc->day8_uppower_col = fields_info[11].rdb_field_no;
+		agvc->day9_uppower_col = fields_info[12].rdb_field_no;
+		agvc->day10_uppower_col = fields_info[13].rdb_field_no;
+		agvc->day11_uppower_col = fields_info[14].rdb_field_no;
+		agvc->day12_uppower_col = fields_info[15].rdb_field_no;
+		agvc->day13_uppower_col = fields_info[16].rdb_field_no;
+		agvc->day14_uppower_col = fields_info[17].rdb_field_no;
+		agvc->day15_uppower_col = fields_info[18].rdb_field_no;
+		agvc->day16_uppower_col = fields_info[19].rdb_field_no;
+		agvc->day17_uppower_col = fields_info[20].rdb_field_no;
+		agvc->day18_uppower_col = fields_info[21].rdb_field_no;
+		agvc->day19_uppower_col = fields_info[22].rdb_field_no;
+		agvc->day20_uppower_col = fields_info[23].rdb_field_no;
+		agvc->day21_uppower_col = fields_info[24].rdb_field_no;
+		agvc->day22_uppower_col = fields_info[25].rdb_field_no;
+		agvc->day23_uppower_col = fields_info[26].rdb_field_no;
+		agvc->day24_uppower_col = fields_info[27].rdb_field_no;
+		agvc->day25_uppower_col = fields_info[28].rdb_field_no;
+		agvc->day26_uppower_col = fields_info[29].rdb_field_no;
+		agvc->day27_uppower_col = fields_info[30].rdb_field_no;
+		agvc->day28_uppower_col = fields_info[31].rdb_field_no;
+		agvc->day29_uppower_col = fields_info[32].rdb_field_no;
+		agvc->day30_uppower_col = fields_info[33].rdb_field_no;
+		agvc->day31_uppower_col = fields_info[34].rdb_field_no;
+
+		agvc->day1_downpower_col = fields_info[35].rdb_field_no;
+		agvc->day2_downpower_col = fields_info[36].rdb_field_no;
+		agvc->day3_downpower_col = fields_info[37].rdb_field_no;
+		agvc->day4_downpower_col = fields_info[38].rdb_field_no;
+		agvc->day5_downpower_col = fields_info[39].rdb_field_no;
+		agvc->day6_downpower_col = fields_info[40].rdb_field_no;
+		agvc->day7_downpower_col = fields_info[41].rdb_field_no;
+		agvc->day8_downpower_col = fields_info[42].rdb_field_no;
+		agvc->day9_downpower_col = fields_info[43].rdb_field_no;
+		agvc->day10_downpower_col = fields_info[44].rdb_field_no;
+		agvc->day11_downpower_col = fields_info[45].rdb_field_no;
+		agvc->day12_downpower_col = fields_info[46].rdb_field_no;
+		agvc->day13_downpower_col = fields_info[47].rdb_field_no;
+		agvc->day14_downpower_col = fields_info[48].rdb_field_no;
+		agvc->day15_downpower_col = fields_info[49].rdb_field_no;
+		agvc->day16_downpower_col = fields_info[50].rdb_field_no;
+		agvc->day17_downpower_col = fields_info[51].rdb_field_no;
+		agvc->day18_downpower_col = fields_info[52].rdb_field_no;
+		agvc->day19_downpower_col = fields_info[53].rdb_field_no;
+		agvc->day20_downpower_col = fields_info[54].rdb_field_no;
+		agvc->day21_downpower_col = fields_info[55].rdb_field_no;
+		agvc->day22_downpower_col = fields_info[56].rdb_field_no;
+		agvc->day23_downpower_col = fields_info[57].rdb_field_no;
+		agvc->day24_downpower_col = fields_info[58].rdb_field_no;
+		agvc->day25_downpower_col = fields_info[59].rdb_field_no;
+		agvc->day26_downpower_col = fields_info[60].rdb_field_no;
+		agvc->day27_downpower_col = fields_info[61].rdb_field_no;
+		agvc->day28_downpower_col = fields_info[62].rdb_field_no;
+		agvc->day29_downpower_col = fields_info[63].rdb_field_no;
+		agvc->day30_downpower_col = fields_info[64].rdb_field_no;
+		agvc->day31_downpower_col = fields_info[65].rdb_field_no;
+
+		agvc_list.push_back(agvc);
+
+	}
+
+	FREE((char *&)buffer);
+	FREE((char *&)fields_info);
+	return 1;
+}
 
 
 
@@ -2262,6 +2623,35 @@ Cgatepower_info *Cagvc_ctrl_mgr::find_gatepower_from_list(int display_id)
 }
 
 
+//查找站月电量记录
+
+Cstation_monthpower_info *Cagvc_ctrl_mgr::find_station_monthpower_from_list(int display_id)
+{
+	Cstation_monthpower_info *station_monthpower;
+	for(int i=0; i<station_monthpower_list.size(); i++)
+	{
+		station_monthpower = point_list.at(i);
+		if(station_monthpower->display_id == display_id)
+			return station_monthpower;
+
+	}
+	return NULL;
+}
+
+//查找站月电量记录
+
+Cstation_daypower_info *Cagvc_ctrl_mgr::find_station_daypower_from_list(int display_id)
+{
+	Cstation_daypower_info *station_daypower;
+	for(int i=0; i<station_daypower_list.size(); i++)
+	{
+		station_daypower = point_list.at(i);
+		if(station_daypower->display_id == display_id)
+			return station_daypower;
+
+	}
+	return NULL;
+}
 
 
 

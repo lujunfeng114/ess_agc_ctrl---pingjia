@@ -841,7 +841,7 @@ public:
 	int display_id;     //在本设备表中的显示ID
 	char name[64];
 
-	on_time_t  day;    //月份
+	on_time_t  month;    //月份
 	double day1_uppower;      //1号上网电量
 	double day2_uppower;      //2号上网电量
 	double day3_uppower;      //3号上网电量
@@ -912,7 +912,7 @@ public:
 	//整站日电量
 	short display_id_col;
 	short name_col;
-	on_time_t  day_col;    //月份
+	on_time_t  month_col;    //月份
 
 	short day1_uppower_col;      //1号上网电量
 	short day2_uppower_col;      //2号上网电量
