@@ -1281,7 +1281,7 @@ int Cagvc_ctrl_mgr::read_gatepower_info_table()
 
 	struct TABLE_HEAD_FIELDS_INFO* fields_info = NULL;
 
-	const int field_num = 96;
+	const int field_num = 94;
 	buffer = (char *)MALLOC(6000);
 
 	fields_info = (struct TABLE_HEAD_FIELDS_INFO *)MALLOC(sizeof(struct TABLE_HEAD_FIELDS_INFO)*field_num);
@@ -1323,7 +1323,6 @@ int Cagvc_ctrl_mgr::read_gatepower_info_table()
 		"day4_uppower",    //
 		"day5_uppower",    //
 		"day6_uppower",    //
-		"day3_uppower",     //
 		"day7_uppower",    //
 		"day8_uppower",     //
 		"day9_uppower",    //
@@ -1356,7 +1355,6 @@ int Cagvc_ctrl_mgr::read_gatepower_info_table()
 		"day4_downpower",    //
 		"day5_downpower",    //
 		"day6_downpower",    //
-		"day3_downpower",     //
 		"day7_downpower",    //
 		"day8_downpower",     //
 		"day9_downpower",    //
@@ -1770,7 +1768,7 @@ int Cagvc_ctrl_mgr::read_station_monthpower_info_table()
 
 	struct TABLE_HEAD_FIELDS_INFO* fields_info = NULL;
 
-	const int field_num = 37;
+	const int field_num = 38;
 	buffer = (char *)MALLOC(6000);
 
 	fields_info = (struct TABLE_HEAD_FIELDS_INFO *)MALLOC(sizeof(struct TABLE_HEAD_FIELDS_INFO)*field_num);
@@ -1778,7 +1776,7 @@ int Cagvc_ctrl_mgr::read_station_monthpower_info_table()
 		"display_idx",
 		"id",
 		"name",
-		"month",
+		"year",
 		"year_uppower",
 		"year_downpower",
 		"month1_uppower",
@@ -1792,11 +1790,11 @@ int Cagvc_ctrl_mgr::read_station_monthpower_info_table()
 		"month9_uppower",
 		"month10_uppower",
 		"month11_uppower",
-		"serason1_uppower",
-		"serason2_uppower",
-		"serason3_uppower",
-		"serason4_uppower",
-
+		"month12_uppower",
+		"season1_uppower",
+		"season2_uppower",
+		"season3_uppower",
+		"season4_uppower",
 		"month1_downpower",
 		"month2_downpower",
 		"month3_downpower",
@@ -1808,15 +1806,16 @@ int Cagvc_ctrl_mgr::read_station_monthpower_info_table()
 		"month9_downpower",
 		"month10_downpower",
 		"month11_downpower",
-		"serason1_downpower",
-		"serason2_downpower",
-		"serason3_downpower",
-		"serason4_downpower",
+		"month12_downpower",
+		"season1_downpower",
+		"season2_downpower",
+		"season3_downpower",
+		"season4_downpower",
 
 	};
 	//根据设备表名称读取设备表ID
 	int table_id;
-	retcode = rdb_obj->get_table_id_by_table_name("pj_gatepower_info", table_id);
+	retcode = rdb_obj->get_table_id_by_table_name("pj_station_monthpower_info", table_id);
 	if(retcode <= 0)
 	{
 		FREE((char *&)buffer);
@@ -1872,7 +1871,7 @@ int Cagvc_ctrl_mgr::read_station_monthpower_info_table()
 		offset += fields_info[1].field_len;
 		memcpy((char *)&agvc->name, buffer+record_pos+offset, fields_info[2].field_len);
 		offset += fields_info[2].field_len;
-		memcpy((char *)&agvc->month, buffer+record_pos+offset, fields_info[3].field_len);
+		memcpy((char *)&agvc->year, buffer+record_pos+offset, fields_info[3].field_len);
 		offset += fields_info[3].field_len;
 		memcpy((char *)&agvc->year_uppower, buffer+record_pos+offset, fields_info[4].field_len);
 		offset += fields_info[4].field_len;
@@ -1948,7 +1947,7 @@ int Cagvc_ctrl_mgr::read_station_monthpower_info_table()
 
 		agvc->display_id_col = fields_info[0].rdb_field_no;
 		agvc->name_col = fields_info[2].rdb_field_no;
-		agvc->month_col = fields_info[3].rdb_field_no;
+		agvc->year_col = fields_info[3].rdb_field_no;
 		agvc->year_uppower_col = fields_info[4].rdb_field_no;
 		agvc->year_downpower_col = fields_info[5].rdb_field_no;
 		agvc->month1_uppower_col = fields_info[6].rdb_field_no;
@@ -1983,10 +1982,10 @@ int Cagvc_ctrl_mgr::read_station_monthpower_info_table()
 		agvc->month11_downpower_col = fields_info[32].rdb_field_no;
 		agvc->month12_downpower_col = fields_info[33].rdb_field_no;
 
-		agvc->season1_uppower_col = fields_info[34].rdb_field_no;
-		agvc->season2_uppower_col = fields_info[35].rdb_field_no;
-		agvc->season3_uppower_col = fields_info[36].rdb_field_no;
-		agvc->season4_uppower_col = fields_info[36].rdb_field_no;
+		agvc->season1_downpower_col = fields_info[34].rdb_field_no;
+		agvc->season2_downpower_col = fields_info[35].rdb_field_no;
+		agvc->season3_downpower_col = fields_info[36].rdb_field_no;
+		agvc->season4_downpower_col = fields_info[37].rdb_field_no;
 
 		station_monthpower_list.push_back(agvc);
 
@@ -2022,7 +2021,7 @@ int Cagvc_ctrl_mgr::read_station_daypower_info_table()
 
 	struct TABLE_HEAD_FIELDS_INFO* fields_info = NULL;
 
-	const int field_num = 70;
+	const int field_num = 66;
 	buffer = (char *)MALLOC(6000);
 
 	fields_info = (struct TABLE_HEAD_FIELDS_INFO *)MALLOC(sizeof(struct TABLE_HEAD_FIELDS_INFO)*field_num);
@@ -2062,43 +2061,42 @@ int Cagvc_ctrl_mgr::read_station_daypower_info_table()
 		"day29_uppower",
 		"day30_uppower",
 		"day31_uppower",
-
-		"day1_dowmpower",
-		"day2_dowmpower",
-		"day3_dowmpower",
-		"day4_dowmpower",
-		"day5_dowmpower",
-		"day6_dowmpower",
-		"day7_dowmpower",
-		"day8_dowmpower",
-		"day9_dowmpower",
-		"day10_dowmpower",
-		"day11_dowmpower",
-		"day12_dowmpower",
-		"day13_dowmpower",
-		"day14_dowmpower",
-		"day15_dowmpower",
-		"day16_dowmpower",
-		"day17_dowmpower",
-		"day18_dowmpower",
-		"day19_dowmpower",
-		"day20_dowmpower",
-		"day21_dowmpower",
-		"day22_dowmpower",
-		"day23_dowmpower",
-		"day24_dowmpower",
-		"day25_dowmpower",
-		"day26_dowmpower",
-		"day27_dowmpower",
-		"day28_dowmpower",
-		"day29_dowmpower",
-		"day30_dowmpower",
-		"day31_dowmpower",
+		"day1_downpower",
+		"day2_downpower",
+		"day3_downpower",
+		"day4_downpower",
+		"day5_downpower",
+		"day6_downpower",
+		"day7_downpower",
+		"day8_downpower",
+		"day9_downpower",
+		"day10_downpower",
+		"day11_downpower",
+		"day12_downpower",
+		"day13_downpower",
+		"day14_downpower",
+		"day15_downpower",
+		"day16_downpower",
+		"day17_downpower",
+		"day18_downpower",
+		"day19_downpower",
+		"day20_downpower",
+		"day21_downpower",
+		"day22_downpower",
+		"day23_downpower",
+		"day24_downpower",
+		"day25_downpower",
+		"day26_downpower",
+		"day27_downpower",
+		"day28_downpower",
+		"day29_downpower",
+		"day30_downpower",
+		"day31_downpower",
 
 	};
 	//根据设备表名称读取设备表ID
 	int table_id;
-	retcode = rdb_obj->get_table_id_by_table_name("pj_gatepower_info", table_id);
+	retcode = rdb_obj->get_table_id_by_table_name("pj_station_daypower_info", table_id);
 	if(retcode <= 0)
 	{
 		FREE((char *&)buffer);
@@ -3696,9 +3694,9 @@ void Cagvc_ctrl_mgr::agvc_ctrl_init()
 	dnet_obj->write_log(0,5657,"read_gate_power_info_table");
 
 
-	//ret = read_station_monthpower_info_table();
-	//if(ret<0) return;
-	//dnet_obj->write_log(0,5657,"read_station_monthpower_info_table");
+	ret = read_station_monthpower_info_table();
+	if(ret<0) return;
+	dnet_obj->write_log(0,5657,"read_station_monthpower_info_table");
 
 
 	ret = read_station_daypower_info_table();

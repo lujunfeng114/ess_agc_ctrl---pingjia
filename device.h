@@ -725,7 +725,7 @@ public:
 	int display_id;     //在本设备表中的显示ID
 	char name[64];
 
-	on_time_t  month;    //月份
+	on_time_t  year;    //年份
 	double year_uppower;      //整站年上网电量
 	double year_downpower;      //整站年下网电量
 
@@ -768,7 +768,7 @@ public:
 	//
 	short display_id_col;
 	short name_col;
-	on_time_t  month_col;    //月份
+	on_time_t  year_col;    //月份
 	short year_uppower_col;      //当月上网电量
 	short year_downpower_col;      //当月上网电量
 

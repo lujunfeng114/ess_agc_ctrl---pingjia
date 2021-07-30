@@ -1693,7 +1693,7 @@ int Cstation_monthpower_info::read_station_monthpower_rdb()
 {
 	data_obj->read_rdb_value(table_id, record_id, display_id_col, &display_id);
 	data_obj->read_rdb_value(table_id, record_id, name_col, name);
-	data_obj->read_rdb_value(table_id, record_id, month_col, &month);
+	data_obj->read_rdb_value(table_id, record_id, year_col, &year);
 
     data_obj->read_rdb_value(table_id, record_id, year_uppower_col, &year_uppower);
     data_obj->read_rdb_value(table_id, record_id, year_downpower_col, &year_downpower);
