@@ -83,7 +83,7 @@ int Mode = 0;
 
 Cagvc_ctrl_mgr::Cagvc_ctrl_mgr()
 {
-	dnet_instance.set_system_net_info("ess_qinghe2_ctrl", DNET_NO);
+	dnet_instance.set_system_net_info("ess_agvc_ctrl", DNET_NO);
 	rdb_instance.set_dnet_object(dnet_instance);
 
 	dnet_obj = &dnet_instance;
@@ -1262,7 +1262,7 @@ int Cagvc_ctrl_mgr::read_agvc_info_table()
 }
 
 
-int Cagvc_ctrl_mgr::red_gatepower_info_table()
+int Cagvc_ctrl_mgr::read_gatepower_info_table()
 {
 	for(int i=0; i<gatepower_list.size(); i++)
 	{
@@ -1281,7 +1281,7 @@ int Cagvc_ctrl_mgr::red_gatepower_info_table()
 
 	struct TABLE_HEAD_FIELDS_INFO* fields_info = NULL;
 
-	const int field_num = 37;
+	const int field_num = 96;
 	buffer = (char *)MALLOC(6000);
 
 	fields_info = (struct TABLE_HEAD_FIELDS_INFO *)MALLOC(sizeof(struct TABLE_HEAD_FIELDS_INFO)*field_num);
@@ -1730,7 +1730,7 @@ int Cagvc_ctrl_mgr::red_gatepower_info_table()
 		agvc->day31_downpower_col = fields_info[93].rdb_field_no;
 
 
-		agvc_list.push_back(agvc);
+		gatepower_list.push_back(agvc);
 
 	}
 
@@ -1751,7 +1751,7 @@ int Cagvc_ctrl_mgr::red_gatepower_info_table()
 
 //整站电量月分析表
 
-int Cagvc_ctrl_mgr::red_station_monthpower_info_table()
+int Cagvc_ctrl_mgr::read_station_monthpower_info_table()
 {
 	for(int i=0; i<station_monthpower_list.size(); i++)
 	{
@@ -1987,7 +1987,8 @@ int Cagvc_ctrl_mgr::red_station_monthpower_info_table()
 		agvc->season2_uppower_col = fields_info[35].rdb_field_no;
 		agvc->season3_uppower_col = fields_info[36].rdb_field_no;
 		agvc->season4_uppower_col = fields_info[36].rdb_field_no;
-		agvc_list.push_back(agvc);
+
+		station_monthpower_list.push_back(agvc);
 
 	}
 
@@ -2002,7 +2003,7 @@ int Cagvc_ctrl_mgr::red_station_monthpower_info_table()
 
 //整站电量日分析表
 
-int Cagvc_ctrl_mgr::red_station_daypower_info_table()
+int Cagvc_ctrl_mgr::read_station_daypower_info_table()
 {
 	for(int i=0; i<station_daypower_list.size(); i++)
 	{
@@ -2021,7 +2022,7 @@ int Cagvc_ctrl_mgr::red_station_daypower_info_table()
 
 	struct TABLE_HEAD_FIELDS_INFO* fields_info = NULL;
 
-	const int field_num = 37;
+	const int field_num = 70;
 	buffer = (char *)MALLOC(6000);
 
 	fields_info = (struct TABLE_HEAD_FIELDS_INFO *)MALLOC(sizeof(struct TABLE_HEAD_FIELDS_INFO)*field_num);
@@ -2350,7 +2351,7 @@ int Cagvc_ctrl_mgr::red_station_daypower_info_table()
 		agvc->day30_downpower_col = fields_info[64].rdb_field_no;
 		agvc->day31_downpower_col = fields_info[65].rdb_field_no;
 
-		agvc_list.push_back(agvc);
+		station_daypower_list.push_back(agvc);
 
 	}
 
@@ -2613,7 +2614,7 @@ Cgatepower_info *Cagvc_ctrl_mgr::find_gatepower_from_list(int display_id)
 	Cgatepower_info *gatepower;
 	for(int i=0; i<gatepower_list.size(); i++)
 	{
-		gatepower = point_list.at(i);
+		gatepower = gatepower_list.at(i);
 		if(gatepower->display_id == display_id)
 			return gatepower;
 
@@ -2629,7 +2630,7 @@ Cstation_monthpower_info *Cagvc_ctrl_mgr::find_station_monthpower_from_list(int 
 	Cstation_monthpower_info *station_monthpower;
 	for(int i=0; i<station_monthpower_list.size(); i++)
 	{
-		station_monthpower = point_list.at(i);
+		station_monthpower = station_monthpower_list.at(i);
 		if(station_monthpower->display_id == display_id)
 			return station_monthpower;
 
@@ -2644,7 +2645,7 @@ Cstation_daypower_info *Cagvc_ctrl_mgr::find_station_daypower_from_list(int disp
 	Cstation_daypower_info *station_daypower;
 	for(int i=0; i<station_daypower_list.size(); i++)
 	{
-		station_daypower = point_list.at(i);
+		station_daypower = station_daypower_list.at(i);
 		if(station_daypower->display_id == display_id)
 			return station_daypower;
 
@@ -3669,163 +3670,40 @@ void Cagvc_ctrl_mgr::agvc_ctrl_init()
 	// if(ret<0) return;
 	//dnet_obj->write_log(0,5657,"read_meas_info_table");
 
-	ret = read_micro_ctrl_info_table();
-	if(ret<0) return;
-	dnet_obj->write_log(0,5657,"read_micro_ctrl_info_table");
+	//ret = read_micro_ctrl_info_table();
+	//if(ret<0) return;
+	//dnet_obj->write_log(0,5657,"read_micro_ctrl_info_table");
 
 	/* ret = read_bms_info_table();
 	if(ret<0) return;
 	dnet_obj->write_log(0,5657,"read_bms_info_table");*/
 
 
-	ret = read_pcs_info_table();   //变流器表
-	if(ret<0) return;
-
-
-	dnet_obj->write_log(0,5657,"read_pcs_info_table");
+	//ret = read_pcs_info_table();   //变流器表
+	//if(ret<0) return;
+	//dnet_obj->write_log(0,5657,"read_pcs_info_table");
 	//查找pcs有功设定对应的微电网控制定义表记录 注意以微电网控制名称作匹配项
 	//查找pcs待机设定对应的微电网控制定义表记录 注意以微电网控制名称作匹配项
 
-	for(int i=0; i< pcs_list.size(); i++)
-	{		
-		pcs = pcs_list.at(i);
-
-
-		if(i == 38)  //卷膜1
-		{
-			dnet_obj->write_log(0,5657,"i=,%d",i);
-			for(int k = 0; k<micro_ctrl_list.size(); k++)  //遍历微电网控制表    
-			{                   
-				micro_ctrl = micro_ctrl_list.at(k);  //一条微电网控制定义表记录
-				sprintf(micro_ctrl_name,"7-1-DO3", pcs->display_id);               
-				if(strcmp(micro_ctrl_name, micro_ctrl->name) == 0)
-				{   
-					dnet_obj->write_log(0,5657,"名字匹配成功，%s,%s",micro_ctrl_name,micro_ctrl->name);
-					pcs->yt_artu1_3_micro_ctrl= micro_ctrl;
-					dnet_obj->write_log(0, 1000, "yt_artu1_3_micro_ctrl,%d ,%s  %d_AC", k, micro_ctrl->name, pcs->display_id);
-				}
-				sprintf(micro_ctrl_name,"7-1-DO4", pcs->display_id);
-				if(strcmp(micro_ctrl_name, micro_ctrl->name) == 0)
-				{
-					dnet_obj->write_log(0,5657,"名字匹配成功，%s,%s",micro_ctrl_name,micro_ctrl->name);
-					pcs->yt_artu1_4_micro_ctrl = micro_ctrl;
-					dnet_obj->write_log(0, 1000, "yt_artu1_4_micro_ctrl;,%d ,%s  %d_AC", k, micro_ctrl->name, pcs->display_id);
-				}
-				sprintf(micro_ctrl_name,"7-1-DO5", pcs->display_id);
-				if(strcmp(micro_ctrl_name, micro_ctrl->name) == 0)
-				{
-					dnet_obj->write_log(0,5657,"名字匹配成功，%s,%s",micro_ctrl_name,micro_ctrl->name);
-					pcs->yt_artu1_5_micro_ctrl = micro_ctrl;
-					dnet_obj->write_log(0, 1000, "yt_artu1_5_micro_ctrl;,%d ,%s  %d_AC", k, micro_ctrl->name, pcs->display_id);
-				}
-				sprintf(micro_ctrl_name,"7-1-DO6", pcs->display_id);
-				if(strcmp(micro_ctrl_name, micro_ctrl->name) == 0)
-				{
-					dnet_obj->write_log(0,5657,"名字匹配成功，%s,%s",micro_ctrl_name,micro_ctrl->name);
-					pcs->yt_artu1_6_micro_ctrl = micro_ctrl;
-					dnet_obj->write_log(0, 1000, "yt_artu1_6_micro_ctrl;,%d ,%s  %d_AC", k, micro_ctrl->name, pcs->display_id);
-				}
-				sprintf(micro_ctrl_name,"7-1-DO7", pcs->display_id);
-				if(strcmp(micro_ctrl_name, micro_ctrl->name) == 0)
-				{
-					dnet_obj->write_log(0,5657,"名字匹配成功，%s,%s",micro_ctrl_name,micro_ctrl->name);
-					pcs->yt_artu1_7_micro_ctrl = micro_ctrl;
-					dnet_obj->write_log(0, 1000, "yt_artu1_7_micro_ctrl;,%d ,%s  %d_AC", k, micro_ctrl->name, pcs->display_id);
-				}
-				sprintf(micro_ctrl_name,"7-1-DO8", pcs->display_id);
-				if(strcmp(micro_ctrl_name, micro_ctrl->name) == 0)
-				{
-					dnet_obj->write_log(0,5657,"名字匹配成功，%s,%s",micro_ctrl_name,micro_ctrl->name);
-					pcs->yt_artu1_8_micro_ctrl = micro_ctrl;
-					dnet_obj->write_log(0, 1000, "yt_artu1_8_micro_ctrl;,%d ,%s  %d_AC", k, micro_ctrl->name, pcs->display_id);
-				}
-
-
-			}
-		}
-
-
-		else if(i == 47)  //热泵3
-		{
-			dnet_obj->write_log(0,5657,"i=,%d",i);
-			for(int k = 0; k<micro_ctrl_list.size(); k++)  //遍历微电网控制表    
-			{                   
-				micro_ctrl = micro_ctrl_list.at(k);  //一条微电网控制定义表记录
-				sprintf(micro_ctrl_name,"3-RB-ONOFF", pcs->display_id);                   
-				if(strcmp(micro_ctrl_name, micro_ctrl->name) == 0)
-				{   
-					dnet_obj->write_log(0,5657,"名字匹配成功，%s,%s",micro_ctrl_name,micro_ctrl->name);
-					pcs->yt_rb3_onoff_micro_ctrl= micro_ctrl;
-					dnet_obj->write_log(0, 1000, "yt_rb3_onoff_micro_ctrl,%d ,%s  %d_AC", k, micro_ctrl->name, pcs->display_id);
-				}
-				sprintf(micro_ctrl_name,"3-RB-COOL", pcs->display_id);                   
-				if(strcmp(micro_ctrl_name, micro_ctrl->name) == 0)
-				{   
-					dnet_obj->write_log(0,5657,"名字匹配成功，%s,%s",micro_ctrl_name,micro_ctrl->name);
-					pcs->yt_rb3_cooltemp_micro_ctrl= micro_ctrl;
-					dnet_obj->write_log(0, 1000, "yt_rb3_cooltemp_micro_ctrl,%d ,%s  %d_AC", k, micro_ctrl->name, pcs->display_id);
-				}
-				sprintf(micro_ctrl_name,"3-RB-HOT", pcs->display_id);                   
-				if(strcmp(micro_ctrl_name, micro_ctrl->name) == 0)
-				{   
-					dnet_obj->write_log(0,5657,"名字匹配成功，%s,%s",micro_ctrl_name,micro_ctrl->name);
-					pcs->yt_rb3_hottemp_micro_ctrl= micro_ctrl;
-					dnet_obj->write_log(0, 1000, "yt_rb3_hottemp_micro_ctrl,%d ,%s  %d_AC", k, micro_ctrl->name, pcs->display_id);
-				}
-
-
-			}
-		}
-
-
-		if(i == 48)  //路灯
-		{
-			dnet_obj->write_log(0,5657,"i=,%d",i);
-			for(int k = 0; k<micro_ctrl_list.size(); k++)  //遍历微电网控制表    //路灯
-			{                   
-				micro_ctrl = micro_ctrl_list.at(k);  //一条微电网控制定义表记录
-				sprintf(micro_ctrl_name,"LIGHT1_ONOFF", pcs->display_id); //就是将micro_ctrl_name =""松降头-2号继电器"                   
-				if(strcmp(micro_ctrl_name, micro_ctrl->name) == 0)
-				{   
-					dnet_obj->write_log(0,5657,"名字匹配成功，%s,%s",micro_ctrl_name,micro_ctrl->name);
-					pcs->yt_light1_micro_ctrl= micro_ctrl;
-					dnet_obj->write_log(0, 1000, "yt_light1_micro_ctrl,%d ,%s  %d_AC", k, micro_ctrl->name, pcs->display_id);
-				}
-
-			}
-		}
-
-
-		if(i == 49)  //路灯
-		{
-			dnet_obj->write_log(0,5657,"i=,%d",i);
-			for(int k = 0; k<micro_ctrl_list.size(); k++)  //遍历微电网控制表    //路灯
-			{                   
-				micro_ctrl = micro_ctrl_list.at(k);  //一条微电网控制定义表记录
-				sprintf(micro_ctrl_name,"LIGHT2_ONOFF", pcs->display_id); //就是将micro_ctrl_name =""松降头-2号继电器"                   
-				if(strcmp(micro_ctrl_name, micro_ctrl->name) == 0)
-				{   
-					dnet_obj->write_log(0,5657,"名字匹配成功，%s,%s",micro_ctrl_name,micro_ctrl->name);
-					pcs->yt_light2_micro_ctrl= micro_ctrl;
-					dnet_obj->write_log(0, 1000, "yt_light2_micro_ctrl,%d ,%s  %d_AC", k, micro_ctrl->name, pcs->display_id);
-				}
-
-			}
-		}
-
-
-
-
-
-
-
-
-		pcs->bms = find_bms_from_list(pcs->display_id);  
-	}
 
 	ret = read_station_info_table();
 	if(ret<0) return;
 	dnet_obj->write_log(0,5657,"read_station_info_table");
+
+
+	ret = read_gatepower_info_table();
+	if(ret<0) return;
+	dnet_obj->write_log(0,5657,"read_gate_power_info_table");
+
+
+	//ret = read_station_monthpower_info_table();
+	//if(ret<0) return;
+	//dnet_obj->write_log(0,5657,"read_station_monthpower_info_table");
+
+
+	ret = read_station_daypower_info_table();
+	if(ret<0) return;
+	dnet_obj->write_log(0,5657,"read_station_daypower_info_table");
 
 
 	ret = read_point_info_table();
@@ -4021,49 +3899,7 @@ void Cagvc_ctrl_mgr::agc_ctrl_process()
 #if 1 //现场使用
 void Cagvc_ctrl_mgr::agc_ctrl_process()
 {
-	float p_plan;
-	static float p_ess = 0;//储能实际分配功率
-	float p_grid;
-	float delta_p;
-
-	//!!!直接写死,对应显示序号1的设备类型.
-	Cagvc_info *agvc = this->find_agvc_from_list(1);
-	Cpoint_info *point = this->find_point_from_list(1);
-	Cstation_info *station = this->find_station_from_list(1);   
-
-	p_plan = agvc->agc_p_dest;
-
-
-	//输入合法性检查
-	float p_r = station->p_r*1000*1.2;
-	//   if(fsoc_upf(p_plan) > p_r)
-	//   {
-	//       dnet_obj->write_log(0, 999, "有功传入参数非法");
-	//       return;
-	//   }
-	//   dnet_obj->write_log(0, 999, "执行AGC调节,有功目标值:%.2f", p_plan);
-
-#if 0
-	//读取并网点功率
-	p_grid = point->p*1000;
-
-
-	//计算当前调节差值
-	delta_p = p_plan - p_grid; //大于0表示储能放电，小于0表示储能充电
-	if(fabsf(delta_p) <= agvc->dead_value)
-	{
-		dnet_obj->write_log(0, 999, "有功目标值：%.2f, 并网点功率：%.2f,处于控制死区无需调节", p_plan, p_grid);
-		return;
-	}
-
-	p_ess += delta_p;
-	p_r = station->p_r*1000;
-#endif
-	p_ess = p_plan;
-	p_ess = p_ess>p_r?p_r:p_ess;
-	p_ess = p_ess<-p_r?-p_r:p_ess;
-
-	distribute_power(p_ess);
+	
 }
 #endif
 
@@ -4099,69 +3935,7 @@ void Cagvc_ctrl_mgr::avc_ctrl_process()
 
 void Cagvc_ctrl_mgr::forward_cmd_process()
 {
-	//!!!注意 当前forward_cmd_proess只处理遥控类型,不处理参数设定,并且只处理开关表
-
-	//得到当前遥控转发表对应开关记录
-	SPLIT_ON_KEY_INT64_TYPE split_key;
-	int table_id;
-	int sw_id;
-	generate_tno_key_fno_from_int64(split_key, this->yk_send.yk_id);
-	table_id = split_key.table_no;
-	sw_id = split_key.record_id;
-
-	//从遥控定义表得到对应开关的通道信息
-	yk_define_struct yk_define;
-	sw_info_struct sw_info;
-	ctrl_cmd_struct cmd_to_send;
-	Cfac_info *fac;
-	int if_yk_permit = 1;
-	if(find_yk_define_record(sw_id, yk_define)>0)//找到对应记录
-	{
-		//通过遥控定义表中开关ID,检查控制五防前置条件
-		for(int i = 0; i< yk_define.wf_sw_num; i++)
-		{
-			generate_tno_key_fno_from_int64(split_key, yk_define.swx_id[i]);
-			if(find_sw_info_record(split_key.record_id, sw_info)<0)
-			{
-				dnet_obj->write_log(0, 999, "当前当前记录%d五防配置有误,五防未找到开关表记录");
-				return ;
-			}
-			//判定控合五防前置条件
-			if(cmd_define.dest_val_char == FORE_CMD_YK_ON)
-			{
-				if(sw_info.yx_value != yk_define.close_swx_yx_value[i])
-				{
-					if_yk_permit = -1;
-					dnet_obj->write_log(0, 999, "当前命令为控合,不满足%d个五防开关条件", i);
-					return;
-				}
-			}else if(cmd_define.dest_val_char == FORE_CMD_YK_OFF)
-			{
-				if(sw_info.yx_value != yk_define.open_swx_yx_value[i])
-				{
-					if_yk_permit = -1;
-					dnet_obj->write_log(0, 999, "当前命令为控分,不满足%d个五防开关条件", i);
-					return;
-				}
-			}
-		}
-		if(if_yk_permit == 1)
-		{
-			cmd_to_send = cmd_define;
-			cmd_to_send.fac_id = yk_define.fac_id;
-			cmd_to_send.addr_no = yk_define.yk_public_addr;
-			cmd_to_send.send_no = yk_define.yk_no;
-
-			data_obj->send_cmd_to_fore_manager(cmd_to_send);
-
-			dnet_obj->write_log(0, 999, "转发调度遥控,对应本地下发通道厂ID:%d,控制点号:%d",
-				cmd_to_send.fac_id, cmd_to_send.send_no);
-		}
-	}
-	else
-	{
-		dnet_obj->write_log(0, 999, "当前命令遥控转发记录sw_id:%d,未能在遥控定义表中找到匹配开关记录,", sw_id);
-	}
+	
 
 
 }
@@ -4220,6 +3994,61 @@ void Cagvc_ctrl_mgr::agvc_link_stat_check()
 
 
 
+
+
+
+
+void Cagvc_ctrl_mgr::gettoday_name()
+{
+
+}
+
+
+
+
+
+//函数：save_today_powervalue(int num )
+//输入：关口电量表编号，每一行记录，代表一个表计。
+//输出：无
+//作用：将关口电量表的当日上下网电量存储到整站日电量表的相关位置
+//时间：[7/30/2021 LJF]
+
+void Cagvc_ctrl_mgr::save_today_powervalue(int num )
+{
+
+	on_time_t cur_time;  
+	on_time(&cur_time);    //获取当前日期
+	struct tm *p;
+	//p=gmtime(&cur_time);
+	p = on_localtime(&cur_time); //分解时间
+	int  Year= p->tm_year+1900;
+	int  Month =p->tm_mon+1;
+	int  Day=p->tm_mday;
+	int  Hour=p->tm_hour;
+	int  Minute=p->tm_min;
+	int  Second=p->tm_sec;
+
+	//char  stringname[64];   //用于存放拼接后的字段名称
+	//sprintf(stringname,"day%s_uppower_col",Day);  //int转字符+字段拼接	
+
+
+	Cgatepower_info *power = find_gatepower_from_list(num);//读取第NUM行记录 
+	power->read_gatepower_rdb();
+
+	float powervalue = power->today_uppower;
+
+	Cstation_daypower_info *daypower = find_station_daypower_from_list(1);
+
+
+
+
+
+  //	data_obj->set_rdb_value(daypower->table_id,daypower->record_id, daypower->day29_uppower_col,(float)powervalue); 
+	scada_report->send_all_modify_rdb();
+	Sleep(1000*1);
+	
+		
+}
 
 
 
@@ -4440,103 +4269,6 @@ int Cagvc_ctrl_mgr::roll2_off() ////关闭
 
 
 
-
-
-
-//断开动力1
-int Cagvc_ctrl_mgr::off_dongli1()  //G3-9
-{
-
-	//dnet_obj->write_log(0, 4459, "进行断开G3-9 动力1操作----->");
-	int a=  set_off_ankerui(5);
-	return  a;
-}
-
-//投入动力1
-int Cagvc_ctrl_mgr::on_dongli1()  //G3-9
-{
-
-	//dnet_obj->write_log(0, 4459, "进行投入G3-9动力1操作----->");
-	int a=  set_on_ankerui(5);
-	return  a;
-}
-
-
-
-//断开动力2
-int Cagvc_ctrl_mgr::off_dongli2()  //G3-10
-{
-
-	//dnet_obj->write_log(0, 4459, "进行断开G3-10动力2操作----->");
-	int a=  set_off_ankerui(6);
-	return  a;
-}
-
-//投入动力2
-int Cagvc_ctrl_mgr::on_dongli2()  //G3-10
-{
-
-	//dnet_obj->write_log(0, 4459, "进行投入g3-10动力2操作----->");
-	int a=  set_on_ankerui(6);
-	return  a;
-}
-
-
-
-
-int Cagvc_ctrl_mgr:: off_G41()
-{
-	//dnet_obj->write_log(0, 4459, "进行断开G41操作----->");
-	int a =  set_off_ankerui(7);
-	return  a;
-
-}
-
-int Cagvc_ctrl_mgr:: on_G41()
-{
-	//dnet_obj->write_log(0, 4459, "进行闭合G41操作----->");
-	int a =  set_on_ankerui(7);
-	return  a;
-
-}
-
-
-//断开空调
-int Cagvc_ctrl_mgr::off_G42()   //G4-2
-{
-	//dnet_obj->write_log(0, 4459, "进行断开空调操作----->");
-	int a =  set_off_ankerui(8);
-	return  a;
-
-}
-
-
-//打开空调
-int Cagvc_ctrl_mgr::on_G42()   //G4-2
-{
-	//dnet_obj->write_log(0, 4459, "进行打开空调操作----->");
-	int a= set_on_ankerui(8);
-	return  a;  
-}
-
-
-
-//断开地源热泵
-int Cagvc_ctrl_mgr::off_G43()   //G4-3
-{  
-	//       dnet_obj->write_log(0, 4459, "进行断开地源热泵操作----->");
-	int a=  set_off_ankerui(9);
-	return  a;
-}
-
-
-//投入地源热泵
-int Cagvc_ctrl_mgr::on_G43()   //G4-3
-{  
-	//dnet_obj->write_log(0, 4459, "进行断开地源热泵操作----->");
-	int a=  set_on_ankerui(9);
-	return  a;
-}
 
 
 
@@ -4783,50 +4515,6 @@ float Cagvc_ctrl_mgr:: read_yb_percent() ///可充电量    //杨北平衡系数
 
 
 
-int Cagvc_ctrl_mgr::red_Rb_CtrlState()
-{	
-	Cstation_info *station = find_station_from_list(4);//电站表 
-	station->read_station_rdb();
-	return station->bms_num;
-
-}
-
-
-
-
-
-int Cagvc_ctrl_mgr::red_ControlTime()  //农业控制循环周期
-{	
-	Cstation_info *station = find_station_from_list(12); 
-	station->read_station_rdb();
-	return station->bay_num;
-
-}
-
-
-
-
-
-
-//获取并网点功率
-float Cagvc_ctrl_mgr:: getPointPower() //获取并网点功率
-{  
-
-	Cpcs_info *pcs = find_pcs_from_list(1); 
-	pcs->read_pcs_rdb();   
-	return  pcs->p;
-
-}
-
-//获取杨北点功率
-float Cagvc_ctrl_mgr::  getYBPointPower()//获取杨北点功率
-{  
-
-	Cpcs_info *pcs = find_pcs_from_list(2); 
-	pcs->read_pcs_rdb();   
-	return  pcs->p;
-
-}
 
 
 
@@ -4839,7 +4527,6 @@ float Cagvc_ctrl_mgr::  getYBPointPower()//获取杨北点功率
 
 
 
-//青禾二期农业生产循环
 void Cagvc_ctrl_mgr::main_loop()
 {
 
@@ -4848,7 +4535,7 @@ void Cagvc_ctrl_mgr::main_loop()
 
 	while(1)	  
 	{
-		             
+		save_today_powervalue(1);           
 	}
 
 }

@@ -520,7 +520,6 @@ public:
     double last4_uppower;      //
     double last5_uppower;      //
     double last6_uppower;      //
-    double last3_uppower;      //
     double last7_uppower;      //
     double last8_uppower;      //
     double last9_uppower;      //
@@ -535,7 +534,6 @@ public:
     double last4_downpower;      //
     double last5_downpower;      //
     double last6_downpower;      //
-    double last3_downpower;      //
     double last7_downpower;      //
     double last8_downpower;      //
     double last9_downpower;      //
@@ -550,7 +548,6 @@ public:
     double day4_uppower;      //
     double day5_uppower;      //
     double day6_uppower;      //
-    double day3_uppower;      //
     double day7_uppower;      //
     double day8_uppower;      //
     double day9_uppower;      //
@@ -585,7 +582,6 @@ public:
     double day4_downpower;      //
     double day5_downpower;      //
     double day6_downpower;      //
-    double day3_downpower;      //
     double day7_downpower;      //
     double day8_downpower;      //
     double day9_downpower;      //
@@ -623,7 +619,6 @@ public:
     short last4_uppower_col;      //
     short last5_uppower_col;      //
     short last6_uppower_col;      //
-    short last3_uppower_col;      //
     short last7_uppower_col;      //
     short last8_uppower_col;      //
     short last9_uppower_col;      //
@@ -637,7 +632,6 @@ public:
     short last4_downpower_col;      //
     short last5_downpower_col;      //
     short last6_downpower_col;      //
-    short last3_downpower_col;      //
     short last7_downpower_col;      //
     short last8_downpower_col;      //
     short last9_downpower_col;      //
@@ -651,7 +645,6 @@ public:
     short day4_uppower_col;      //
     short day5_uppower_col;      //
     short day6_uppower_col;      //
-    short day3_uppower_col;      //
     short day7_uppower_col;      //
     short day8_uppower_col;      //
     short day9_uppower_col;      //
@@ -684,7 +677,6 @@ public:
     short day4_downpower_col;      //
     short day5_downpower_col;      //
     short day6_downpower_col;      //
-    short day3_downpower_col;      //
     short day7_downpower_col;      //
     short day8_downpower_col;      //
     short day9_downpower_col;      //
@@ -743,7 +735,6 @@ public:
 	double month4_uppower;      //
 	double month5_uppower;      //
 	double month6_uppower;      //
-	double month3_uppower;      //
 	double month7_uppower;      //
 	double month8_uppower;      //
 	double month9_uppower;      //
@@ -762,7 +753,6 @@ public:
 	double month4_downpower;      //
 	double month5_downpower;      //
 	double month6_downpower;      //
-	double month3_downpower;      //
 	double month7_downpower;      //
 	double month8_downpower;      //
 	double month9_downpower;      //
@@ -789,7 +779,6 @@ public:
 	short month4_uppower_col;      //
 	short month5_uppower_col;      //
 	short month6_uppower_col;      //
-	short month3_uppower_col;      //
 	short month7_uppower_col;      //
 	short month8_uppower_col;      //
 	short month9_uppower_col;      //
@@ -807,7 +796,6 @@ public:
 	short month4_downpower_col;      //
 	short month5_downpower_col;      //
 	short month6_downpower_col;      //
-	short month3_downpower_col;      //
 	short month7_downpower_col;      //
 	short month8_downpower_col;      //
 	short month9_downpower_col;      //
@@ -848,7 +836,6 @@ public:
 	double day4_uppower;      //
 	double day5_uppower;      //
 	double day6_uppower;      //
-	double day3_uppower;      //
 	double day7_uppower;      //
 	double day8_uppower;      //
 	double day9_uppower;      //
@@ -882,7 +869,6 @@ public:
 	double day4_downpower;      //
 	double day5_downpower;      //
 	double day6_downpower;      //
-	double day3_downpower;      //
 	double day7_downpower;      //
 	double day8_downpower;      //
 	double day9_downpower;      //
@@ -920,7 +906,6 @@ public:
 	short day4_uppower_col;      //
 	short day5_uppower_col;      //
 	short day6_uppower_col;      //
-	short day3_uppower_col;      //
 	short day7_uppower_col;      //
 	short day8_uppower_col;      //
 	short day9_uppower_col;      //
@@ -953,7 +938,6 @@ public:
 	short day4_downpower_col;      //
 	short day5_downpower_col;      //
 	short day6_downpower_col;      //
-	short day3_downpower_col;      //
 	short day7_downpower_col;      //
 	short day8_downpower_col;      //
 	short day9_downpower_col;      //
