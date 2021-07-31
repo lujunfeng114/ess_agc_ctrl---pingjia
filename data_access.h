@@ -20,6 +20,7 @@ public:
     int set_rdb_value(int table_id, int record_id, short field_id, int set_value);
     int set_rdb_value(int table_id, int record_id, short field_id, char set_value);
     int set_rdb_value(int table_id, int record_id, short field_id, float set_value);
+    int set_rdb_value(int table_id, int record_id, short field_id, double set_value);
     //int set_rdb_value(int table_id, int record_id, short field_id, on_time_t set_value);
     int send_cmd_to_fore_manager(ctrl_cmd_struct cmd);
 };

@@ -3,9 +3,7 @@
 #include<time.h>
 #include "../../scada/scada_normal/scada_report_manager.h"
 
-int ACGridState = 0 ;//系统4种故障状态
 
-int YBGridState= 0 ;//杨北系统2种状态
 
 //PCS设值模式
 const int HengGongLv_charge = 1;
@@ -21,33 +19,11 @@ const int Out_command =2;
 const int VF_command =3;
 const int DianYa_command= 4;
 
-//微网几种状态
-const int STATE_STOP = 1;   //停止态
-const int STATE_OFF = 2 ; //离网
-const int STATE_ON  =3 ; //并网态
-const int STATE_FAULT = 4; //故障态
-
-//杨北
-const int  YB_STATE_OFF =2;  //离网
-const int  YB_STATE_ON  =3;  //并网
-
-
-//运行状态信息：1离网启动中;2并网启动中;3离网停机中;4并网停机中;5无缝离网中;6无缝并网中;7故障复归中
-const int STATUS_OFF_START =1;
-const int STATUS_ON_START = 2;
-const int STATUS_OFF_STOP =3;
-const int STATUS_ON_STOP = 4;
-const int STATUS_ONTOOFF =5;
-const int STATUS_OFFTOON = 6;
-const int STATUS_FAULTRESET =7;
-
 
 //控制指令
 const int GRID_STOP = 1 ; //停机
 const int GRID_ON = 2;  //并网
 const int GRID_OFF = 3;  //离网
-
-//YB控制指令
 
 
 //常量
@@ -60,21 +36,14 @@ const int NO_BUSBAR_VOLTAGE = 20;  //电网电压小于多少判断有问题
 const int GRID_VOLTAGE_MIN = 180;
 const int GRID_VOLTAGE_MAX = 250;
 
-int socNow=0;
-int YBPower=0;//实时获取杨北变当前的功率
 
 //并网功率平衡
 const int SOC_MAX = 90 ;  
 const int SOC_MIN = 20 ;
 
-
-int FF = 10;//用做PCS改变功率
-
-
-float YBpowertemp = 0; //存储杨北变功率的变量
-float SJpowertemp = 0; //存储松江头变功率的变量
-
-float temp = 0;  //第一次默认
+//选择那一块电量表
+const int TOTAL_POWER_METER = 1 ;  //总关口表
+const int STATION_TRANSFORMER_METER = 2 ;  //站用变表
 
 int  timecount=0;
 
@@ -4005,13 +3974,13 @@ void Cagvc_ctrl_mgr::gettoday_name()
 
 
 
-//函数：save_today_powervalue(int num )
+//函数：save_gatepower_to_dayandmonthpower_value(int num )
 //输入：关口电量表编号，每一行记录，代表一个表计。
 //输出：无
 //作用：将关口电量表的当日上下网电量存储到整站日电量表的相关位置
 //时间：[7/30/2021 LJF]
 
-void Cagvc_ctrl_mgr::save_today_powervalue(int num )
+void Cagvc_ctrl_mgr::save_gatepower_to_dayandmonthpower_value(int num )
 {
 
 	on_time_t cur_time;  
@@ -4027,21 +3996,45 @@ void Cagvc_ctrl_mgr::save_today_powervalue(int num )
 	int  Second=p->tm_sec;
 
 	//char  stringname[64];   //用于存放拼接后的字段名称
-	//sprintf(stringname,"day%s_uppower_col",Day);  //int转字符+字段拼接	
+	//sprintf(stringname,"day%s_uppower_col",Day);  //int转字符+字段拼接
+
+	 short dayup_col=0;
+	 short daydown_col=0;	
+	 dayup_col=Day+6;     //根据整站日电量表数据库中字段的域序号来算的     上网电网+6  
+	 daydown_col=Day+37;  // 根据整站日电量表数据库中字段的域序号来算的    下网电网+37
+
+	 short monthup_col=0;
+	 short monthdown_col=0;
+	 monthup_col=Month+8;      // 根据整站月电量表数据库中字段的域序号来算的     上网电网+8  举例 7月上网电量的域号是15  7+8=15
+	 monthdown_col=Month+24;  //根据整站月电量表数据库中字段的域序号来算的       下网电网+24 举例 7月下网电量的域号是31  7+24=31
+
+	 double value=0; 
+ 
+
+	    Cgatepower_info *power = find_gatepower_from_list(TOTAL_POWER_METER);//读取第NUM行记录  //选择具体哪一个电量表
+
+		for (int i = 0; i < Month ; i++)
+		{
+			data_obj->read_rdb_value(power->table_id, power->record_id, 7+i, &value);  //关口电量表 当月上网电量域ID为7
+			Cstation_monthpower_info *monthpower = find_station_monthpower_from_list(Year-2020);
+			data_obj->set_rdb_value(monthpower ->table_id,monthpower ->record_id, monthup_col-i,value); 
+
+			data_obj->read_rdb_value(power->table_id, power->record_id, 20+i, &value);  //关口电量表 当月下网电量域ID为20
+			data_obj->set_rdb_value(monthpower ->table_id,monthpower ->record_id, monthdown_col-i,value); 
+		}
 
 
-	Cgatepower_info *power = find_gatepower_from_list(num);//读取第NUM行记录 
-	power->read_gatepower_rdb();
+		for (int i = 0; i < Day ; i++)
+		{
+	     data_obj->read_rdb_value(power->table_id, power->record_id, 33+i, &value);  //关口电量表 当日上网电量域ID为33
+		 Cstation_daypower_info *daypower = find_station_daypower_from_list(Month);
+  	     data_obj->set_rdb_value(daypower->table_id,daypower->record_id, dayup_col-i,value); 
 
-	float powervalue = power->today_uppower;
+		 data_obj->read_rdb_value(power->table_id, power->record_id, 65+i, &value);  //关口电量表 当日下网电量域ID为65		
+		 data_obj->set_rdb_value(daypower->table_id,daypower->record_id, daydown_col-i,value); 
+			
+		}
 
-	Cstation_daypower_info *daypower = find_station_daypower_from_list(1);
-
-
-
-
-
-  //	data_obj->set_rdb_value(daypower->table_id,daypower->record_id, daypower->day29_uppower_col,(float)powervalue); 
 	scada_report->send_all_modify_rdb();
 	Sleep(1000*1);
 	
@@ -4533,7 +4526,7 @@ void Cagvc_ctrl_mgr::main_loop()
 
 	while(1)	  
 	{
-		save_today_powervalue(1);           
+		save_gatepower_to_dayandmonthpower_value(1);           
 	}
 
 }

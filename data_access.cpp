@@ -117,6 +117,59 @@ int Cdata_access::set_rdb_value(int table_id, int record_id, short field_id, flo
         return false;
     }
 }
+
+int Cdata_access::set_rdb_value(int table_id, int record_id, short field_id, double set_value)
+{
+	char key_buff[500],*result;
+	int counter = 0;
+	int retcode,result_len;
+
+
+	memcpy(key_buff+counter,(char *)&record_id,sizeof(int));	//关键字
+	counter+=sizeof(int);
+	memcpy(key_buff+counter,(char *)&field_id,sizeof(short));	//域号
+	counter+=sizeof(short);
+
+	result = (char *)MALLOC(sizeof(double));
+	memcpy(result,&set_value,sizeof(double));
+	result_len = 8;
+
+	if (counter!=0)
+	{
+
+		retcode = scada_report->add_one_table_modify_into_buf(
+			table_id,
+			DNET_APP_TYPE_SCADA,
+			0,
+			key_buff,
+			sizeof(int)+sizeof(short),
+			result,
+			result_len);
+
+	}
+	else
+	{
+		FREE(result);
+		return false;
+	}
+	if (retcode)
+	{
+		FREE(result);
+		return true;
+	}
+	else
+	{
+		dnet_obj->write_log(
+			0,
+			1,
+			"组装报文出错");
+		FREE(result);
+		return false;
+	}
+}
+
+
+
 #if 0
 int Cdata_access::set_rdb_value(int table_id, int record_id, short field_id, on_time_t set_value)
 {
@@ -267,6 +320,10 @@ int Cdata_access::set_rdb_value(int table_id, int record_id, short field_id, cha
         return false;
     }
 }
+
+
+
+
 
 #if 0
 int Cdata_access::set_rdb_value(int table_id, int record_id, short field_id, int set_value)

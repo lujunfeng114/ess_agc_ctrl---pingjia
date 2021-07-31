@@ -114,7 +114,7 @@ public:
 	
 	 //整站日电量表相关函数	
 
-	 void save_today_powervalue(int num=1);	//默认一个关口表，选择第一行记录
+	 void save_gatepower_to_dayandmonthpower_value(int num=1);	//默认一个关口表，选择第一行记录
 	
 	
 	
