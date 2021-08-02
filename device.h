@@ -746,7 +746,6 @@ public:
 	double season3_uppower;      //
 	double season4_uppower;      //
 
-
 	double month1_downpower;      //1月下网电量
 	double month2_downpower;      //
 	double month3_downpower;      //
@@ -764,15 +763,11 @@ public:
 	double season3_downpower;      //
 	double season4_downpower;      //	
 
-
-	//
 	short display_id_col;
 	short name_col;
 	on_time_t  year_col;    //月份
 	short year_uppower_col;      //当月上网电量
 	short year_downpower_col;      //当月上网电量
-
-
 	short month1_uppower_col;      //1月上网电量
 	short month2_uppower_col;      //
 	short month3_uppower_col;      //
@@ -899,7 +894,257 @@ public:
 	short display_id_col;
 	short name_col;
 	on_time_t  month_col;    //月份
+	short day1_uppower_col;      //1号上网电量
+	short day2_uppower_col;      //2号上网电量
+	short day3_uppower_col;      //3号上网电量
+	short day4_uppower_col;      //
+	short day5_uppower_col;      //
+	short day6_uppower_col;      //
+	short day7_uppower_col;      //
+	short day8_uppower_col;      //
+	short day9_uppower_col;      //
+	short day10_uppower_col;      //
+	short day11_uppower_col;      //
+	short day12_uppower_col;      //
+	short day13_uppower_col;      //
+	short day14_uppower_col;      //
+	short day15_uppower_col;      //
+	short day16_uppower_col;      //
+	short day17_uppower_col;      //
+	short day18_uppower_col;      //
+	short day19_uppower_col;      //
+	short day20_uppower_col;      //
+	short day21_uppower_col;      //
+	short day22_uppower_col;      //
+	short day23_uppower_col;      //
+	short day24_uppower_col;      //
+	short day25_uppower_col;      //
+	short day26_uppower_col;      //
+	short day27_uppower_col;      //
+	short day28_uppower_col;      //
+	short day29_uppower_col;      //
+	short day30_uppower_col;      //
+	short day31_uppower_col;      //
 
+	short day1_downpower_col;      //
+	short day2_downpower_col;      //
+	short day3_downpower_col;      //
+	short day4_downpower_col;      //
+	short day5_downpower_col;      //
+	short day6_downpower_col;      //
+	short day7_downpower_col;      //
+	short day8_downpower_col;      //
+	short day9_downpower_col;      //
+	short day10_downpower_col;      //
+	short day11_downpower_col;      //
+	short day12_downpower_col;      //
+	short day13_downpower_col;      //
+	short day14_downpower_col;      //
+	short day15_downpower_col;      //
+	short day16_downpower_col;      //
+	short day17_downpower_col;      //
+	short day18_downpower_col;      //
+	short day19_downpower_col;      //
+	short day20_downpower_col;      //
+	short day21_downpower_col;      //
+	short day22_downpower_col;      //
+	short day23_downpower_col;      //
+	short day24_downpower_col;      //
+	short day25_downpower_col;      //
+	short day26_downpower_col;      //
+	short day27_downpower_col;      //
+	short day28_downpower_col;      //
+	short day29_downpower_col;      //
+	short day30_downpower_col;      //
+	short day31_downpower_col;      //
+
+public:
+	int read_station_daypower_rdb();
+};
+
+
+
+//储能单元月电量分析表
+class Cunit_monthpower_info
+{
+public:
+	Cunit_monthpower_info(Cdata_access *_data_obj);
+	~Cunit_monthpower_info();
+	Cdata_access *data_obj;
+	RDB_NET      *rdb_obj;       //实时库对象
+	system_net_info *dnet_obj;   //网络操作对象
+public:
+	int table_id;
+	int record_id;      //在本设备表中的记录号
+	int display_id;     //在本设备表中的显示ID
+	char name[64];
+
+	on_time_t  year;    //年份
+	double year_uppower;        //储能单元年上网电量
+	double year_downpower;      //储能单元年下网电量
+
+	double month1_uppower;      //1月上网电量
+	double month2_uppower;      //
+	double month3_uppower;      //
+	double month4_uppower;      //
+	double month5_uppower;      //
+	double month6_uppower;      //
+	double month7_uppower;      //
+	double month8_uppower;      //
+	double month9_uppower;      //
+	double month10_uppower;     //
+	double month11_uppower;     //
+	double month12_uppower;     //
+	double season1_uppower;     //1季度上网电量
+	double season2_uppower;     //
+	double season3_uppower;     //
+	double season4_uppower;     //
+
+	double month1_downpower;      //1月下网电量
+	double month2_downpower;      //
+	double month3_downpower;      //
+	double month4_downpower;      //
+	double month5_downpower;      //
+	double month6_downpower;      //
+	double month7_downpower;      //
+	double month8_downpower;      //
+	double month9_downpower;      //
+	double month10_downpower;      //
+	double month11_downpower;      //
+	double month12_downpower;      //
+	double season1_downpower;      //1季度下网电量
+	double season2_downpower;      //
+	double season3_downpower;      //
+	double season4_downpower;      //	
+
+	short display_id_col;
+	short name_col;
+	on_time_t  year_col;           //月份
+	short year_uppower_col;        //当月上网电量
+	short year_downpower_col;      //当月上网电量
+	short month1_uppower_col;      //1月上网电量
+	short month2_uppower_col;      //
+	short month3_uppower_col;      //
+	short month4_uppower_col;      //
+	short month5_uppower_col;      //
+	short month6_uppower_col;      //
+	short month7_uppower_col;      //
+	short month8_uppower_col;      //
+	short month9_uppower_col;      //
+	short month10_uppower_col;     //
+	short month11_uppower_col;     //
+	short month12_uppower_col;     //
+	short season1_uppower_col;     //
+	short season2_uppower_col;     //
+	short season3_uppower_col;     //
+	short season4_uppower_col;     //
+
+	short month1_downpower_col;      //1月上网电量
+	short month2_downpower_col;      //
+	short month3_downpower_col;      //
+	short month4_downpower_col;      //
+	short month5_downpower_col;      //
+	short month6_downpower_col;      //
+	short month7_downpower_col;      //
+	short month8_downpower_col;      //
+	short month9_downpower_col;      //
+	short month10_downpower_col;     //
+	short month11_downpower_col;     //
+	short month12_downpower_col;     //
+	short season1_downpower_col;     //
+	short season2_downpower_col;     //
+	short season3_downpower_col;     //
+	short season4_downpower_col;     //
+
+
+public:
+	int read_unit_monthpower_rdb();
+};
+
+
+//储能单元日电量分析表
+class Cunit_daypower_info
+{
+public:
+	Cunit_daypower_info(Cdata_access *_data_obj);
+	~Cunit_daypower_info();
+	Cdata_access *data_obj;
+	RDB_NET      *rdb_obj;       //实时库对象
+	system_net_info *dnet_obj;   //网络操作对象
+public:
+	int table_id;
+	int record_id;      //在本设备表中的记录号
+	int display_id;     //在本设备表中的显示ID
+	char name[64];
+
+	on_time_t  month;    //月份
+	double day1_uppower;      //1号上网电量
+	double day2_uppower;      //2号上网电量
+	double day3_uppower;      //3号上网电量
+	double day4_uppower;      //
+	double day5_uppower;      //
+	double day6_uppower;      //
+	double day7_uppower;      //
+	double day8_uppower;      //
+	double day9_uppower;      //
+	double day10_uppower;      //
+	double day11_uppower;      //
+	double day12_uppower;      //
+	double day13_uppower;      //
+	double day14_uppower;      //
+	double day15_uppower;      //
+	double day16_uppower;      //
+	double day17_uppower;      //
+	double day18_uppower;      //
+	double day19_uppower;      //
+	double day20_uppower;      //
+	double day21_uppower;      //
+	double day22_uppower;      //
+	double day23_uppower;      //
+	double day24_uppower;      //
+	double day25_uppower;      //
+	double day26_uppower;      //
+	double day27_uppower;      //
+	double day28_uppower;      //
+	double day29_uppower;      //
+	double day30_uppower;      //
+	double day31_uppower;      //
+
+	double day1_downpower;      //
+	double day2_downpower;      //
+	double day3_downpower;      //
+	double day4_downpower;      //
+	double day5_downpower;      //
+	double day6_downpower;      //
+	double day7_downpower;      //
+	double day8_downpower;      //
+	double day9_downpower;      //
+	double day10_downpower;      //
+	double day11_downpower;      //
+	double day12_downpower;      //
+	double day13_downpower;      //
+	double day14_downpower;      //
+	double day15_downpower;      //
+	double day16_downpower;      //
+	double day17_downpower;      //
+	double day18_downpower;      //
+	double day19_downpower;      //
+	double day20_downpower;      //
+	double day21_downpower;      //
+	double day22_downpower;      //
+	double day23_downpower;      //
+	double day24_downpower;      //
+	double day25_downpower;      //
+	double day26_downpower;      //
+	double day27_downpower;      //
+	double day28_downpower;      //
+	double day29_downpower;      //
+	double day30_downpower;      //
+	double day31_downpower;      //
+
+	short display_id_col;
+	short name_col;
+	on_time_t  month_col;    //月份
 	short day1_uppower_col;      //1号上网电量
 	short day2_uppower_col;      //2号上网电量
 	short day3_uppower_col;      //3号上网电量
@@ -967,14 +1212,8 @@ public:
 
 
 public:
-	int read_station_daypower_rdb();
+	int read_unit_daypower_rdb();
 };
-
-
-
-
-
-
 
 
 

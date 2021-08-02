@@ -31,6 +31,9 @@ public:
 	vector<Cgatepower_info * > gatepower_list;//关口电量表
 	vector<Cstation_monthpower_info * > station_monthpower_list;//整站月电量分析表
 	vector<Cstation_daypower_info * > station_daypower_list;//整站日电量分析表
+    vector<Cunit_monthpower_info * > unit_monthpower_list;  //储能单元月电量分析表
+	vector<Cunit_daypower_info * > unit_daypower_list;       //储能单元日电量分析表
+ 
 
 	int read_fac_info_table();
 	int read_meas_info_table();
@@ -46,6 +49,8 @@ public:
 	int read_station_monthpower_info_table();  //整站月电量分析表
 	int read_station_daypower_info_table();  //整站日电量分析表
 
+	int read_unit_monthpower_info_table();  //储能单元月电量分析表
+	int read_unit_daypower_info_table();  //储能单元日电量分析表
 
 
 
@@ -60,7 +65,8 @@ public:
 	Cgatepower_info* find_gatepower_from_list(int display_id);   //查找某一条关口表电量记录
 	Cstation_monthpower_info* find_station_monthpower_from_list(int display_id);   //查找某一条整站月电量记录
 	Cstation_daypower_info* find_station_daypower_from_list(int display_id);   //查找某一条整站日电量电量记录
-
+	Cunit_monthpower_info* find_unit_monthpower_from_list(int display_id);   //查找某一条整站月电量记录
+	Cunit_daypower_info* find_unit_daypower_from_list(int display_id);   //查找某一条整站日电量电量记录
 
 public:
 	//遥控遥调转发业务逻辑
@@ -106,17 +112,14 @@ public:
 	void pcs_alarm_level_ctrl(); //处理电站人工下发功率后的一级/二级三级故障逻辑 仅在AGC不允许控制,且电站为就地状态,且无就地运行策略情况下判定,否则会影响策略的功率分配逻辑
 	void agvc_link_stat_check();//agvc通道状态监测/调度下发调节值超时监测
 	
-    //关口电量表相关函数	
-	
-    void gettoday_name();	
-	
-	
-	
-	 //整站日电量表相关函数	
 
-	 void save_gatepower_to_dayandmonthpower_value(int num=1);	//默认一个关口表，选择第一行记录
+
 	
+	 //关口电量表数据转存档到整站日电量表和整站月电量表	
+
+	 void save_gatepower_to_dayanmonthpower_value(int num=1);	//默认一个关口表，选择第一行记录
 	
+	 //储能单元日电量表	
 	
 	
 	

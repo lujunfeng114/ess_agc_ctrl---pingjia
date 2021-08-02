@@ -1824,3 +1824,169 @@ int Cstation_daypower_info::read_station_daypower_rdb()
 
 	return 0;
 }
+
+
+
+
+/*函数名：read_unit_monthpower_rdb()
+ *输入:
+ *输出：
+ *功能简介：储能单元月电量全部获取
+ *时间：[8/2/2021 LJF]
+ */
+Cunit_monthpower_info::Cunit_monthpower_info(Cdata_access *_data_obj)
+{
+	this->data_obj = _data_obj;
+	this->rdb_obj = data_obj->rdb_obj;
+	this->dnet_obj = data_obj->dnet_obj;
+
+}
+
+Cunit_monthpower_info::~Cunit_monthpower_info()
+{
+
+}
+int Cunit_monthpower_info::read_unit_monthpower_rdb()
+{
+
+
+	data_obj->read_rdb_value(table_id, record_id, display_id_col, &display_id);
+	data_obj->read_rdb_value(table_id, record_id, name_col, name);
+	data_obj->read_rdb_value(table_id, record_id, year_col, &year);
+
+	data_obj->read_rdb_value(table_id, record_id, year_uppower_col, &year_uppower);
+	data_obj->read_rdb_value(table_id, record_id, year_downpower_col, &year_downpower);
+
+	data_obj->read_rdb_value(table_id, record_id, month1_uppower_col, &month1_uppower);
+	data_obj->read_rdb_value(table_id, record_id, month2_uppower_col, &month2_uppower);
+	data_obj->read_rdb_value(table_id, record_id, month3_uppower_col, &month3_uppower);
+	data_obj->read_rdb_value(table_id, record_id, month4_uppower_col, &month4_uppower);
+	data_obj->read_rdb_value(table_id, record_id, month5_uppower_col, &month5_uppower);
+	data_obj->read_rdb_value(table_id, record_id, month6_uppower_col, &month6_uppower);
+	data_obj->read_rdb_value(table_id, record_id, month7_uppower_col, &month7_uppower);
+	data_obj->read_rdb_value(table_id, record_id, month8_uppower_col, &month8_uppower);
+	data_obj->read_rdb_value(table_id, record_id, month9_uppower_col, &month9_uppower);
+	data_obj->read_rdb_value(table_id, record_id, month10_uppower_col, &month10_uppower);
+	data_obj->read_rdb_value(table_id, record_id, month11_uppower_col, &month11_uppower);
+	data_obj->read_rdb_value(table_id, record_id, month12_uppower_col, &month12_uppower);
+
+	data_obj->read_rdb_value(table_id, record_id, season1_uppower_col, &season1_uppower);
+	data_obj->read_rdb_value(table_id, record_id, season2_uppower_col, &season2_uppower);
+	data_obj->read_rdb_value(table_id, record_id, season3_uppower_col, &season3_uppower);
+	data_obj->read_rdb_value(table_id, record_id, season4_uppower_col, &season4_uppower);
+
+	data_obj->read_rdb_value(table_id, record_id, month1_downpower_col, &month1_downpower);
+	data_obj->read_rdb_value(table_id, record_id, month2_downpower_col, &month2_downpower);
+	data_obj->read_rdb_value(table_id, record_id, month3_downpower_col, &month3_downpower);
+	data_obj->read_rdb_value(table_id, record_id, month4_downpower_col, &month4_downpower);
+	data_obj->read_rdb_value(table_id, record_id, month5_downpower_col, &month5_downpower);
+	data_obj->read_rdb_value(table_id, record_id, month6_downpower_col, &month6_downpower);
+	data_obj->read_rdb_value(table_id, record_id, month7_downpower_col, &month7_downpower);
+	data_obj->read_rdb_value(table_id, record_id, month8_downpower_col, &month8_downpower);
+	data_obj->read_rdb_value(table_id, record_id, month9_downpower_col, &month9_downpower);
+	data_obj->read_rdb_value(table_id, record_id, month10_downpower_col, &month10_downpower);
+	data_obj->read_rdb_value(table_id, record_id, month11_downpower_col, &month11_downpower);
+	data_obj->read_rdb_value(table_id, record_id, month12_downpower_col, &month12_downpower);
+
+	data_obj->read_rdb_value(table_id, record_id, season1_downpower_col, &season1_downpower);
+	data_obj->read_rdb_value(table_id, record_id, season2_downpower_col, &season2_downpower);
+	data_obj->read_rdb_value(table_id, record_id, season3_downpower_col, &season3_downpower);
+	data_obj->read_rdb_value(table_id, record_id, season4_downpower_col, &season4_downpower);
+
+	return 0;
+
+
+
+
+}
+
+
+
+/*函数名：read_unit_daypower_rdb()
+ *输入:
+ *输出：
+ *功能简介：储能单元日电量全部获取
+ *时间：[8/2/2021 LJF]
+ */
+Cunit_daypower_info::Cunit_daypower_info(Cdata_access *_data_obj)
+{
+	this->data_obj = _data_obj;
+	this->rdb_obj = data_obj->rdb_obj;
+	this->dnet_obj = data_obj->dnet_obj;
+
+}
+
+Cunit_daypower_info::~Cunit_daypower_info()
+{
+
+}
+int Cunit_daypower_info::read_unit_daypower_rdb()
+{
+
+	data_obj->read_rdb_value(table_id, record_id, display_id_col, &display_id);
+	data_obj->read_rdb_value(table_id, record_id, name_col, name);
+	data_obj->read_rdb_value(table_id, record_id, month_col, &month);
+	data_obj->read_rdb_value(table_id, record_id, day1_uppower_col, &day1_uppower);
+	data_obj->read_rdb_value(table_id, record_id, day2_uppower_col, &day2_uppower);
+	data_obj->read_rdb_value(table_id, record_id, day3_uppower_col, &day3_uppower);
+	data_obj->read_rdb_value(table_id, record_id, day4_uppower_col, &day4_uppower);
+	data_obj->read_rdb_value(table_id, record_id, day5_uppower_col, &day5_uppower);
+	data_obj->read_rdb_value(table_id, record_id, day6_uppower_col, &day6_uppower);
+	data_obj->read_rdb_value(table_id, record_id, day7_uppower_col, &day7_uppower);
+	data_obj->read_rdb_value(table_id, record_id, day8_uppower_col, &day8_uppower);
+	data_obj->read_rdb_value(table_id, record_id, day9_uppower_col, &day9_uppower);
+	data_obj->read_rdb_value(table_id, record_id, day10_uppower_col, &day10_uppower);
+	data_obj->read_rdb_value(table_id, record_id, day11_uppower_col, &day11_uppower);
+	data_obj->read_rdb_value(table_id, record_id, day12_uppower_col, &day12_uppower);
+	data_obj->read_rdb_value(table_id, record_id, day13_uppower_col, &day13_uppower);
+	data_obj->read_rdb_value(table_id, record_id, day14_uppower_col, &day14_uppower);
+	data_obj->read_rdb_value(table_id, record_id, day15_uppower_col, &day15_uppower);
+	data_obj->read_rdb_value(table_id, record_id, day16_uppower_col, &day16_uppower);
+	data_obj->read_rdb_value(table_id, record_id, day17_uppower_col, &day17_uppower);
+	data_obj->read_rdb_value(table_id, record_id, day18_uppower_col, &day18_uppower);
+	data_obj->read_rdb_value(table_id, record_id, day19_uppower_col, &day19_uppower);
+	data_obj->read_rdb_value(table_id, record_id, day20_uppower_col, &day20_uppower);
+	data_obj->read_rdb_value(table_id, record_id, day21_uppower_col, &day21_uppower);
+	data_obj->read_rdb_value(table_id, record_id, day22_uppower_col, &day22_uppower);
+	data_obj->read_rdb_value(table_id, record_id, day23_uppower_col, &day23_uppower);
+	data_obj->read_rdb_value(table_id, record_id, day24_uppower_col, &day24_uppower);
+	data_obj->read_rdb_value(table_id, record_id, day25_uppower_col, &day25_uppower);
+	data_obj->read_rdb_value(table_id, record_id, day26_uppower_col, &day26_uppower);
+	data_obj->read_rdb_value(table_id, record_id, day27_uppower_col, &day27_uppower);
+	data_obj->read_rdb_value(table_id, record_id, day28_uppower_col, &day28_uppower);
+	data_obj->read_rdb_value(table_id, record_id, day29_uppower_col, &day29_uppower);
+	data_obj->read_rdb_value(table_id, record_id, day30_uppower_col, &day30_uppower);
+	data_obj->read_rdb_value(table_id, record_id, day31_uppower_col, &day31_uppower);
+	data_obj->read_rdb_value(table_id, record_id, day1_downpower_col, &day1_downpower);
+	data_obj->read_rdb_value(table_id, record_id, day2_downpower_col, &day2_downpower);
+	data_obj->read_rdb_value(table_id, record_id, day3_downpower_col, &day3_downpower);
+	data_obj->read_rdb_value(table_id, record_id, day4_downpower_col, &day4_downpower);
+	data_obj->read_rdb_value(table_id, record_id, day5_downpower_col, &day5_downpower);
+	data_obj->read_rdb_value(table_id, record_id, day6_downpower_col, &day6_downpower);
+	data_obj->read_rdb_value(table_id, record_id, day7_downpower_col, &day7_downpower);
+	data_obj->read_rdb_value(table_id, record_id, day8_downpower_col, &day8_downpower);
+	data_obj->read_rdb_value(table_id, record_id, day9_downpower_col, &day9_downpower);
+	data_obj->read_rdb_value(table_id, record_id, day10_downpower_col, &day10_downpower);
+	data_obj->read_rdb_value(table_id, record_id, day11_downpower_col, &day11_downpower);
+	data_obj->read_rdb_value(table_id, record_id, day12_downpower_col, &day12_downpower);
+	data_obj->read_rdb_value(table_id, record_id, day13_downpower_col, &day13_downpower);
+	data_obj->read_rdb_value(table_id, record_id, day14_downpower_col, &day14_downpower);
+	data_obj->read_rdb_value(table_id, record_id, day15_downpower_col, &day15_downpower);
+	data_obj->read_rdb_value(table_id, record_id, day16_downpower_col, &day16_downpower);
+	data_obj->read_rdb_value(table_id, record_id, day17_downpower_col, &day17_downpower);
+	data_obj->read_rdb_value(table_id, record_id, day18_downpower_col, &day18_downpower);
+	data_obj->read_rdb_value(table_id, record_id, day19_downpower_col, &day19_downpower);
+	data_obj->read_rdb_value(table_id, record_id, day20_downpower_col, &day20_downpower);
+	data_obj->read_rdb_value(table_id, record_id, day21_downpower_col, &day21_downpower);
+	data_obj->read_rdb_value(table_id, record_id, day22_downpower_col, &day22_downpower);
+	data_obj->read_rdb_value(table_id, record_id, day23_downpower_col, &day23_downpower);
+	data_obj->read_rdb_value(table_id, record_id, day24_downpower_col, &day24_downpower);
+	data_obj->read_rdb_value(table_id, record_id, day25_downpower_col, &day25_downpower);
+	data_obj->read_rdb_value(table_id, record_id, day26_downpower_col, &day26_downpower);
+	data_obj->read_rdb_value(table_id, record_id, day27_downpower_col, &day27_downpower);
+	data_obj->read_rdb_value(table_id, record_id, day28_downpower_col, &day28_downpower);
+	data_obj->read_rdb_value(table_id, record_id, day29_downpower_col, &day29_downpower);
+	data_obj->read_rdb_value(table_id, record_id, day30_downpower_col, &day30_downpower);
+	data_obj->read_rdb_value(table_id, record_id, day31_downpower_col, &day31_downpower);
+	return 0;
+}
