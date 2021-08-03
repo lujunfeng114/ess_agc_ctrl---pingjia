@@ -1990,3 +1990,38 @@ int Cunit_daypower_info::read_unit_daypower_rdb()
 	data_obj->read_rdb_value(table_id, record_id, day31_downpower_col, &day31_downpower);
 	return 0;
 }
+
+
+
+
+
+
+/*函数名：read_unit_runstate_rdb
+ *输入:
+ *输出：
+ *功能简介：获取储能单元运行信息表
+ *时间：[8/3/2021 LJF]
+ */
+Cunit_runstate_info::Cunit_runstate__info(Cdata_access *_data_obj)
+{
+	this->data_obj = _data_obj;
+	this->rdb_obj = data_obj->rdb_obj;
+	this->dnet_obj = data_obj->dnet_obj;
+
+}
+
+Cunit_runstate_info::~Cunit_runstate_info()
+{
+
+}
+
+int Cunit_runstate_info::read_unit_runstate_rdb()
+{
+
+
+
+
+
+
+
+}

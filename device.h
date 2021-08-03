@@ -1217,6 +1217,89 @@ public:
 
 
 
+//储能单元运行信息表
+class Cunit_runstate_info
+{
+public:
+	Cunit_runstate_info(Cdata_access *_data_obj);
+	~Cunit_runstate_info();
+	Cdata_access *data_obj;
+	RDB_NET      *rdb_obj;       //实时库对象
+	system_net_info *dnet_obj;   //网络操作对象
+public:
+	int table_id;
+	int record_id;      //在本设备表中的记录号
+	int display_id;     //在本设备表中的显示ID
+	int pcs_name;
+	int unit_name;
+	char name[64];
+
+	on_time_t  month;    //是阿金
+	int unit_state;      //储能单元工作状态
+	int control_state;  //储能远方/就地状态
+	int pcs_state;      //储能充放电状态
+	double pcs_power;   //储能单元运行功率
+	double unit_soc;      // 储能单元SOC
+    double unit_apacity ;   //储能单元额定容量
+	double total_uppower;      //储能单元总放电量
+	double year_uppower;      //储能单元年放电量
+	double month_uppower;      //储能单元月放电量
+	double today_uppower;      //储能单元日放电量
+	double time_uppower;      //储能单元本次放电量
+	double total_downpower;      //储能单元总充电量
+	double year_downpower;      //储能单元年充电量
+	double month_downpower;      //储能单元月充电量
+	double day_downpower;      //储能单元日充电量
+	double time_downpower;      //储能单元本次充电量
+	double total_runtime;      //总运行时间
+	double total_chartime;      //总充电时间
+	double total_distime;      //总放电时间
+	double year_chartime;      //年充电时间
+	double year_distime;      //年放电时间
+	double month_chartime;      //月充电时间
+	double month_distime;      //月放电时间
+	double day_chartime;      //日充电时间
+	double day_distime;      //日放电时间
+
+	short display_id_col;
+	short name_col;
+	short pcs_name_col;
+	short unit_name_col;
+	on_time_t  month_col;    //时间
+	short unit_state_col;
+	short control_state_col;
+	short pcs_state_col;
+	short pcs_power_col; 
+	short unit_soc_col;  
+	short unit_apacity_col ;  
+	short total_uppower_col;      
+	short year_uppower_col;      
+	short month_uppower_col;      
+	short today_uppower_col;      
+	short time_uppower_col;      
+	short total_downpower_col;      
+	short year_downpower_col;      
+	short month_downpower_col;      
+	short day_downpower_col;      
+	short time_downpower_col;      
+	short total_runtime_col;      
+	short total_chartime_col;      
+	short total_distime_col;      
+	short year_chartime_col;      
+	short year_distime_col;      
+	short month_chartime_col;      
+	short month_distime_col;      
+	short day_chartime_col;      
+	short day_distime_col;      
+
+
+
+public:
+	int read_unit_runstate_rdb();
+};
+
+
+
 
 
 //厂站表

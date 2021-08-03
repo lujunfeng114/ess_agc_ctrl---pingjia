@@ -2952,6 +2952,226 @@ int Cagvc_ctrl_mgr::read_unit_daypower_info_table()
 
 
 
+int Cagvc_ctrl_mgr::read_unit_runstate_info_table()
+{
+
+	for(int i=0; i<unit_runstate_list.size(); i++)
+	{
+		delete unit_runstate_list.at(i);
+	}
+	unit_runstate_list.clear();
+
+	int retcode;
+	int record_num;
+	int result_len;
+	char *buffer = NULL;
+
+	int offset = 0;
+	int record_pos = 0;
+	int record_len = 0;
+
+	struct TABLE_HEAD_FIELDS_INFO* fields_info = NULL;
+
+	const int field_num = 66;
+	buffer = (char *)MALLOC(6000);
+
+	fields_info = (struct TABLE_HEAD_FIELDS_INFO *)MALLOC(sizeof(struct TABLE_HEAD_FIELDS_INFO)*field_num);
+	char  English_names[field_num][DB_ENG_TABLE_NAME_LEN] = {
+		"display_idx",
+		"id",
+		"name",
+		"month",
+		"pcs_name",
+		"unit_name",
+		"unit_state",
+		"control_state",
+		"pcs_state",
+		"pcs_power",
+		"unit_soc",
+		"unit_apacity",
+		"year_uppower",
+		"month_uppower",
+		"today_uppower",
+		"time_uppower",
+		"total_downpower",
+		"year_downpower",
+		"month_downpower",
+		"day_downpower",
+		"time_downpower",
+		"total_runtime",
+		"year_chartime",
+		"year_distime",
+		"month_chartime",
+		"month_distime",
+		"day_chartime",
+		"day_distime",		
+
+	};
+	//根据设备表名称读取设备表ID
+	int table_id;
+	retcode = rdb_obj->get_table_id_by_table_name("pj_unit_runstate_info", table_id);
+	if(retcode <= 0)
+	{
+		FREE((char *&)buffer);
+		FREE((char *&)fields_info);
+		dnet_obj->write_log_at_once(0, 1000, "读储能单元运行信息表号失败");
+		return -1;
+	}
+
+	retcode = rdb_obj->read_table_data_by_english_names(
+		table_id,
+		DNET_APP_TYPE_SCADA,
+		(char(*)[DB_ENG_TABLE_NAME_LEN])English_names,
+		field_num,
+		fields_info,
+		buffer,
+		record_num,
+		result_len);
+
+	if(retcode <= 0)
+	{
+		FREE((char *&)buffer);
+		FREE((char *&)fields_info);
+		dnet_obj->write_log_at_once(0, 1000, "读储能单元运行信息表数据失败");
+		return -1;
+	}
+
+	if(record_num <= 0)
+	{
+		FREE((char *&)buffer);
+		FREE((char *&)fields_info);
+		dnet_obj->write_log_at_once(0, 1000, "储能单元运行信息表没有记录！");
+
+		return -1;
+	}
+
+	for(int i=0; i<field_num; i++)
+	{
+		record_len += fields_info[i].field_len;
+	}
+
+
+	for(int i=0; i<record_num; i++)
+	{
+		record_pos = i * record_len;
+		offset = 0;
+
+		Cunit_runstate_info *agvc = new Cunit_runstate_info(data_obj);
+		agvc->table_id = table_id;
+
+		memcpy((char *)&agvc->display_id, buffer+record_pos+offset, fields_info[0].field_len);
+		offset += fields_info[0].field_len;
+		memcpy((char *)&agvc->record_id, buffer+record_pos+offset, fields_info[1].field_len);
+		offset += fields_info[1].field_len;
+		memcpy((char *)&agvc->name, buffer+record_pos+offset, fields_info[2].field_len);
+		offset += fields_info[2].field_len;
+		memcpy((char *)&agvc->month, buffer+record_pos+offset, fields_info[3].field_len);
+		offset += fields_info[3].field_len;
+		memcpy((char *)&agvc->pcs_name, buffer+record_pos+offset, fields_info[4].field_len);
+		offset += fields_info[4].field_len;
+		memcpy((char *)&agvc->unit_name, buffer+record_pos+offset, fields_info[5].field_len);
+		offset += fields_info[5].field_len;
+		memcpy((char *)&agvc->unit_state, buffer+record_pos+offset, fields_info[6].field_len);
+		offset += fields_info[6].field_len;
+		memcpy((char *)&agvc->control_state, buffer+record_pos+offset, fields_info[7].field_len);
+		offset += fields_info[7].field_len;
+		memcpy((char *)&agvc->pcs_state, buffer+record_pos+offset, fields_info[8].field_len);
+		offset += fields_info[8].field_len;
+		memcpy((char *)&agvc->pcs_power, buffer+record_pos+offset, fields_info[9].field_len);
+		offset += fields_info[9].field_len;
+		memcpy((char *)&agvc->unit_soc, buffer+record_pos+offset, fields_info[10].field_len);
+		offset += fields_info[10].field_len;
+		memcpy((char *)&agvc->unit_apacity, buffer+record_pos+offset, fields_info[11].field_len);
+		offset += fields_info[11].field_len;
+		memcpy((char *)&agvc->total_uppower, buffer+record_pos+offset, fields_info[12].field_len);
+		offset += fields_info[12].field_len;
+		memcpy((char *)&agvc->year_uppower, buffer+record_pos+offset, fields_info[13].field_len);
+		offset += fields_info[13].field_len;
+		memcpy((char *)&agvc->month_uppower, buffer+record_pos+offset, fields_info[14].field_len);
+		offset += fields_info[14].field_len;
+		memcpy((char *)&agvc->today_uppower, buffer+record_pos+offset, fields_info[15].field_len);
+		offset += fields_info[15].field_len;
+		memcpy((char *)&agvc->time_uppower, buffer+record_pos+offset, fields_info[16].field_len);
+		offset += fields_info[16].field_len;
+		memcpy((char *)&agvc->total_downpower, buffer+record_pos+offset, fields_info[17].field_len);
+		offset += fields_info[17].field_len;
+		memcpy((char *)&agvc->year_downpower, buffer+record_pos+offset, fields_info[18].field_len);
+		offset += fields_info[18].field_len;       
+		memcpy((char *)&agvc->month_downpower, buffer+record_pos+offset, fields_info[19].field_len);
+		offset += fields_info[19].field_len;
+		memcpy((char *)&agvc->day_downpower, buffer+record_pos+offset, fields_info[20].field_len);
+		offset += fields_info[20].field_len;
+		memcpy((char *)&agvc->time_downpower, buffer+record_pos+offset, fields_info[21].field_len);
+		offset += fields_info[21].field_len;
+		memcpy((char *)&agvc->total_runtime, buffer+record_pos+offset, fields_info[22].field_len);
+		offset += fields_info[22].field_len;
+		memcpy((char *)&agvc->total_chartime, buffer+record_pos+offset, fields_info[23].field_len);
+		offset += fields_info[23].field_len;
+		memcpy((char *)&agvc->total_distime, buffer+record_pos+offset, fields_info[24].field_len);
+		offset += fields_info[24].field_len;
+		memcpy((char *)&agvc->year_chartime, buffer+record_pos+offset, fields_info[25].field_len);
+		offset += fields_info[25].field_len;
+		memcpy((char *)&agvc->year_distime, buffer+record_pos+offset, fields_info[26].field_len);
+		offset += fields_info[26].field_len;
+		memcpy((char *)&agvc->month_chartime, buffer+record_pos+offset, fields_info[27].field_len);
+		offset += fields_info[27].field_len;
+		memcpy((char *)&agvc->month_distime, buffer+record_pos+offset, fields_info[28].field_len);
+		offset += fields_info[28].field_len;
+		memcpy((char *)&agvc->day_chartime, buffer+record_pos+offset, fields_info[29].field_len);
+		offset += fields_info[29].field_len;
+		memcpy((char *)&agvc->day_distime, buffer+record_pos+offset, fields_info[30].field_len);
+		offset += fields_info[30].field_len;
+
+
+		agvc->display_id_col = fields_info[0].rdb_field_no;
+		agvc->name_col = fields_info[2].rdb_field_no;
+		agvc->month_col = fields_info[3].rdb_field_no;
+		agvc->pcs_name_col = fields_info[4].rdb_field_no;
+		agvc->unit_name_col = fields_info[5].rdb_field_no;
+		agvc->unit_state_col = fields_info[6].rdb_field_no;
+		agvc->control_state_col = fields_info[7].rdb_field_no;
+		agvc->pcs_state_col = fields_info[8].rdb_field_no;
+		agvc->pcs_power_col = fields_info[9].rdb_field_no;
+		agvc->unit_soc_col = fields_info[10].rdb_field_no;
+		agvc->unit_apacity_col = fields_info[11].rdb_field_no;
+		agvc->total_uppower_col = fields_info[12].rdb_field_no;
+		agvc->year_uppower_col = fields_info[13].rdb_field_no;
+		agvc->month_uppower_col= fields_info[14].rdb_field_no;
+		agvc->today_uppower_col = fields_info[15].rdb_field_no;
+		agvc->time_uppower_col = fields_info[16].rdb_field_no;
+		agvc->total_downpower_col = fields_info[17].rdb_field_no;
+		agvc->year_downpower_col = fields_info[18].rdb_field_no;
+		agvc->month_downpower_col = fields_info[19].rdb_field_no;
+		agvc->day_downpower_col= fields_info[20].rdb_field_no;
+		agvc->time_downpower_col = fields_info[21].rdb_field_no;
+		agvc->total_runtime_col = fields_info[22].rdb_field_no;
+		agvc->total_chartime_col = fields_info[23].rdb_field_no;
+		agvc->total_distime_col= fields_info[24].rdb_field_no;
+		agvc->year_chartime_col = fields_info[25].rdb_field_no;
+		agvc->year_distime_col = fields_info[26].rdb_field_no;
+		agvc->month_chartime_col = fields_info[27].rdb_field_no;
+		agvc->month_distime_col = fields_info[28].rdb_field_no;
+		agvc->day_chartime_col = fields_info[29].rdb_field_no;
+		agvc->day_distime_col = fields_info[30].rdb_field_no;
+
+	
+
+		unit_runstate_list.push_back(agvc);
+
+	}
+
+	FREE((char *&)buffer);
+	FREE((char *&)fields_info);
+	return 1;
+
+
+}
+
+
+
+
+
+
 int Cagvc_ctrl_mgr::read_micro_ctrl_info_table()
 {
 	for(int i=0; i<micro_ctrl_list.size(); i++)
