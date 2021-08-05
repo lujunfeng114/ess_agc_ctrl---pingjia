@@ -2368,6 +2368,7 @@ int Cagvc_ctrl_mgr::read_unit_monthpower_info_table()
 		"id",
 		"name",
 		"year",
+		"cal_mode",
 		"year_uppower",
 		"year_downpower",
 		"month1_uppower",
@@ -2533,8 +2534,11 @@ int Cagvc_ctrl_mgr::read_unit_monthpower_info_table()
 		offset += fields_info[35].field_len;
 		memcpy((char *)&agvc->season3_downpower, buffer+record_pos+offset, fields_info[36].field_len);
 		offset += fields_info[36].field_len;
-		memcpy((char *)&agvc->season4_downpower, buffer+record_pos+offset, fields_info[36].field_len);
-		offset += fields_info[36].field_len;
+		memcpy((char *)&agvc->season4_downpower, buffer+record_pos+offset, fields_info[37].field_len);
+		offset += fields_info[37].field_len;
+		memcpy((char *)&agvc->cal_mode_col, buffer+record_pos+offset, fields_info[38].field_len);
+		offset += fields_info[38].field_len;
+
 
 		agvc->display_id_col = fields_info[0].rdb_field_no;
 		agvc->name_col = fields_info[2].rdb_field_no;
@@ -2576,7 +2580,7 @@ int Cagvc_ctrl_mgr::read_unit_monthpower_info_table()
 		agvc->season2_downpower_col = fields_info[35].rdb_field_no;
 		agvc->season3_downpower_col = fields_info[36].rdb_field_no;
 		agvc->season4_downpower_col = fields_info[37].rdb_field_no;
-
+		agvc->cal_mode_col = fields_info[38].rdb_field_no;
 		unit_monthpower_list.push_back(agvc);
 
 	}
@@ -2621,6 +2625,7 @@ int Cagvc_ctrl_mgr::read_unit_daypower_info_table()
 		"id",
 		"name",
 		"month",
+		"cal_mode",
 		"day1_uppower",
 		"day2_uppower",
 		"day3_uppower",
@@ -2871,7 +2876,8 @@ int Cagvc_ctrl_mgr::read_unit_daypower_info_table()
 		offset += fields_info[64].field_len;
 		memcpy((char *)&agvc->day31_downpower, buffer+record_pos+offset, fields_info[65].field_len);
 		offset += fields_info[65].field_len;
-
+		memcpy((char *)&agvc->cal_mode, buffer+record_pos+offset, fields_info[66].field_len);
+		offset += fields_info[66].field_len;
 
 		agvc->display_id_col = fields_info[0].rdb_field_no;
 		agvc->name_col = fields_info[2].rdb_field_no;
@@ -2939,6 +2945,7 @@ int Cagvc_ctrl_mgr::read_unit_daypower_info_table()
 		agvc->day29_downpower_col = fields_info[63].rdb_field_no;
 		agvc->day30_downpower_col = fields_info[64].rdb_field_no;
 		agvc->day31_downpower_col = fields_info[65].rdb_field_no;
+		agvc->cal_mode_col = fields_info[66].rdb_field_no;
 
 		unit_daypower_list.push_back(agvc);
 
@@ -2989,6 +2996,7 @@ int Cagvc_ctrl_mgr::read_unit_runstate_info_table()
 		"pcs_power",
 		"unit_soc",
 		"unit_apacity",
+		"total_uppower",
 		"year_uppower",
 		"month_uppower",
 		"today_uppower",
@@ -2999,7 +3007,8 @@ int Cagvc_ctrl_mgr::read_unit_runstate_info_table()
 		"day_downpower",
 		"time_downpower",
 		"total_runtime",
-		"year_chartime",
+		"total_chartime",
+		"total_distime",
 		"year_distime",
 		"month_chartime",
 		"month_distime",
@@ -3475,13 +3484,30 @@ Cunit_monthpower_info *Cagvc_ctrl_mgr::find_unit_monthpower_from_list(int displa
 Cunit_daypower_info* Cagvc_ctrl_mgr::find_unit_daypower_from_list(int display_id)
 {
 	Cunit_daypower_info *unit_daypower=NULL;
-	for(int i=0; i<unit_monthpower_list.size(); i++)
+	for(int i=0; i<unit_daypower_list.size(); i++)
 	{
 		unit_daypower = unit_daypower_list.at(i);
 		if(unit_daypower->display_id == display_id)
 			return unit_daypower;
 	}
 	return NULL;
+}
+
+//查找储能单元运行状态信息表
+Cunit_runstate_info* Cagvc_ctrl_mgr::find_unit_runstate_from_list(int display_id)
+{
+
+	Cunit_daypower_info *unit_runstate=NULL;
+	for(int i=0; i<unit_daypower_list.size(); i++)
+	{
+		unit_runstate= unit_runstate_list.at(i);
+		if(unit_runstate->display_id == display_id)
+			return unit_runstate;
+	}
+	return NULL;
+
+
+
 }
 
 int Cagvc_ctrl_mgr::read_yk_send_table()
@@ -4912,7 +4938,6 @@ void Cagvc_ctrl_mgr::save_gatepower_to_dayanmonthpower_value(int num )
 		   data_obj->set_rdb_value(monthpower ->table_id,monthpower ->record_id, monthpower->season4_downpower_col,value); 
 
 
-
 	scada_report->send_all_modify_rdb();
 	Sleep(1000*1);
 	
@@ -4925,6 +4950,32 @@ void Cagvc_ctrl_mgr::save_gatepower_to_dayanmonthpower_value(int num )
 
 
 
+
+void Cagvc_ctrl_mgr::save_runstate_to_unitpower_value(int)
+{
+	on_time_t cur_time;  
+	on_time(&cur_time);    //获取当前日期
+	struct tm *p;
+	//p=gmtime(&cur_time);
+	p = on_localtime(&cur_time); //分解时间
+	int  Year= p->tm_year+1900;
+	int  Month =p->tm_mon+1;
+	int  Day=p->tm_mday;
+	int  Hour=p->tm_hour;
+	int  Minute=p->tm_min;
+	int  Second=p->tm_sec;
+
+	//char  stringname[64];   //用于存放拼接后的字段名称
+	//sprintf(stringname,"day%s_uppower_col",Day);  //int转字符+字段拼接
+
+	short dayup_col=0;
+	short daydown_col=0;	
+	dayup_col=Day+6;     //根据整站日电量表数据库中字段的域序号来算的     上网电网+6  
+	daydown_col=Day+37;  // 根据整站日电量表数据库中字段的域序号来算的    下网电网+37
+
+
+
+}
 
 //设置安科瑞表函数  遥调合
 

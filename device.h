@@ -980,6 +980,7 @@ public:
 	char name[64];
 
 	on_time_t  year;    //年份
+	int cal_mode;
 	double year_uppower;        //储能单元年上网电量
 	double year_downpower;      //储能单元年下网电量
 
@@ -1020,6 +1021,7 @@ public:
 	short display_id_col;
 	short name_col;
 	on_time_t  year_col;           //月份
+	short cal_mode_col;
 	short year_uppower_col;        //当月上网电量
 	short year_downpower_col;      //当月上网电量
 	short month1_uppower_col;      //1月上网电量
@@ -1078,6 +1080,7 @@ public:
 	char name[64];
 
 	on_time_t  month;    //月份
+	int cal_mode;
 	double day1_uppower;      //1号上网电量
 	double day2_uppower;      //2号上网电量
 	double day3_uppower;      //3号上网电量
@@ -1145,6 +1148,7 @@ public:
 	short display_id_col;
 	short name_col;
 	on_time_t  month_col;    //月份
+	short cal_mode_col;
 	short day1_uppower_col;      //1号上网电量
 	short day2_uppower_col;      //2号上网电量
 	short day3_uppower_col;      //3号上网电量

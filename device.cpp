@@ -1853,7 +1853,7 @@ int Cunit_monthpower_info::read_unit_monthpower_rdb()
 	data_obj->read_rdb_value(table_id, record_id, display_id_col, &display_id);
 	data_obj->read_rdb_value(table_id, record_id, name_col, name);
 	data_obj->read_rdb_value(table_id, record_id, year_col, &year);
-
+	data_obj->read_rdb_value(table_id, record_id, cal_mode_col, &cal_mode);
 	data_obj->read_rdb_value(table_id, record_id, year_uppower_col, &year_uppower);
 	data_obj->read_rdb_value(table_id, record_id, year_downpower_col, &year_downpower);
 
@@ -1926,6 +1926,7 @@ int Cunit_daypower_info::read_unit_daypower_rdb()
 	data_obj->read_rdb_value(table_id, record_id, display_id_col, &display_id);
 	data_obj->read_rdb_value(table_id, record_id, name_col, name);
 	data_obj->read_rdb_value(table_id, record_id, month_col, &month);
+	data_obj->read_rdb_value(table_id, record_id, cal_mode_col, &cal_mode);
 	data_obj->read_rdb_value(table_id, record_id, day1_uppower_col, &day1_uppower);
 	data_obj->read_rdb_value(table_id, record_id, day2_uppower_col, &day2_uppower);
 	data_obj->read_rdb_value(table_id, record_id, day3_uppower_col, &day3_uppower);
@@ -2017,11 +2018,35 @@ Cunit_runstate_info::~Cunit_runstate_info()
 
 int Cunit_runstate_info::read_unit_runstate_rdb()
 {
-
-
-
-
-
-
+	data_obj->read_rdb_value(table_id, record_id, display_id_col, &display_id);
+	data_obj->read_rdb_value(table_id, record_id, name_col, name);
+	data_obj->read_rdb_value(table_id, record_id, month_col, &month);
+	data_obj->read_rdb_value(table_id, record_id, pcs_name_col, &pcs_name);
+	data_obj->read_rdb_value(table_id, record_id, unit_name_col, &unit_name);
+	data_obj->read_rdb_value(table_id, record_id, unit_state_col, &unit_state);
+	data_obj->read_rdb_value(table_id, record_id, control_state_col, &control_state);
+	data_obj->read_rdb_value(table_id, record_id, pcs_state_col, &pcs_state);
+	data_obj->read_rdb_value(table_id, record_id, pcs_power_col, &pcs_power);
+	data_obj->read_rdb_value(table_id, record_id, unit_soc_col, &unit_soc);
+	data_obj->read_rdb_value(table_id, record_id, unit_apacity_col, &unit_apacity);
+	data_obj->read_rdb_value(table_id, record_id, total_uppower_col, &total_uppower);
+	data_obj->read_rdb_value(table_id, record_id, year_uppower_col, &year_uppower);
+	data_obj->read_rdb_value(table_id, record_id, month_uppower_col, &month_uppower;
+	data_obj->read_rdb_value(table_id, record_id, today_uppower_col, &today_uppower);
+	data_obj->read_rdb_value(table_id, record_id, time_uppower_col, &time_uppower);
+	data_obj->read_rdb_value(table_id, record_id, total_downpower_col, &total_downpower);
+	data_obj->read_rdb_value(table_id, record_id, year_downpower_col, &year_downpower);
+	data_obj->read_rdb_value(table_id, record_id, month_downpower_col, &month_downpower);
+	data_obj->read_rdb_value(table_id, record_id, time_downpower_col, &time_downpower);
+	data_obj->read_rdb_value(table_id, record_id, total_runtime_col, &total_runtime);
+	data_obj->read_rdb_value(table_id, record_id, total_chartime_col, &total_chartime);
+	data_obj->read_rdb_value(table_id, record_id, total_distime_col, &total_distime);
+	data_obj->read_rdb_value(table_id, record_id, year_chartime_col, &year_chartime);
+	data_obj->read_rdb_value(table_id, record_id, year_distime_col, &year_distime);
+	data_obj->read_rdb_value(table_id, record_id, month_chartime_col, &month_chartime);
+	data_obj->read_rdb_value(table_id, record_id, month_distime_col, &month_distime);
+	data_obj->read_rdb_value(table_id, record_id, day_chartime_col, &day_chartime);
+	data_obj->read_rdb_value(table_id, record_id, day_distime_col, &day_distime);
+	return 0;
 
 }

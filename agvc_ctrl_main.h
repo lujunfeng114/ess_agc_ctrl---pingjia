@@ -27,13 +27,12 @@ public:
 	vector<Cagvc_info *> agvc_list;
 	vector<Cmicro_ctrl_info *> micro_ctrl_list;
 
-
-	vector<Cgatepower_info * > gatepower_list;//关口电量表
-	vector<Cstation_monthpower_info * > station_monthpower_list;//整站月电量分析表
-	vector<Cstation_daypower_info * > station_daypower_list;//整站日电量分析表
-    vector<Cunit_monthpower_info * > unit_monthpower_list;  //储能单元月电量分析表
-	vector<Cunit_daypower_info * > unit_daypower_list;       //储能单元日电量分析表
- 	vector<Cunit_runstate_info * > unit_runstate_list;       //储能单元运行信息表
+	vector<Cgatepower_info * > gatepower_list;                    //关口电量表
+	vector<Cstation_monthpower_info * > station_monthpower_list;  //整站月电量分析表
+	vector<Cstation_daypower_info * > station_daypower_list;      //整站日电量分析表
+    vector<Cunit_monthpower_info * > unit_monthpower_list;        //储能单元月电量分析表
+	vector<Cunit_daypower_info * > unit_daypower_list;            //储能单元日电量分析表
+ 	vector<Cunit_runstate_info * > unit_runstate_list;            //储能单元运行信息表
 
 	int read_fac_info_table();
 	int read_meas_info_table();
@@ -45,14 +44,13 @@ public:
 	int read_micro_ctrl_info_table();
 
     //202107新增 储能评价功能用表
-	int read_gatepower_info_table();  //读取关口电量表
-	int read_station_monthpower_info_table();  //整站月电量分析表
-	int read_station_daypower_info_table();  //整站日电量分析表
+	int read_gatepower_info_table();                    //读取关口电量表
+	int read_station_monthpower_info_table();           //整站月电量分析表
+	int read_station_daypower_info_table();             //整站日电量分析表
 
-	int read_unit_monthpower_info_table();  //储能单元月电量分析表
-	int read_unit_daypower_info_table();  //储能单元日电量分析表
-	int read_unit_runstate_info_table();  //储能单元运行信息表
-
+	int read_unit_monthpower_info_table();              //储能单元月电量分析表
+	int read_unit_daypower_info_table();                //储能单元日电量分析表
+	int read_unit_runstate_info_table();                //储能单元运行信息表
 
 	Cfac_info* find_fac_from_list(int fac_id);
 	Cmeas_info* find_meas_from_list(int display_id);
@@ -62,21 +60,21 @@ public:
 	Cpoint_info* find_point_from_list(int display_id);
 	Cagvc_info* find_agvc_from_list(int display_id);
 	Cmicro_ctrl_info* find_micro_ctrl_from_list(int display_id);
-	Cgatepower_info* find_gatepower_from_list(int display_id);   //查找某一条关口表电量记录
+	Cgatepower_info* find_gatepower_from_list(int display_id);                     //查找某一条关口表电量记录
 	Cstation_monthpower_info* find_station_monthpower_from_list(int display_id);   //查找某一条整站月电量记录
-	Cstation_daypower_info* find_station_daypower_from_list(int display_id);   //查找某一条整站日电量电量记录
+	Cstation_daypower_info* find_station_daypower_from_list(int display_id);       //查找某一条整站日电量电量记录
 
-	Cunit_monthpower_info* find_unit_monthpower_from_list(int display_id);   //
-	Cunit_daypower_info* find_unit_daypower_from_list(int display_id);   //
-	Cunit_runstate_info* find_unit_runstate_from_list(int display_id);   //
+	Cunit_monthpower_info* find_unit_monthpower_from_list(int display_id);   
+	Cunit_daypower_info* find_unit_daypower_from_list(int display_id);  
+	Cunit_runstate_info* find_unit_runstate_from_list(int display_id);  
 
 
 public:
 	//遥控遥调转发业务逻辑
-	vector<yk_send_struct> yk_send_list;    //读取遥控转发表记录
-	vector<yt_send_struct> yt_send_list;    //读取调节量转发表记录
-	vector<yk_define_struct> yk_define_list;    //遥控定义表记录
-	vector<sw_info_struct> sw_list; //开关表记录
+	vector<yk_send_struct> yk_send_list;             //读取遥控转发表记录
+	vector<yt_send_struct> yt_send_list;             //读取调节量转发表记录
+	vector<yk_define_struct> yk_define_list;         //遥控定义表记录
+	vector<sw_info_struct> sw_list;                  //开关表记录
 	int read_yk_send_table();
 	int read_yt_send_table();
 	int read_yk_define_table();
@@ -124,7 +122,7 @@ public:
 	
 	 //储能单元日电量表	
 	
-	
+	 void save_runstate_to_unitpower_value(int);
 	
 	
 	
