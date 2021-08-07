@@ -2359,7 +2359,7 @@ int Cagvc_ctrl_mgr::read_unit_monthpower_info_table()
 
 	struct TABLE_HEAD_FIELDS_INFO* fields_info = NULL;
 
-	const int field_num = 38;
+	const int field_num = 39;
 	buffer = (char *)MALLOC(6000);
 
 	fields_info = (struct TABLE_HEAD_FIELDS_INFO *)MALLOC(sizeof(struct TABLE_HEAD_FIELDS_INFO)*field_num);
@@ -2616,7 +2616,7 @@ int Cagvc_ctrl_mgr::read_unit_daypower_info_table()
 
 	struct TABLE_HEAD_FIELDS_INFO* fields_info = NULL;
 
-	const int field_num = 66;
+	const int field_num = 67;
 	buffer = (char *)MALLOC(6000);
 
 	fields_info = (struct TABLE_HEAD_FIELDS_INFO *)MALLOC(sizeof(struct TABLE_HEAD_FIELDS_INFO)*field_num);
@@ -2979,7 +2979,7 @@ int Cagvc_ctrl_mgr::read_unit_runstate_info_table()
 
 	struct TABLE_HEAD_FIELDS_INFO* fields_info = NULL;
 
-	const int field_num = 66;
+	const int field_num = 31;
 	buffer = (char *)MALLOC(6000);
 
 	fields_info = (struct TABLE_HEAD_FIELDS_INFO *)MALLOC(sizeof(struct TABLE_HEAD_FIELDS_INFO)*field_num);
@@ -3004,11 +3004,12 @@ int Cagvc_ctrl_mgr::read_unit_runstate_info_table()
 		"total_downpower",
 		"year_downpower",
 		"month_downpower",
-		"day_downpower",
+		"today_downpower",
 		"time_downpower",
 		"total_runtime",
 		"total_chartime",
 		"total_distime",
+		"year_chartime",	
 		"year_distime",
 		"month_chartime",
 		"month_distime",
@@ -3108,7 +3109,7 @@ int Cagvc_ctrl_mgr::read_unit_runstate_info_table()
 		offset += fields_info[18].field_len;       
 		memcpy((char *)&agvc->month_downpower, buffer+record_pos+offset, fields_info[19].field_len);
 		offset += fields_info[19].field_len;
-		memcpy((char *)&agvc->day_downpower, buffer+record_pos+offset, fields_info[20].field_len);
+		memcpy((char *)&agvc->today_downpower, buffer+record_pos+offset, fields_info[20].field_len);
 		offset += fields_info[20].field_len;
 		memcpy((char *)&agvc->time_downpower, buffer+record_pos+offset, fields_info[21].field_len);
 		offset += fields_info[21].field_len;
@@ -3151,7 +3152,7 @@ int Cagvc_ctrl_mgr::read_unit_runstate_info_table()
 		agvc->total_downpower_col = fields_info[17].rdb_field_no;
 		agvc->year_downpower_col = fields_info[18].rdb_field_no;
 		agvc->month_downpower_col = fields_info[19].rdb_field_no;
-		agvc->day_downpower_col= fields_info[20].rdb_field_no;
+		agvc->today_downpower_col= fields_info[20].rdb_field_no;
 		agvc->time_downpower_col = fields_info[21].rdb_field_no;
 		agvc->total_runtime_col = fields_info[22].rdb_field_no;
 		agvc->total_chartime_col = fields_info[23].rdb_field_no;
@@ -3497,8 +3498,8 @@ Cunit_daypower_info* Cagvc_ctrl_mgr::find_unit_daypower_from_list(int display_id
 Cunit_runstate_info* Cagvc_ctrl_mgr::find_unit_runstate_from_list(int display_id)
 {
 
-	Cunit_daypower_info *unit_runstate=NULL;
-	for(int i=0; i<unit_daypower_list.size(); i++)
+	Cunit_runstate_info *unit_runstate=NULL;
+	for(int i=0; i<unit_runstate_list.size(); i++)
 	{
 		unit_runstate= unit_runstate_list.at(i);
 		if(unit_runstate->display_id == display_id)
@@ -3509,6 +3510,10 @@ Cunit_runstate_info* Cagvc_ctrl_mgr::find_unit_runstate_from_list(int display_id
 
 
 }
+
+
+//计算储能单元运行信息表中的记录总数
+
 
 int Cagvc_ctrl_mgr::read_yk_send_table()
 {
@@ -4559,6 +4564,14 @@ void Cagvc_ctrl_mgr::agvc_ctrl_init()
 	if(ret<0) return;
 	dnet_obj->write_log(0,5657,"read_station_daypower_info_table");
 
+	ret = read_unit_runstate_info_table();
+	if(ret<0) return;
+	dnet_obj->write_log(0,5657,"read_unit_runstate_info_table");
+
+	ret = read_unit_daypower_info_table();
+	if(ret<0) return;
+	dnet_obj->write_log(0,5657,"read_unit_daypower_info_table");
+
 
 	ret = read_point_info_table();
 	if(ret<0) return;
@@ -4951,7 +4964,7 @@ void Cagvc_ctrl_mgr::save_gatepower_to_dayanmonthpower_value(int num )
 
 
 
-void Cagvc_ctrl_mgr::save_runstate_to_unitpower_value(int)
+void Cagvc_ctrl_mgr::save_runstate_to_unitpower_value()
 {
 	on_time_t cur_time;  
 	on_time(&cur_time);    //获取当前日期
@@ -4965,13 +4978,28 @@ void Cagvc_ctrl_mgr::save_runstate_to_unitpower_value(int)
 	int  Minute=p->tm_min;
 	int  Second=p->tm_sec;
 
-	//char  stringname[64];   //用于存放拼接后的字段名称
-	//sprintf(stringname,"day%s_uppower_col",Day);  //int转字符+字段拼接
-
 	short dayup_col=0;
 	short daydown_col=0;	
-	dayup_col=Day+6;     //根据整站日电量表数据库中字段的域序号来算的     上网电网+6  
-	daydown_col=Day+37;  // 根据整站日电量表数据库中字段的域序号来算的    下网电网+37
+	dayup_col=Day+7;     //根据储能单元日电量表数据库中字段的域序号来算的     放电量
+	daydown_col=Day+38;  // 根储能单元日电量表数据库中字段的域序号来算的    充电量+37
+	 double value1=0; 
+	 double value2=0;  
+
+    for (int i = 1; i <=unit_runstate_list.size(); i++)
+    {
+	  Cunit_runstate_info *runstate = find_unit_runstate_from_list(i);
+	  data_obj->read_rdb_value(runstate ->table_id, runstate ->record_id, runstate->today_downpower_col, &value1);  //储能单元日电量信息表
+	  data_obj->read_rdb_value(runstate ->table_id, runstate ->record_id, runstate->today_uppower_col, &value2);  //储能单元日电量信息表
+	  Cunit_daypower_info *daypower = find_unit_daypower_from_list(i);
+	  data_obj->set_rdb_value(daypower->table_id,daypower->record_id, dayup_col,value1); 
+	  data_obj->set_rdb_value(daypower->table_id,daypower->record_id, daydown_col,value2); 
+	  scada_report->send_all_modify_rdb();
+	  Sleep(1000*1);
+    }
+
+
+
+
 
 
 
@@ -5458,7 +5486,9 @@ void Cagvc_ctrl_mgr::main_loop()
 
 	while(1)	  
 	{
-		save_gatepower_to_dayanmonthpower_value(1);           
+		save_gatepower_to_dayanmonthpower_value(1);   
+
+	    save_runstate_to_unitpower_value();
 	}
 
 

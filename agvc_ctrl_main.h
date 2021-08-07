@@ -69,6 +69,9 @@ public:
 	Cunit_runstate_info* find_unit_runstate_from_list(int display_id);  
 
 
+
+
+
 public:
 	//遥控遥调转发业务逻辑
 	vector<yk_send_struct> yk_send_list;             //读取遥控转发表记录
@@ -122,7 +125,7 @@ public:
 	
 	 //储能单元日电量表	
 	
-	 void save_runstate_to_unitpower_value(int);
+	 void save_runstate_to_unitpower_value();
 	
 	
 	

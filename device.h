@@ -1253,7 +1253,7 @@ public:
 	double total_downpower;      //储能单元总充电量
 	double year_downpower;      //储能单元年充电量
 	double month_downpower;      //储能单元月充电量
-	double day_downpower;      //储能单元日充电量
+	double today_downpower;      //储能单元日充电量
 	double time_downpower;      //储能单元本次充电量
 	double total_runtime;      //总运行时间
 	double total_chartime;      //总充电时间
@@ -1284,7 +1284,7 @@ public:
 	short total_downpower_col;      
 	short year_downpower_col;      
 	short month_downpower_col;      
-	short day_downpower_col;      
+	short today_downpower_col;      
 	short time_downpower_col;      
 	short total_runtime_col;      
 	short total_chartime_col;      

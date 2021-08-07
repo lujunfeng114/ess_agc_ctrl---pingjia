@@ -2003,7 +2003,7 @@ int Cunit_daypower_info::read_unit_daypower_rdb()
  *功能简介：获取储能单元运行信息表
  *时间：[8/3/2021 LJF]
  */
-Cunit_runstate_info::Cunit_runstate__info(Cdata_access *_data_obj)
+Cunit_runstate_info::Cunit_runstate_info(Cdata_access *_data_obj)
 {
 	this->data_obj = _data_obj;
 	this->rdb_obj = data_obj->rdb_obj;
@@ -2031,12 +2031,13 @@ int Cunit_runstate_info::read_unit_runstate_rdb()
 	data_obj->read_rdb_value(table_id, record_id, unit_apacity_col, &unit_apacity);
 	data_obj->read_rdb_value(table_id, record_id, total_uppower_col, &total_uppower);
 	data_obj->read_rdb_value(table_id, record_id, year_uppower_col, &year_uppower);
-	data_obj->read_rdb_value(table_id, record_id, month_uppower_col, &month_uppower;
+	data_obj->read_rdb_value(table_id, record_id, month_uppower_col, &month_uppower);
 	data_obj->read_rdb_value(table_id, record_id, today_uppower_col, &today_uppower);
 	data_obj->read_rdb_value(table_id, record_id, time_uppower_col, &time_uppower);
 	data_obj->read_rdb_value(table_id, record_id, total_downpower_col, &total_downpower);
 	data_obj->read_rdb_value(table_id, record_id, year_downpower_col, &year_downpower);
 	data_obj->read_rdb_value(table_id, record_id, month_downpower_col, &month_downpower);
+	data_obj->read_rdb_value(table_id, record_id, today_downpower_col, &today_downpower);
 	data_obj->read_rdb_value(table_id, record_id, time_downpower_col, &time_downpower);
 	data_obj->read_rdb_value(table_id, record_id, total_runtime_col, &total_runtime);
 	data_obj->read_rdb_value(table_id, record_id, total_chartime_col, &total_chartime);
