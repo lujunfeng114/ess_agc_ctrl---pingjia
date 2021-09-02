@@ -2051,3 +2051,117 @@ int Cunit_runstate_info::read_unit_runstate_rdb()
 	return 0;
 
 }
+
+
+
+
+/*函数名：read_month_runanalyse_rdb
+ *输入:
+ *输出：
+ *功能简介：获取储能月运行分析表
+ *时间：[8/13/2021 LJF]
+ */
+Cmonth_runanalyse_info::Cmonth_runanalyse_info(Cdata_access *_data_obj)
+{
+	this->data_obj = _data_obj;
+	this->rdb_obj = data_obj->rdb_obj;
+	this->dnet_obj = data_obj->dnet_obj;
+
+}
+
+Cmonth_runanalyse_info::~Cmonth_runanalyse_info()
+{
+
+}
+
+int Cmonth_runanalyse_info::read_month_runanalyse_rdb()
+{
+
+	data_obj->read_rdb_value(table_id, record_id, display_id_col, &display_id);
+	data_obj->read_rdb_value(table_id, record_id, name_col, name);
+	data_obj->read_rdb_value(table_id, record_id, month_col, &month);
+	data_obj->read_rdb_value(table_id, record_id, equal_runtime_col, &equal_runtime);
+	data_obj->read_rdb_value(table_id, record_id, equal_ratio_col, &equal_ratio);
+	data_obj->read_rdb_value(table_id, record_id, oee_col, &oee);
+	data_obj->read_rdb_value(table_id, record_id, battery_lossrate_col, &battery_lossrate);
+	data_obj->read_rdb_value(table_id, record_id, transformer_lossrate_col, &transformer_lossrate);
+	data_obj->read_rdb_value(table_id, record_id, pcs_ratio_col, &pcs_ratio);
+	data_obj->read_rdb_value(table_id, record_id, battery_ratio_col, &battery_ratio);
+	data_obj->read_rdb_value(table_id, record_id, station_ratio_col, &station_ratio);
+	return 0;
+
+
+}
+
+
+
+
+
+
+
+/*函数名：read_stationpower_rdb()
+ *输入:
+ *输出：
+ *功能简介：站用电电量分析表 
+ *时间：[9/2/2021 LJF]
+ */
+Cstationpower_info::Cstationpower_info(Cdata_access *_data_obj)
+{
+	this->data_obj = _data_obj;
+	this->rdb_obj = data_obj->rdb_obj;
+	this->dnet_obj = data_obj->dnet_obj;
+
+}
+
+Cstationpower_info::~Cstationpower_info()
+{
+
+}
+
+int Cstationpower_info::read_stationpower_rdb()
+{
+	data_obj->read_rdb_value(table_id, record_id, display_id_col, &display_id);
+	data_obj->read_rdb_value(table_id, record_id, name_col, name);
+	data_obj->read_rdb_value(table_id, record_id, year_col, &year);
+
+	data_obj->read_rdb_value(table_id, record_id, year_uppower_col, &year_uppower);
+	data_obj->read_rdb_value(table_id, record_id, year_downpower_col, &year_downpower);
+
+	data_obj->read_rdb_value(table_id, record_id, month1_uppower_col, &month1_uppower);
+	data_obj->read_rdb_value(table_id, record_id, month2_uppower_col, &month2_uppower);
+	data_obj->read_rdb_value(table_id, record_id, month3_uppower_col, &month3_uppower);
+	data_obj->read_rdb_value(table_id, record_id, month4_uppower_col, &month4_uppower);
+	data_obj->read_rdb_value(table_id, record_id, month5_uppower_col, &month5_uppower);
+	data_obj->read_rdb_value(table_id, record_id, month6_uppower_col, &month6_uppower);
+	data_obj->read_rdb_value(table_id, record_id, month7_uppower_col, &month7_uppower);
+	data_obj->read_rdb_value(table_id, record_id, month8_uppower_col, &month8_uppower);
+	data_obj->read_rdb_value(table_id, record_id, month9_uppower_col, &month9_uppower);
+	data_obj->read_rdb_value(table_id, record_id, month10_uppower_col, &month10_uppower);
+	data_obj->read_rdb_value(table_id, record_id, month11_uppower_col, &month11_uppower);
+	data_obj->read_rdb_value(table_id, record_id, month12_uppower_col, &month12_uppower);
+
+	data_obj->read_rdb_value(table_id, record_id, season1_uppower_col, &season1_uppower);
+	data_obj->read_rdb_value(table_id, record_id, season2_uppower_col, &season2_uppower);
+	data_obj->read_rdb_value(table_id, record_id, season3_uppower_col, &season3_uppower);
+	data_obj->read_rdb_value(table_id, record_id, season4_uppower_col, &season4_uppower);
+
+	data_obj->read_rdb_value(table_id, record_id, month1_downpower_col, &month1_downpower);
+	data_obj->read_rdb_value(table_id, record_id, month2_downpower_col, &month2_downpower);
+	data_obj->read_rdb_value(table_id, record_id, month3_downpower_col, &month3_downpower);
+	data_obj->read_rdb_value(table_id, record_id, month4_downpower_col, &month4_downpower);
+	data_obj->read_rdb_value(table_id, record_id, month5_downpower_col, &month5_downpower);
+	data_obj->read_rdb_value(table_id, record_id, month6_downpower_col, &month6_downpower);
+	data_obj->read_rdb_value(table_id, record_id, month7_downpower_col, &month7_downpower);
+	data_obj->read_rdb_value(table_id, record_id, month8_downpower_col, &month8_downpower);
+	data_obj->read_rdb_value(table_id, record_id, month9_downpower_col, &month9_downpower);
+	data_obj->read_rdb_value(table_id, record_id, month10_downpower_col, &month10_downpower);
+	data_obj->read_rdb_value(table_id, record_id, month11_downpower_col, &month11_downpower);
+	data_obj->read_rdb_value(table_id, record_id, month12_downpower_col, &month12_downpower);
+
+	data_obj->read_rdb_value(table_id, record_id, season1_downpower_col, &season1_downpower);
+	data_obj->read_rdb_value(table_id, record_id, season2_downpower_col, &season2_downpower);
+	data_obj->read_rdb_value(table_id, record_id, season3_downpower_col, &season3_downpower);
+	data_obj->read_rdb_value(table_id, record_id, season4_downpower_col, &season4_downpower);
+
+	return 0;
+}

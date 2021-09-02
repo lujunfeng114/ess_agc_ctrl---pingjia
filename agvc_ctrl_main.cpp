@@ -50,6 +50,12 @@ int  timecount=0;
 int Mode = 0;
 
 
+double a[24]={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}; //  存放一天24个小时的每个小时的放电量
+double b[24]={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};//  存放一天24个小时的每个小时的充电量
+
+
+
+
 Cagvc_ctrl_mgr::Cagvc_ctrl_mgr()
 {
 	dnet_instance.set_system_net_info("ess_agvc_ctrl", DNET_NO);
@@ -1969,6 +1975,253 @@ int Cagvc_ctrl_mgr::read_station_monthpower_info_table()
 
 
 
+int Cagvc_ctrl_mgr::read_stationpower_info_table()
+{
+	for(int i=0; i<stationpower_list.size(); i++)
+	{
+		delete stationpower_list.at(i);
+	}
+	stationpower_list.clear();
+
+	int retcode;
+	int record_num;
+	int result_len;
+	char *buffer = NULL;
+
+	int offset = 0;
+	int record_pos = 0;
+	int record_len = 0;
+
+	struct TABLE_HEAD_FIELDS_INFO* fields_info = NULL;
+
+	const int field_num = 38;
+	buffer = (char *)MALLOC(6000);
+
+	fields_info = (struct TABLE_HEAD_FIELDS_INFO *)MALLOC(sizeof(struct TABLE_HEAD_FIELDS_INFO)*field_num);
+	char  English_names[field_num][DB_ENG_TABLE_NAME_LEN] = {
+		"display_idx",
+		"id",
+		"name",
+		"year",
+		"year_uppower",
+		"year_downpower",
+		"month1_uppower",
+		"month2_uppower",
+		"month3_uppower",
+		"month4_uppower",
+		"month5_uppower",
+		"month6_uppower",
+		"month7_uppower",
+		"month8_uppower",
+		"month9_uppower",
+		"month10_uppower",
+		"month11_uppower",
+		"month12_uppower",
+		"season1_uppower",
+		"season2_uppower",
+		"season3_uppower",
+		"season4_uppower",
+		"month1_downpower",
+		"month2_downpower",
+		"month3_downpower",
+		"month4_downpower",
+		"month5_downpower",
+		"month6_downpower",
+		"month7_downpower",
+		"month8_downpower",
+		"month9_downpower",
+		"month10_downpower",
+		"month11_downpower",
+		"month12_downpower",
+		"season1_downpower",
+		"season2_downpower",
+		"season3_downpower",
+		"season4_downpower",
+
+	};
+	//根据设备表名称读取设备表ID
+	int table_id;
+	retcode = rdb_obj->get_table_id_by_table_name("pj_stationpower_info", table_id);
+	if(retcode <= 0)
+	{
+		FREE((char *&)buffer);
+		FREE((char *&)fields_info);
+		dnet_obj->write_log_at_once(0, 1000, "站用电电量表号失败");
+		return -1;
+	}
+
+	retcode = rdb_obj->read_table_data_by_english_names(
+		table_id,
+		DNET_APP_TYPE_SCADA,
+		(char(*)[DB_ENG_TABLE_NAME_LEN])English_names,
+		field_num,
+		fields_info,
+		buffer,
+		record_num,
+		result_len);
+
+	if(retcode <= 0)
+	{
+		FREE((char *&)buffer);
+		FREE((char *&)fields_info);
+		dnet_obj->write_log_at_once(0, 1000, "读站用电电量表数据失败");
+		return -1;
+	}
+
+	if(record_num <= 0)
+	{
+		FREE((char *&)buffer);
+		FREE((char *&)fields_info);
+		dnet_obj->write_log_at_once(0, 1000, "整站用电电量表没有记录！");
+
+		return -1;
+	}
+
+	for(int i=0; i<field_num; i++)
+	{
+		record_len += fields_info[i].field_len;
+	}
+
+
+	for(int i=0; i<record_num; i++)
+	{
+		record_pos = i * record_len;
+		offset = 0;
+
+		Cstationpower_info *agvc = new Cstationpower_info(data_obj);
+		agvc->table_id = table_id;
+
+		memcpy((char *)&agvc->display_id, buffer+record_pos+offset, fields_info[0].field_len);
+		offset += fields_info[0].field_len;
+		memcpy((char *)&agvc->record_id, buffer+record_pos+offset, fields_info[1].field_len);
+		offset += fields_info[1].field_len;
+		memcpy((char *)&agvc->name, buffer+record_pos+offset, fields_info[2].field_len);
+		offset += fields_info[2].field_len;
+		memcpy((char *)&agvc->year, buffer+record_pos+offset, fields_info[3].field_len);
+		offset += fields_info[3].field_len;
+		memcpy((char *)&agvc->year_uppower, buffer+record_pos+offset, fields_info[4].field_len);
+		offset += fields_info[4].field_len;
+		memcpy((char *)&agvc->year_downpower, buffer+record_pos+offset, fields_info[5].field_len);
+		offset += fields_info[5].field_len;
+		memcpy((char *)&agvc->month1_uppower, buffer+record_pos+offset, fields_info[6].field_len);
+		offset += fields_info[6].field_len;
+		memcpy((char *)&agvc->month2_uppower, buffer+record_pos+offset, fields_info[7].field_len);
+		offset += fields_info[7].field_len;
+		memcpy((char *)&agvc->month3_uppower, buffer+record_pos+offset, fields_info[8].field_len);
+		offset += fields_info[8].field_len;
+		memcpy((char *)&agvc->month4_uppower, buffer+record_pos+offset, fields_info[9].field_len);
+		offset += fields_info[9].field_len;
+		memcpy((char *)&agvc->month5_uppower, buffer+record_pos+offset, fields_info[10].field_len);
+		offset += fields_info[10].field_len;
+		memcpy((char *)&agvc->month6_uppower, buffer+record_pos+offset, fields_info[11].field_len);
+		offset += fields_info[11].field_len;
+		memcpy((char *)&agvc->month7_uppower, buffer+record_pos+offset, fields_info[12].field_len);
+		offset += fields_info[12].field_len;
+		memcpy((char *)&agvc->month8_uppower, buffer+record_pos+offset, fields_info[13].field_len);
+		offset += fields_info[13].field_len;
+		memcpy((char *)&agvc->month9_uppower, buffer+record_pos+offset, fields_info[14].field_len);
+		offset += fields_info[14].field_len;
+		memcpy((char *)&agvc->month10_uppower, buffer+record_pos+offset, fields_info[15].field_len);
+		offset += fields_info[15].field_len;
+		memcpy((char *)&agvc->month11_uppower, buffer+record_pos+offset, fields_info[16].field_len);
+		offset += fields_info[16].field_len;
+		memcpy((char *)&agvc->month12_uppower, buffer+record_pos+offset, fields_info[17].field_len);
+		offset += fields_info[17].field_len;
+
+		memcpy((char *)&agvc->season1_uppower, buffer+record_pos+offset, fields_info[18].field_len);
+		offset += fields_info[18].field_len;       
+		memcpy((char *)&agvc->season2_uppower, buffer+record_pos+offset, fields_info[19].field_len);
+		offset += fields_info[19].field_len;
+		memcpy((char *)&agvc->season3_uppower, buffer+record_pos+offset, fields_info[20].field_len);
+		offset += fields_info[20].field_len;
+		memcpy((char *)&agvc->season4_uppower, buffer+record_pos+offset, fields_info[21].field_len);
+		offset += fields_info[21].field_len;
+
+		memcpy((char *)&agvc->month1_downpower, buffer+record_pos+offset, fields_info[22].field_len);
+		offset += fields_info[22].field_len;
+		memcpy((char *)&agvc->month2_downpower, buffer+record_pos+offset, fields_info[23].field_len);
+		offset += fields_info[23].field_len;
+		memcpy((char *)&agvc->month3_downpower, buffer+record_pos+offset, fields_info[24].field_len);
+		offset += fields_info[24].field_len;
+		memcpy((char *)&agvc->month4_downpower, buffer+record_pos+offset, fields_info[25].field_len);
+		offset += fields_info[25].field_len;
+		memcpy((char *)&agvc->month5_downpower, buffer+record_pos+offset, fields_info[26].field_len);
+		offset += fields_info[26].field_len;
+		memcpy((char *)&agvc->month6_downpower, buffer+record_pos+offset, fields_info[27].field_len);
+		offset += fields_info[27].field_len;
+		memcpy((char *)&agvc->month7_downpower, buffer+record_pos+offset, fields_info[28].field_len);
+		offset += fields_info[28].field_len;
+		memcpy((char *)&agvc->month8_downpower, buffer+record_pos+offset, fields_info[29].field_len);
+		offset += fields_info[29].field_len;
+		memcpy((char *)&agvc->month9_downpower, buffer+record_pos+offset, fields_info[30].field_len);
+		offset += fields_info[30].field_len;
+		memcpy((char *)&agvc->month10_downpower, buffer+record_pos+offset, fields_info[31].field_len);
+		offset += fields_info[31].field_len;
+		memcpy((char *)&agvc->month11_downpower, buffer+record_pos+offset, fields_info[32].field_len);
+		offset += fields_info[32].field_len;
+		memcpy((char *)&agvc->month12_downpower, buffer+record_pos+offset, fields_info[33].field_len);
+		offset += fields_info[33].field_len;	
+
+		memcpy((char *)&agvc->season1_downpower, buffer+record_pos+offset, fields_info[34].field_len);
+		offset += fields_info[34].field_len;
+		memcpy((char *)&agvc->season2_downpower, buffer+record_pos+offset, fields_info[35].field_len);
+		offset += fields_info[35].field_len;
+		memcpy((char *)&agvc->season3_downpower, buffer+record_pos+offset, fields_info[36].field_len);
+		offset += fields_info[36].field_len;
+		memcpy((char *)&agvc->season4_downpower, buffer+record_pos+offset, fields_info[36].field_len);
+		offset += fields_info[36].field_len;
+
+		agvc->display_id_col = fields_info[0].rdb_field_no;
+		agvc->name_col = fields_info[2].rdb_field_no;
+		agvc->year_col = fields_info[3].rdb_field_no;
+		agvc->year_uppower_col = fields_info[4].rdb_field_no;
+		agvc->year_downpower_col = fields_info[5].rdb_field_no;
+		agvc->month1_uppower_col = fields_info[6].rdb_field_no;
+		agvc->month2_uppower_col = fields_info[7].rdb_field_no;
+		agvc->month3_uppower_col = fields_info[8].rdb_field_no;
+		agvc->month4_uppower_col = fields_info[9].rdb_field_no;
+		agvc->month5_uppower_col = fields_info[10].rdb_field_no;
+		agvc->month6_uppower_col = fields_info[11].rdb_field_no;
+		agvc->month7_uppower_col = fields_info[12].rdb_field_no;
+		agvc->month8_uppower_col = fields_info[13].rdb_field_no;
+		agvc->month9_uppower_col = fields_info[14].rdb_field_no;
+		agvc->month10_uppower_col = fields_info[15].rdb_field_no;
+		agvc->month11_uppower_col = fields_info[16].rdb_field_no;
+		agvc->month12_uppower_col = fields_info[17].rdb_field_no;
+
+		agvc->season1_uppower_col = fields_info[18].rdb_field_no;
+		agvc->season2_uppower_col = fields_info[19].rdb_field_no;
+		agvc->season3_uppower_col = fields_info[20].rdb_field_no;
+		agvc->season4_uppower_col = fields_info[21].rdb_field_no;
+
+
+		agvc->month1_downpower_col = fields_info[22].rdb_field_no;
+		agvc->month2_downpower_col = fields_info[23].rdb_field_no;
+		agvc->month3_downpower_col = fields_info[24].rdb_field_no;
+		agvc->month4_downpower_col = fields_info[25].rdb_field_no;
+		agvc->month5_downpower_col = fields_info[26].rdb_field_no;
+		agvc->month6_downpower_col = fields_info[27].rdb_field_no;
+		agvc->month7_downpower_col = fields_info[28].rdb_field_no;
+		agvc->month8_downpower_col = fields_info[29].rdb_field_no;
+		agvc->month9_downpower_col = fields_info[30].rdb_field_no;
+		agvc->month10_downpower_col = fields_info[31].rdb_field_no;
+		agvc->month11_downpower_col = fields_info[32].rdb_field_no;
+		agvc->month12_downpower_col = fields_info[33].rdb_field_no;
+
+		agvc->season1_downpower_col = fields_info[34].rdb_field_no;
+		agvc->season2_downpower_col = fields_info[35].rdb_field_no;
+		agvc->season3_downpower_col = fields_info[36].rdb_field_no;
+		agvc->season4_downpower_col = fields_info[37].rdb_field_no;
+
+		stationpower_list.push_back(agvc);
+
+	}
+
+	FREE((char *&)buffer);
+	FREE((char *&)fields_info);
+	return 1;
+}
+
 //整站电量日分析表
 
 int Cagvc_ctrl_mgr::read_station_daypower_info_table()
@@ -3181,9 +3434,149 @@ int Cagvc_ctrl_mgr::read_unit_runstate_info_table()
 }
 
 
+int Cagvc_ctrl_mgr::read_month_runanalyse_info_table()
+{
+
+	for(int i=0; i<month_runanalyse_list.size(); i++)
+	{
+		delete month_runanalyse_list.at(i);
+	}
+	month_runanalyse_list.clear();
+
+	int retcode;
+	int record_num;
+	int result_len;
+	char *buffer = NULL;
+
+	int offset = 0;
+	int record_pos = 0;
+	int record_len = 0;
+
+	struct TABLE_HEAD_FIELDS_INFO* fields_info = NULL;
+
+	const int field_num = 12;
+	buffer = (char *)MALLOC(6000);
+
+	fields_info = (struct TABLE_HEAD_FIELDS_INFO *)MALLOC(sizeof(struct TABLE_HEAD_FIELDS_INFO)*field_num);
+	char  English_names[field_num][DB_ENG_TABLE_NAME_LEN] = {
+		"display_idx",
+		"id",
+		"name",
+		"month",
+		"equal_runtime",
+		"equal_ratio",
+		"oee",
+		"battery_lossrate",
+		"transformer_lossrate",
+		"pcs_ratio",
+		"battery_ratio",
+		"station_ratio",
+		
+
+	};
+	//根据设备表名称读取设备表ID
+	int table_id;
+	retcode = rdb_obj->get_table_id_by_table_name("pj_month_runanalyse_info", table_id);
+	if(retcode <= 0)
+	{
+		FREE((char *&)buffer);
+		FREE((char *&)fields_info);
+		dnet_obj->write_log_at_once(0, 1000, "读储能月运行分析表号失败");
+		return -1;
+	}
+
+	retcode = rdb_obj->read_table_data_by_english_names(
+		table_id,
+		DNET_APP_TYPE_SCADA,
+		(char(*)[DB_ENG_TABLE_NAME_LEN])English_names,
+		field_num,
+		fields_info,
+		buffer,
+		record_num,
+		result_len);
+
+	if(retcode <= 0)
+	{
+		FREE((char *&)buffer);
+		FREE((char *&)fields_info);
+		dnet_obj->write_log_at_once(0, 1000, "读储能月运行分析表数据失败");
+		return -1;
+	}
+
+	if(record_num <= 0)
+	{
+		FREE((char *&)buffer);
+		FREE((char *&)fields_info);
+		dnet_obj->write_log_at_once(0, 1000, "储能月运行分析表没有记录！");
+
+		return -1;
+	}
+
+	for(int i=0; i<field_num; i++)
+	{
+		record_len += fields_info[i].field_len;
+	}
+
+
+	for(int i=0; i<record_num; i++)
+	{
+		record_pos = i * record_len;
+		offset = 0;
+
+		Cmonth_runanalyse_info *agvc = new Cmonth_runanalyse_info(data_obj);
+		agvc->table_id = table_id;
+
+		memcpy((char *)&agvc->display_id, buffer+record_pos+offset, fields_info[0].field_len);
+		offset += fields_info[0].field_len;
+		memcpy((char *)&agvc->record_id, buffer+record_pos+offset, fields_info[1].field_len);
+		offset += fields_info[1].field_len;
+		memcpy((char *)&agvc->name, buffer+record_pos+offset, fields_info[2].field_len);
+		offset += fields_info[2].field_len;
+		memcpy((char *)&agvc->month, buffer+record_pos+offset, fields_info[3].field_len);
+		offset += fields_info[3].field_len;
+		memcpy((char *)&agvc->equal_runtime, buffer+record_pos+offset, fields_info[4].field_len);
+		offset += fields_info[4].field_len;
+		memcpy((char *)&agvc->equal_ratio, buffer+record_pos+offset, fields_info[5].field_len);
+		offset += fields_info[5].field_len;
+		memcpy((char *)&agvc->oee, buffer+record_pos+offset, fields_info[6].field_len);
+		offset += fields_info[6].field_len;
+		memcpy((char *)&agvc->battery_lossrate, buffer+record_pos+offset, fields_info[7].field_len);
+		offset += fields_info[7].field_len;
+		memcpy((char *)&agvc->transformer_lossrate, buffer+record_pos+offset, fields_info[8].field_len);
+		offset += fields_info[8].field_len;
+		memcpy((char *)&agvc->pcs_ratio, buffer+record_pos+offset, fields_info[9].field_len);
+		offset += fields_info[9].field_len;
+		memcpy((char *)&agvc->battery_ratio, buffer+record_pos+offset, fields_info[10].field_len);
+		offset += fields_info[10].field_len;
+		memcpy((char *)&agvc->station_ratio, buffer+record_pos+offset, fields_info[11].field_len);
+		offset += fields_info[11].field_len;
 
 
 
+
+
+		agvc->display_id_col = fields_info[0].rdb_field_no;
+		agvc->name_col = fields_info[2].rdb_field_no;
+		agvc->month_col = fields_info[3].rdb_field_no;
+		agvc->equal_runtime_col = fields_info[4].rdb_field_no;
+		agvc->equal_ratio_col = fields_info[5].rdb_field_no;
+		agvc->oee_col = fields_info[6].rdb_field_no;
+		agvc->battery_lossrate_col = fields_info[7].rdb_field_no;
+		agvc->transformer_lossrate_col = fields_info[8].rdb_field_no;
+		agvc->pcs_ratio_col = fields_info[9].rdb_field_no;
+		agvc->battery_ratio_col = fields_info[10].rdb_field_no;
+		agvc->station_ratio_col = fields_info[11].rdb_field_no;	
+		
+
+		month_runanalyse_list.push_back(agvc);
+
+	}
+
+	FREE((char *&)buffer);
+	FREE((char *&)fields_info);
+	return 1;
+
+}
 
 int Cagvc_ctrl_mgr::read_micro_ctrl_info_table()
 {
@@ -3438,9 +3831,12 @@ Cgatepower_info *Cagvc_ctrl_mgr::find_gatepower_from_list(int display_id)
 }
 
 
-//查找站月电量记录
 
-Cstation_monthpower_info *Cagvc_ctrl_mgr::find_station_monthpower_from_list(int display_id)
+
+
+
+//查找整站月电量记录
+Cstation_monthpower_info* Cagvc_ctrl_mgr::find_station_monthpower_from_list(int display_id)
 {
 	Cstation_monthpower_info *station_monthpower=NULL;
 	for(int i=0; i<station_monthpower_list.size(); i++)
@@ -3448,6 +3844,25 @@ Cstation_monthpower_info *Cagvc_ctrl_mgr::find_station_monthpower_from_list(int 
 		station_monthpower = station_monthpower_list.at(i);
 		if(station_monthpower->display_id == display_id)
 			return station_monthpower;
+
+	}
+	return NULL;
+
+
+
+}
+
+//查找站用电电量记录
+
+
+Cstationpower_info* Cagvc_ctrl_mgr::find_stationpower_from_list(int display_id)
+{
+	Cstationpower_info *stationpower=NULL;
+	for(int i=0; i<stationpower_list.size(); i++)
+	{
+		stationpower = stationpower_list.at(i);
+		if(stationpower->display_id == display_id)
+			return stationpower;
 
 	}
 	return NULL;
@@ -3514,6 +3929,25 @@ Cunit_runstate_info* Cagvc_ctrl_mgr::find_unit_runstate_from_list(int display_id
 
 }
 
+//查找储能月运行分析表
+Cmonth_runanalyse_info* Cagvc_ctrl_mgr::find_month_runanalyse_from_list(int display_id)
+{
+
+	Cmonth_runanalyse_info *month_runanalyse=NULL;
+	for(int i=0; i<month_runanalyse_list.size(); i++)
+	{
+		month_runanalyse= month_runanalyse_list.at(i);
+		if(month_runanalyse->display_id == display_id)
+			return month_runanalyse;
+	}
+	return NULL;
+
+
+
+
+
+
+}
 
 //计算储能单元运行信息表中的记录总数
 
@@ -4579,6 +5013,18 @@ void Cagvc_ctrl_mgr::agvc_ctrl_init()
 	if(ret<0) return;
 	dnet_obj->write_log(0,5657,"read_unit_monthpower_info_table");
 
+	ret = read_month_runanalyse_info_table(); 
+	if(ret<0) return;
+	dnet_obj->write_log(0,5657,"read_month_runanalyse_info_table");
+
+	ret =  read_stationpower_info_table(); 
+	if(ret<0) return;
+	dnet_obj->write_log(0,5657,"read_stationpower_info_table");
+
+
+
+
+
 	ret = read_point_info_table();
 	if(ret<0) return;
 	dnet_obj->write_log(0,5657,"read_point_info_table");
@@ -5041,8 +5487,6 @@ void Cagvc_ctrl_mgr::save_runstate_to_unitpower_value()
 	  else if(daypower->cal_mode ==2)
 	  {
 
-		  double a[24]={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}; //  存放一天24个小时的每个小时的放电量
-		  double b[24]={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};//  存放一天24个小时的每个小时的充电量
 		  switch (Hour)
 		  {
 			  case 0:
@@ -5147,15 +5591,121 @@ void Cagvc_ctrl_mgr::save_runstate_to_unitpower_value()
 			  data_obj->set_rdb_value(daypower->table_id,daypower->record_id, daydown_col,b[Hour]-b[0]); 
 	  }
 
-
 	
 	}
 	
+
+}
+
+
+/*函数名：
+ *输入:
+ *输出：
+ *功能简介：计算等效充放电次数，等效系数
+ *时间：[8/13/2021 LJF]
+ */
+void Cagvc_ctrl_mgr::battery_run_analyse()
+{
+
+	on_time_t cur_time;  
+	on_time(&cur_time);    //获取当前日期
+	struct tm *p;
+	//p=gmtime(&cur_time);
+	p = on_localtime(&cur_time); //分解时间
+	int  Year= p->tm_year+1900;
+	int  Month =p->tm_mon+1;
+	int  Day=p->tm_mday;
+	int  Hour=p->tm_hour;
+	int  Minute=p->tm_min;
+	int  Second=p->tm_sec;
+
+
+	 double value1=0; 
+	 double value2=0; 
+
+	 double value3=0; 
+	 double value4=0; 
+
+	 double value5=0; 
+	 double value6=0; 
+
+
+	 double equal_runtime1=0;   //放电循环等效次数
+	 double equal_runtime2=0;   //充电循环等效次数
+	 double equal_runtime=0;   //循环等效次数
+	 double equal_ratio = 0;   //等效循环系数
+	 double oee= 0;           //综合效率
+
+	 double battery_lossrate= 0;  //电站储能损耗率
+	 double transformer_lossrate= 0; //变配电损耗率
+	 double pcs_ratio= 0;             //变流器效率
+	 double battery_ratio= 0;           //电池充放电转换效率
+	 double station_ratio=0;           //站用电率
+
+	 double temp1=0;
+	 double temp2=0;
+	 double temp3=0;
+	 double temp4=0;
+	 double temp5=0;
+
+	Cstation_monthpower_info *monthpower = find_station_monthpower_from_list(Year-2020);  //整站月电量分析表
+
+     //计算循环等效次数+循环系数+综合效率
+	for (int i = 0; i <12; i++)  
+	  {	 
+		
+		  data_obj->read_rdb_value(monthpower->table_id, monthpower->record_id, 9+i, &value1);  //从整站月电量分析表获取每个月的上网电量
+		  data_obj->read_rdb_value(monthpower->table_id, monthpower->record_id, 25+i, &value2);  //从整站月电量分析表获取每个月的下网电量
+		  equal_runtime1=value1/1000;	
+		  equal_runtime2=value2/1000;	
+		  equal_runtime=(equal_runtime1+equal_runtime2)/2;   //等效次数
+
+          equal_ratio=(value1+value2)/(2*1000*30);          //等效系数
+          oee =  value2/value1;
+         		 
+    //计算电站储能损耗率
+		
+              	for (int j = 0; j <unit_monthpower_list.size(); j++)  	  
+				{
+                   Cunit_monthpower_info   *unit_monthpower_info = find_unit_monthpower_from_list(j+1);
+                   data_obj->read_rdb_value(unit_monthpower_info->table_id, unit_monthpower_info->record_id,10+i, &temp1); //取出所有储能单元第I+1月的上网电网
+				   data_obj->read_rdb_value(unit_monthpower_info->table_id, unit_monthpower_info->record_id,26+i, &temp2); //取出所有储能单元第I+1月的下网电网
+                   value3=value3+temp1;      //储能单元I+1月月的总上网电量
+				   value4=value4+temp2;      //储能单元I+1月月的总下网电量
+				}		
+				data_obj->read_rdb_value(monthpower->table_id, monthpower->record_id, 25+i, &temp3);  //从整站月电量分析表获取i+1月的下网电量
+				battery_lossrate =(value4-value3)/temp3;
+
+
+	//计算站用变率
+		for (int j = 0; j <stationpower_list.size(); j++)  	
+		{
+			//Cunit_monthpower_info   *unit_monthpower_info = find_unit_monthpower_from_list(j+1);
+			Cstationpower_info   *stationpower_info = find_stationpower_from_list(j+1);
+
+			data_obj->read_rdb_value(stationpower_info->table_id, stationpower_info->record_id,26+i, &temp4); //取出所有站用电第I+1月的下网电网
+			value5=value5+temp4;      //站用电i+1月的总下网电量
+		}
+		data_obj->read_rdb_value(monthpower->table_id, monthpower->record_id, 25+i, &temp5);  //从整站月电量分析表获取i+1月的下网电量
+		station_ratio =value5/temp5;
 	
+		transformer_lossrate=1-oee-battery_lossrate -station_ratio;
+		
+		Cmonth_runanalyse_info *runanalyse = find_month_runanalyse_from_list(i+1);   
+		data_obj->set_rdb_value(runanalyse ->table_id,runanalyse ->record_id,runanalyse ->equal_runtime_col ,equal_runtime); 
+		data_obj->set_rdb_value(runanalyse ->table_id,runanalyse ->record_id,runanalyse->equal_ratio_col ,equal_ratio); 
+		data_obj->set_rdb_value(runanalyse ->table_id,runanalyse ->record_id,runanalyse->oee_col ,oee); 
+		data_obj->set_rdb_value(runanalyse ->table_id,runanalyse ->record_id,runanalyse->battery_lossrate_col ,battery_lossrate ); 
+		data_obj->set_rdb_value(runanalyse ->table_id,runanalyse ->record_id,runanalyse->station_ratio_col ,station_ratio ); 
+		data_obj->set_rdb_value(runanalyse ->table_id,runanalyse ->record_id,runanalyse->transformer_lossrate_col ,transformer_lossrate ); 
+
+	}
 
 
 
 
+	scada_report->send_all_modify_rdb();
+	Sleep(1000*1);
 
 
 
@@ -5640,11 +6190,14 @@ void Cagvc_ctrl_mgr::main_loop()
 	agvc_ctrl_init();
 	dnet_obj->write_log(0,5657,"程序初始化");
 
+
 	while(1)	  
 	{
-		save_gatepower_to_dayanmonthpower_value(1);   
+		//save_gatepower_to_dayanmonthpower_value(1);   
 
-	    save_runstate_to_unitpower_value();
+	  ///  save_runstate_to_unitpower_value();
+
+		battery_run_analyse();
 	}
 
 

@@ -809,6 +809,105 @@ public:
 
 
 
+
+
+//站用电电量分析表
+class Cstationpower_info
+{
+public:
+	Cstationpower_info(Cdata_access *_data_obj);
+	~Cstationpower_info();
+	Cdata_access *data_obj;
+	RDB_NET      *rdb_obj;       //实时库对象
+	system_net_info *dnet_obj;   //网络操作对象
+public:
+	int table_id;
+	int record_id;      //在本设备表中的记录号
+	int display_id;     //在本设备表中的显示ID
+	char name[64];
+
+	on_time_t  year;    //年份
+	double year_uppower;      //站用电年上网电量
+	double year_downpower;      //站用电年下网电量
+
+	double month1_uppower;      //1月上网电量
+	double month2_uppower;      //
+	double month3_uppower;      //
+	double month4_uppower;      //
+	double month5_uppower;      //
+	double month6_uppower;      //
+	double month7_uppower;      //
+	double month8_uppower;      //
+	double month9_uppower;      //
+	double month10_uppower;      //
+	double month11_uppower;      //
+	double month12_uppower;      //
+	double season1_uppower;      //1季度上网电量
+	double season2_uppower;      //
+	double season3_uppower;      //
+	double season4_uppower;      //
+
+	double month1_downpower;      //1月下网电量
+	double month2_downpower;      //
+	double month3_downpower;      //
+	double month4_downpower;      //
+	double month5_downpower;      //
+	double month6_downpower;      //
+	double month7_downpower;      //
+	double month8_downpower;      //
+	double month9_downpower;      //
+	double month10_downpower;      //
+	double month11_downpower;      //
+	double month12_downpower;      //
+	double season1_downpower;      //1季度下网电量
+	double season2_downpower;      //
+	double season3_downpower;      //
+	double season4_downpower;      //	
+
+	short display_id_col;
+	short name_col;
+	on_time_t  year_col;    //月份
+	short year_uppower_col;      //当月上网电量
+	short year_downpower_col;      //当月上网电量
+	short month1_uppower_col;      //1月上网电量
+	short month2_uppower_col;      //
+	short month3_uppower_col;      //
+	short month4_uppower_col;      //
+	short month5_uppower_col;      //
+	short month6_uppower_col;      //
+	short month7_uppower_col;      //
+	short month8_uppower_col;      //
+	short month9_uppower_col;      //
+	short month10_uppower_col;      //
+	short month11_uppower_col;      //
+	short month12_uppower_col;      //
+	short season1_uppower_col;      //
+	short season2_uppower_col;      //
+	short season3_uppower_col;      //
+	short season4_uppower_col;      //
+
+	short month1_downpower_col;      //1月上网电量
+	short month2_downpower_col;      //
+	short month3_downpower_col;      //
+	short month4_downpower_col;      //
+	short month5_downpower_col;      //
+	short month6_downpower_col;      //
+	short month7_downpower_col;      //
+	short month8_downpower_col;      //
+	short month9_downpower_col;      //
+	short month10_downpower_col;      //
+	short month11_downpower_col;      //
+	short month12_downpower_col;      //
+	short season1_downpower_col;      //
+	short season2_downpower_col;      //
+	short season3_downpower_col;      //
+	short season4_downpower_col;      //
+
+
+public:
+	int read_stationpower_rdb();
+};
+
 //整站日电量分析表
 class Cstation_daypower_info
 {
@@ -1303,6 +1402,49 @@ public:
 };
 
 
+
+//储能月运行分析表
+class Cmonth_runanalyse_info
+{
+public:
+	Cmonth_runanalyse_info(Cdata_access *_data_obj);
+	~Cmonth_runanalyse_info();
+	Cdata_access *data_obj;
+	RDB_NET      *rdb_obj;       //实时库对象
+	system_net_info *dnet_obj;   //网络操作对象
+public:
+	int table_id;
+	int record_id;      //在本设备表中的记录号
+	int display_id;     //在本设备表中的显示ID
+	char name[64];
+
+	on_time_t  month;    
+	double equal_runtime;             //等效运行次数
+	double equal_ratio;               // 等效运行系数
+	double oee;                       //综合效率
+	double battery_lossrate;          //电站储能损耗率
+	double transformer_lossrate;      //变配电损耗率
+	double pcs_ratio;                 //变流器效率
+	double battery_ratio;             //电池充放电转换效率
+	double station_ratio;              //站用电率
+	
+
+	short display_id_col;
+	short name_col;
+	on_time_t  month_col;    //时间
+	short equal_runtime_col;             //等效运行次数
+	short equal_ratio_col;               // 等效运行系数
+	short oee_col;                       //综合效率
+	short battery_lossrate_col;          //电站储能损耗率
+	short transformer_lossrate_col;      //变配电损耗率
+	short pcs_ratio_col;                 //变流器效率
+	short battery_ratio_col;             //电池充放电转换效率   
+	short station_ratio_col;             // 站用电率
+
+
+public:
+	int read_month_runanalyse_rdb();
+};
 
 
 
