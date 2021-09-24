@@ -1448,6 +1448,77 @@ public:
 
 
 
+//储能运行时间表
+class Cunit_runtime_info
+{
+public:
+	Cunit_runtime_info(Cdata_access *_data_obj);
+	~Cunit_runtime_info();
+	Cdata_access *data_obj;
+	RDB_NET      *rdb_obj;       //实时库对象
+	system_net_info *dnet_obj;   //网络操作对象
+public:
+	int table_id;
+	int record_id;      //在本设备表中的记录号
+	int display_id;     //在本设备表中的显示ID
+	char name[64];
+
+	double	total_startup_time;
+	double	available_hours;
+	double	operating_hours;
+	
+	on_time_t  month;    
+	on_time_t start_time;             //开始时间
+	on_time_t end_time;               // 结束时间
+	double duration_time;            //持续时间
+	on_time_t last_start_time; 
+	on_time_t last_end_time; 
+	double last_duration_time; 
+	on_time_t schedule_start_time; 
+	on_time_t schedule_end_time; 
+	double schedule_duration_time; 
+	double schedule_stop_num; 
+	double all_schedule_stop_time; 
+	double noschedule_start_time; 
+	double noschedule_end_time; 
+	double noschedule_duration_time; 
+	double noschedule_stop_num; 
+	double all_noschedule_stop_time; 
+
+		short display_id_col;
+		short name_col;
+		short	total_startup_time_col; 
+		short	available_hours_col; 
+		short	operating_hours_col; 
+
+
+		on_time_t  month_col;    //时间
+		on_time_t start_time_col;             //开始时间
+		on_time_t  end_time_col;               // 结束时间
+		short  duration_time_col;              //持续时间
+		on_time_t last_start_time_col;
+		on_time_t last_end_time_col;
+		short last_duration_time_col;
+		on_time_t schedule_start_time_col;
+		on_time_t schedule_end_time_col;
+		short schedule_duration_time_col;
+		short schedule_stop_num_col;
+		short all_schedule_stop_time_col;
+		short noschedule_start_time_col;
+		short noschedule_end_time_col;
+		short noschedule_duration_time_col;
+		short noschedule_stop_num_col;
+		short all_noschedule_stop_time_col;
+
+
+public:
+	int read_unit_runtime_rdb();
+};
+
+
+
+
+
 //厂站表
 class Cfac_info
 {

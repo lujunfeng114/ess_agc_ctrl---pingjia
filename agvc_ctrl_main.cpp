@@ -3578,6 +3578,193 @@ int Cagvc_ctrl_mgr::read_month_runanalyse_info_table()
 
 }
 
+int Cagvc_ctrl_mgr::read_unit_runtime_infi_table()
+{
+
+
+	for(int i=0; i<Cunit_runtime_list.size(); i++)
+	{
+		delete Cunit_runtime_list.at(i);
+	}
+	Cunit_runtime_list.clear();
+
+	int retcode;
+	int record_num;
+	int result_len;
+	char *buffer = NULL;
+
+	int offset = 0;
+	int record_pos = 0;
+	int record_len = 0;
+
+	struct TABLE_HEAD_FIELDS_INFO* fields_info = NULL;
+
+	const int field_num = 23;
+	buffer = (char *)MALLOC(6000);
+
+	fields_info = (struct TABLE_HEAD_FIELDS_INFO *)MALLOC(sizeof(struct TABLE_HEAD_FIELDS_INFO)*field_num);
+	char  English_names[field_num][DB_ENG_TABLE_NAME_LEN] = {
+		"display_idx",
+		"id",
+		"name",
+		"total_startup_time", 
+		"available_hours", 
+		"operating_hours", 
+		"month",  
+		"start_time",             //开始时间
+		"end_time",                // 结束时间
+		"duration_time",             //持续时间
+		"last_start_time",  
+		"last_end_time",  
+		"last_duration_time",  
+		"schedule_start_time",  
+		"schedule_end_time",  
+		"schedule_duration_time",  
+		"schedule_stop_num",  
+		"all_schedule_stop_time",  
+		"noschedule_start_time",  
+		"noschedule_end_time",  
+		"noschedule_duration_time",  
+		"noschedule_stop_num",  
+		"all_noschedule_stop_time",  
+
+
+	};
+	//根据设备表名称读取设备表ID
+	int table_id;
+	retcode = rdb_obj->get_table_id_by_table_name("pj_runtime_info", table_id);
+	if(retcode <= 0)
+	{
+		FREE((char *&)buffer);
+		FREE((char *&)fields_info);
+		dnet_obj->write_log_at_once(0, 1000, "读储运行时间分析表号失败");
+		return -1;
+	}
+
+	retcode = rdb_obj->read_table_data_by_english_names(
+		table_id,
+		DNET_APP_TYPE_SCADA,
+		(char(*)[DB_ENG_TABLE_NAME_LEN])English_names,
+		field_num,
+		fields_info,
+		buffer,
+		record_num,
+		result_len);
+
+	if(retcode <= 0)
+	{
+		FREE((char *&)buffer);
+		FREE((char *&)fields_info);
+		dnet_obj->write_log_at_once(0, 1000, "读储能运行时间分析表数据失败");
+		return -1;
+	}
+
+	if(record_num <= 0)
+	{
+		FREE((char *&)buffer);
+		FREE((char *&)fields_info);
+		dnet_obj->write_log_at_once(0, 1000, "储能运行时间分析表没有记录！");
+
+		return -1;
+	}
+
+	for(int i=0; i<field_num; i++)
+	{
+		record_len += fields_info[i].field_len;
+	}
+
+
+	for(int i=0; i<record_num; i++)
+	{
+		record_pos = i * record_len;
+		offset = 0;
+
+		Cunit_runtime_info *agvc = new Cunit_runtime_info(data_obj);
+		agvc->table_id = table_id;
+
+		memcpy((char *)&agvc->display_id, buffer+record_pos+offset, fields_info[0].field_len);
+		offset += fields_info[0].field_len;
+		memcpy((char *)&agvc->record_id, buffer+record_pos+offset, fields_info[1].field_len);
+		offset += fields_info[1].field_len;
+		memcpy((char *)&agvc->name, buffer+record_pos+offset, fields_info[2].field_len);
+		offset += fields_info[2].field_len;
+		memcpy((char *)&agvc->total_startup_time, buffer+record_pos+offset, fields_info[3].field_len);
+		offset += fields_info[3].field_len;
+		memcpy((char *)&agvc->available_hours, buffer+record_pos+offset, fields_info[4].field_len);
+		offset += fields_info[4].field_len;
+		memcpy((char *)&agvc->operating_hours, buffer+record_pos+offset, fields_info[5].field_len);
+		offset += fields_info[5].field_len;
+		memcpy((char *)&agvc->month, buffer+record_pos+offset, fields_info[6].field_len);
+		offset += fields_info[6].field_len;
+		memcpy((char *)&agvc->start_time, buffer+record_pos+offset, fields_info[7].field_len);
+		offset += fields_info[7].field_len;
+		memcpy((char *)&agvc->end_time, buffer+record_pos+offset, fields_info[8].field_len);
+		offset += fields_info[8].field_len;
+		memcpy((char *)&agvc->duration_time, buffer+record_pos+offset, fields_info[9].field_len);
+		offset += fields_info[9].field_len;
+		memcpy((char *)&agvc->last_start_time, buffer+record_pos+offset, fields_info[10].field_len);
+		offset += fields_info[10].field_len;
+		memcpy((char *)&agvc->last_end_time, buffer+record_pos+offset, fields_info[11].field_len);
+		offset += fields_info[11].field_len;
+		memcpy((char *)&agvc->last_duration_time, buffer+record_pos+offset, fields_info[12].field_len);
+		offset += fields_info[12].field_len;
+		memcpy((char *)&agvc->schedule_start_time, buffer+record_pos+offset, fields_info[13].field_len);
+		offset += fields_info[13].field_len;
+		memcpy((char *)&agvc->schedule_end_time, buffer+record_pos+offset, fields_info[14].field_len);
+		offset += fields_info[14].field_len;
+		memcpy((char *)&agvc->schedule_duration_time, buffer+record_pos+offset, fields_info[15].field_len);
+		offset += fields_info[15].field_len;
+		memcpy((char *)&agvc->schedule_stop_num, buffer+record_pos+offset, fields_info[16].field_len);
+		offset += fields_info[16].field_len;
+		memcpy((char *)&agvc->all_schedule_stop_time, buffer+record_pos+offset, fields_info[17].field_len);
+		offset += fields_info[17].field_len;
+		memcpy((char *)&agvc->noschedule_start_time, buffer+record_pos+offset, fields_info[18].field_len);
+		offset += fields_info[18].field_len;
+		memcpy((char *)&agvc->noschedule_end_time, buffer+record_pos+offset, fields_info[19].field_len);
+		offset += fields_info[19].field_len;
+		memcpy((char *)&agvc->noschedule_duration_time, buffer+record_pos+offset, fields_info[20].field_len);
+		offset += fields_info[20].field_len;
+		memcpy((char *)&agvc->noschedule_stop_num, buffer+record_pos+offset, fields_info[21].field_len);
+		offset += fields_info[21].field_len;
+		memcpy((char *)&agvc->all_noschedule_stop_time, buffer+record_pos+offset, fields_info[22].field_len);
+		offset += fields_info[22].field_len;
+
+
+		agvc->display_id_col = fields_info[0].rdb_field_no;
+		agvc->name_col = fields_info[2].rdb_field_no;
+		agvc->total_startup_time_col = fields_info[3].rdb_field_no;
+		agvc->available_hours_col = fields_info[4].rdb_field_no;
+		agvc->operating_hours_col = fields_info[5].rdb_field_no;
+		agvc->month_col = fields_info[6].rdb_field_no;
+		agvc->start_time_col = fields_info[7].rdb_field_no;
+		agvc->end_time_col = fields_info[8].rdb_field_no;
+		agvc->duration_time_col = fields_info[9].rdb_field_no;
+		agvc->last_start_time_col = fields_info[10].rdb_field_no;
+		agvc->last_end_time_col = fields_info[11].rdb_field_no;
+		agvc->last_duration_time_col = fields_info[12].rdb_field_no;	
+		agvc->schedule_start_time_col = fields_info[13].rdb_field_no;
+		agvc->schedule_end_time_col = fields_info[14].rdb_field_no;
+		agvc->schedule_duration_time_col = fields_info[15].rdb_field_no;	
+		agvc->schedule_stop_num_col = fields_info[15].rdb_field_no;
+		agvc->all_schedule_stop_time_col = fields_info[17].rdb_field_no;
+		agvc->noschedule_start_time_col = fields_info[18].rdb_field_no;	
+		agvc->noschedule_end_time_col = fields_info[19].rdb_field_no;
+		agvc->noschedule_duration_time_col = fields_info[20].rdb_field_no;
+		agvc->noschedule_stop_num_col = fields_info[21].rdb_field_no;	
+		agvc->all_noschedule_stop_time_col = fields_info[22].rdb_field_no;	
+
+          Cunit_runtime_list.push_back(agvc);
+
+
+	}
+
+	FREE((char *&)buffer);
+	FREE((char *&)fields_info);
+	return 1;
+
+
+}
+
 int Cagvc_ctrl_mgr::read_micro_ctrl_info_table()
 {
 	for(int i=0; i<micro_ctrl_list.size(); i++)
@@ -3946,6 +4133,19 @@ Cmonth_runanalyse_info* Cagvc_ctrl_mgr::find_month_runanalyse_from_list(int disp
 
 
 
+
+}
+//查找储能运行时间表
+Cunit_runtime_info* Cagvc_ctrl_mgr::find_unit_runtime_from_list(int display_id)
+{
+	Cunit_runtime_info *unit_runtime=NULL;
+	for(int i=0; i<Cunit_runtime_list.size(); i++)
+	{
+		unit_runtime= Cunit_runtime_list.at(i);
+		if(unit_runtime->display_id == display_id)
+			return unit_runtime;
+	}
+	return NULL;
 
 }
 
@@ -5629,6 +5829,8 @@ void Cagvc_ctrl_mgr::battery_run_analyse()
 	 double value5=0; 
 	 double value6=0; 
 
+	 double value7=0; 
+	 double value8=0; 
 
 	 double equal_runtime1=0;   //放电循环等效次数
 	 double equal_runtime2=0;   //充电循环等效次数
@@ -5652,14 +5854,12 @@ void Cagvc_ctrl_mgr::battery_run_analyse()
 
      //计算循环等效次数+循环系数+综合效率
 	for (int i = 0; i <12; i++)  
-	  {	 
-		
+	  {	 		
 		  data_obj->read_rdb_value(monthpower->table_id, monthpower->record_id, 9+i, &value1);  //从整站月电量分析表获取每个月的上网电量
 		  data_obj->read_rdb_value(monthpower->table_id, monthpower->record_id, 25+i, &value2);  //从整站月电量分析表获取每个月的下网电量
 		  equal_runtime1=value1/1000;	
 		  equal_runtime2=value2/1000;	
 		  equal_runtime=(equal_runtime1+equal_runtime2)/2;   //等效次数
-
           equal_ratio=(value1+value2)/(2*1000*30);          //等效系数
           oee =  value2/value1;
          		 
@@ -5676,21 +5876,17 @@ void Cagvc_ctrl_mgr::battery_run_analyse()
 				data_obj->read_rdb_value(monthpower->table_id, monthpower->record_id, 25+i, &temp3);  //从整站月电量分析表获取i+1月的下网电量
 				battery_lossrate =(value4-value3)/temp3;
 
-
 	//计算站用变率
 		for (int j = 0; j <stationpower_list.size(); j++)  	
 		{
 			//Cunit_monthpower_info   *unit_monthpower_info = find_unit_monthpower_from_list(j+1);
 			Cstationpower_info   *stationpower_info = find_stationpower_from_list(j+1);
-
 			data_obj->read_rdb_value(stationpower_info->table_id, stationpower_info->record_id,26+i, &temp4); //取出所有站用电第I+1月的下网电网
 			value5=value5+temp4;      //站用电i+1月的总下网电量
 		}
 		data_obj->read_rdb_value(monthpower->table_id, monthpower->record_id, 25+i, &temp5);  //从整站月电量分析表获取i+1月的下网电量
-		station_ratio =value5/temp5;
-	
-		transformer_lossrate=1-oee-battery_lossrate -station_ratio;
-		
+		station_ratio =value5/temp5;	
+		transformer_lossrate=1-oee-battery_lossrate -station_ratio;		
 		Cmonth_runanalyse_info *runanalyse = find_month_runanalyse_from_list(i+1);   
 		data_obj->set_rdb_value(runanalyse ->table_id,runanalyse ->record_id,runanalyse ->equal_runtime_col ,equal_runtime); 
 		data_obj->set_rdb_value(runanalyse ->table_id,runanalyse ->record_id,runanalyse->equal_ratio_col ,equal_ratio); 
@@ -5702,14 +5898,39 @@ void Cagvc_ctrl_mgr::battery_run_analyse()
 	}
 
 
+  //计算储能单元效率（变流器效率  电池充放电转换效率）
+
+
+
+
+	for (int i = 0; i <12; i++) 
+	{		
+		for (int j = 0; j <unit_monthpower_list.size(); j++)  	
+		{
+			Cunit_monthpower_info   *unit_monthpower_info = find_unit_monthpower_from_list(j+1);
+			data_obj->read_rdb_value(unit_monthpower_info->table_id, unit_monthpower_info->record_id,10+i, &temp1); //取出所有储能单元第I+1月的上网电网  //放电电量
+			data_obj->read_rdb_value(unit_monthpower_info->table_id, unit_monthpower_info->record_id,26+i, &temp2); //取出所有储能单元第I+1月的下网电网  //充电电量        
+		value7=value7+temp1; 
+		value8=value8+temp2; 
+
+		}
+        battery_ratio = value7/value8;
+		Cmonth_runanalyse_info *runanalyse = find_month_runanalyse_from_list(i+1);   
+		data_obj->set_rdb_value(runanalyse ->table_id,runanalyse ->record_id,runanalyse->battery_ratio_col ,battery_ratio ); 
+
+	}
 
 
 	scada_report->send_all_modify_rdb();
 	Sleep(1000*1);
-
-
-
 }
+
+
+
+
+
+
+
 
 //设置安科瑞表函数  遥调合
 
@@ -6193,9 +6414,9 @@ void Cagvc_ctrl_mgr::main_loop()
 
 	while(1)	  
 	{
-		//save_gatepower_to_dayanmonthpower_value(1);   
+		save_gatepower_to_dayanmonthpower_value(1);   
 
-	  ///  save_runstate_to_unitpower_value();
+	   save_runstate_to_unitpower_value();
 
 		battery_run_analyse();
 	}

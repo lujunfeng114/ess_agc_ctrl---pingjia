@@ -36,6 +36,9 @@ public:
 	vector<Cunit_daypower_info * > unit_daypower_list;            //储能单元日电量分析表
  	vector<Cunit_runstate_info * > unit_runstate_list;            //储能单元运行信息表
  	vector<Cmonth_runanalyse_info * > month_runanalyse_list;      //储能月运行分析表
+ 	vector<Cunit_runtime_info * > Cunit_runtime_list;            //储能运行时间分析表
+
+
 
 
 	int read_fac_info_table();
@@ -60,7 +63,7 @@ public:
 	int read_unit_runstate_info_table();                //储能单元运行信息表
 
 	int read_month_runanalyse_info_table();              //储能月运行信息表
-
+    int read_unit_runtime_infi_table();                  //储能运行时间表
 
 
 
@@ -83,7 +86,7 @@ public:
 	Cunit_runstate_info* find_unit_runstate_from_list(int display_id);  
 	Cmonth_runanalyse_info* find_month_runanalyse_from_list(int display_id);  
 
-
+	Cunit_runtime_info* find_unit_runtime_from_list(int display_id);  
 
 public:
 	//遥控遥调转发业务逻辑

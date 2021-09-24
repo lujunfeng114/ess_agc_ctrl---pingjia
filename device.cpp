@@ -2165,3 +2165,52 @@ int Cstationpower_info::read_stationpower_rdb()
 
 	return 0;
 }
+
+/*函数名：read_unit_runtime_rdb()
+ *输入:
+ *输出：
+ *功能简介://储能运行时间表
+ *时间：[9/2/2021 LJF]
+ */
+Cunit_runtime_info::read_unit_runtime_rdb(Cdata_access *_data_obj)
+{
+	this->data_obj = _data_obj;
+	this->rdb_obj = data_obj->rdb_obj;
+	this->dnet_obj = data_obj->dnet_obj;
+
+}
+
+Cunit_runtime_info::~read_unit_runtime_rdb()
+{
+
+}
+
+int Cunit_runtime_info::read_unit_runtime_rdb()
+{
+	data_obj->read_rdb_value(table_id, record_id, display_id_col, &display_id);
+	data_obj->read_rdb_value(table_id, record_id, name_col, name);
+	data_obj->read_rdb_value(table_id, record_id, total_startup_time_col, &total_startup_time);
+
+	data_obj->read_rdb_value(table_id, record_id, available_hours_col, &available_hours);
+	data_obj->read_rdb_value(table_id, record_id, operating_hours_col, &operating_hours);
+	data_obj->read_rdb_value(table_id, record_id, operating_hours_col , &operating_hours);
+	data_obj->read_rdb_value(table_id, record_id, month_col, &month);
+	data_obj->read_rdb_value(table_id, record_id, start_time_col, &start_time);
+	data_obj->read_rdb_value(table_id, record_id, end_time_col, &end_time);
+	data_obj->read_rdb_value(table_id, record_id, duration_time_col, &duration_time);
+	data_obj->read_rdb_value(table_id, record_id, last_start_time_col, &last_start_time);
+	data_obj->read_rdb_value(table_id, record_id, last_end_time_col, &last_end_time);
+	data_obj->read_rdb_value(table_id, record_id, last_duration_time_col, &last_duration_time);
+	data_obj->read_rdb_value(table_id, record_id, schedule_start_time_col, &schedule_start_time);
+	data_obj->read_rdb_value(table_id, record_id, schedule_end_time_col, &schedule_end_time);
+	data_obj->read_rdb_value(table_id, record_id, schedule_duration_time_col, &schedule_duration_time);
+	data_obj->read_rdb_value(table_id, record_id, schedule_stop_num_col, &schedule_stop_num);
+
+	data_obj->read_rdb_value(table_id, record_id, all_schedule_stop_time_col, &all_schedule_stop_time);
+	data_obj->read_rdb_value(table_id, record_id, noschedule_start_time_col, &noschedule_start_time);
+	data_obj->read_rdb_value(table_id, record_id, noschedule_end_time_col, &noschedule_end_time);
+	data_obj->read_rdb_value(table_id, record_id, noschedule_duration_time_col, &noschedule_duration_time);
+	data_obj->read_rdb_value(table_id, record_id, noschedule_stop_num_col, &noschedule_stop_num);
+	data_obj->read_rdb_value(table_id, record_id, all_noschedule_stop_time_col, &all_noschedule_stop_time);
+
+}
